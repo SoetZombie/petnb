@@ -293,7 +293,21 @@ namespace petnb.Controllers
                 ViewData["ReturnUrl"] = returnUrl;
                 ViewData["LoginProvider"] = info.LoginProvider;
                 var email = info.Principal.FindFirstValue(ClaimTypes.Email);
-                return View("ExternalLogin", new ExternalLoginViewModel { Email = email });
+
+                var user = new ApplicationUser { UserName = email, Email = email };
+                var outcome = await _userManager.CreateAsync(user);
+                if (outcome.Succeeded)
+                {
+                    outcome = await _userManager.AddLoginAsync(user, info);
+                    if (result.Succeeded)
+                    {
+                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        _logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);
+
+                    }
+                }
+                AddErrors(outcome);
+                return RedirectToAction("Index", "Home");
             }
         }
 

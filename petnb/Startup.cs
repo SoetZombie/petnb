@@ -29,12 +29,22 @@ namespace petnb
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>(config =>
+                    {
+                        config.SignIn.RequireConfirmedEmail = false;
+                    })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
+
+            services.AddAuthentication().AddGoogle(googleOptions =>
+            {
+                googleOptions.ClientId = Configuration["web:ClientId"];
+                googleOptions.ClientSecret = Configuration["web:ClientSecret"];
+
+            });
 
             services.AddMvc();
         }
