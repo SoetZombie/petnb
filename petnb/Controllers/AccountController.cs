@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using petnb.DTL.Models;
 using petnb.Models;
 using petnb.Models.AccountViewModels;
 using petnb.Services;

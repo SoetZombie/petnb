@@ -4,9 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using petnb.Models;
+using petnb.Data.Models;
+using petnb.DTL.Models;
 
-namespace petnb.Data
+namespace petnb.DTL.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -14,6 +15,8 @@ namespace petnb.Data
             : base(options)
         {
         }
+
+        private DbSet<PetOffer> PetOffers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using petnb.Data;
+using petnb.DTL.Data;
+using petnb.DTL.Models;
 using petnb.Models;
 using petnb.Services;
 

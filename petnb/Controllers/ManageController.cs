@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using petnb.DTL.Models;
 using petnb.Models;
 using petnb.Models.ManageViewModels;
 using petnb.Services;

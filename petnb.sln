@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "petnb", "petnb\petnb.csproj", "{F2CFB55B-2D7E-448A-B98D-939C34A3D851}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petnb.data", "Petnb.data\Petnb.data.csproj", "{80CE4EA6-6A0F-49ED-B765-3FD3CE3FE588}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "petnb.DTL", "petnb.DTL\petnb.DTL.csproj", "{0BBDA538-C258-49A1-8464-5A89797E8EB6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{F2CFB55B-2D7E-448A-B98D-939C34A3D851}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2CFB55B-2D7E-448A-B98D-939C34A3D851}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2CFB55B-2D7E-448A-B98D-939C34A3D851}.Release|Any CPU.Build.0 = Release|Any CPU
-		{80CE4EA6-6A0F-49ED-B765-3FD3CE3FE588}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{80CE4EA6-6A0F-49ED-B765-3FD3CE3FE588}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{80CE4EA6-6A0F-49ED-B765-3FD3CE3FE588}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{80CE4EA6-6A0F-49ED-B765-3FD3CE3FE588}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BBDA538-C258-49A1-8464-5A89797E8EB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BBDA538-C258-49A1-8464-5A89797E8EB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BBDA538-C258-49A1-8464-5A89797E8EB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BBDA538-C258-49A1-8464-5A89797E8EB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

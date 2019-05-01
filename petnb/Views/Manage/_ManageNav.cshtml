@@ -1,4 +1,5 @@
-﻿@using petnb.Views.Manage
+﻿@using petnb.DTL.Models
+@using petnb.Views.Manage
 @inject SignInManager<ApplicationUser> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
