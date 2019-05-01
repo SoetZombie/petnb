@@ -1,0 +1,17 @@
+.mssg::after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f2ed"; }
+
+li {
+  list-style: none;
+  font-family: Arial, Helvetica, sans-serif; }
+  li .trash {
+    margin-left: 20px; }
+  li .trash:hover {
+    color: red;
+    transform: rotate(20deg);
+    transition: all 0.2s ease-in-out; }
+
+form {
+  backface-visibility: hidden; }
