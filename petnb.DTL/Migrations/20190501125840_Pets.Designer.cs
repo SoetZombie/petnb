@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using petnb.DTL.Data;
 
 namespace petnb.DTL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190501125840_Pets")]
+    partial class Pets
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -215,15 +217,11 @@ namespace petnb.DTL.Migrations
 
                     b.Property<string>("Heading");
 
-                    b.Property<int?>("PetId");
-
                     b.Property<decimal>("Reward");
 
                     b.Property<DateTime>("StartOfSit");
 
                     b.HasKey("PetOfferId");
-
-                    b.HasIndex("PetId");
 
                     b.ToTable("PetOffers");
                 });
@@ -271,13 +269,6 @@ namespace petnb.DTL.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("petnb.Data.Models.PetOffer", b =>
-                {
-                    b.HasOne("petnb.DTL.Data.Models.Pet", "Pet")
-                        .WithMany()
-                        .HasForeignKey("PetId");
                 });
 #pragma warning restore 612, 618
         }

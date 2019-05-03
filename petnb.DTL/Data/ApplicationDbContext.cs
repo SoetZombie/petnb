@@ -4,7 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using petnb.Data.Models;
+using petnb.DTL.Data.Models;
+using petnb.DTL.Migrations;
 using petnb.DTL.Models;
 
 namespace petnb.DTL.Data
@@ -16,7 +17,9 @@ namespace petnb.DTL.Data
         {
         }
 
-        private DbSet<PetOffer> PetOffers { get; set; }
+        public DbSet<PetOffer> PetOffers { get; set; }
+        public DbSet<Pet> Pets { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
