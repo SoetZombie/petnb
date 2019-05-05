@@ -10,5 +10,7 @@ namespace petnb.DTL.Models
     public class ApplicationUser : IdentityUser
     {
         public bool IsPetOwner { get; set; }
+
+        public List<Pet> Pets { get; set; } = new List<Pet>();
     }
 }

@@ -14,5 +14,9 @@ namespace petnb.DTL.Models
         public int PetAge { get; set; }
         public double PetDifficulty { get; set; }
         public double PetWeight { get; set; }
+
+        public string UserId { get; set; }
+
+        public ApplicationUser ApplicationUser { get; set; }
 }
 }

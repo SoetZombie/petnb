@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using petnb.DTL.Data;
 
 namespace petnb.DTL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190505105741_petListIniti1")]
+    partial class petListIniti1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -188,6 +190,8 @@ namespace petnb.DTL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("ApplicationUserId");
+
                     b.Property<int>("PetAge");
 
                     b.Property<double>("PetDifficulty");
@@ -198,11 +202,9 @@ namespace petnb.DTL.Migrations
 
                     b.Property<double>("PetWeight");
 
-                    b.Property<string>("UserId");
-
                     b.HasKey("PetId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Pets");
                 });
@@ -281,7 +283,7 @@ namespace petnb.DTL.Migrations
                 {
                     b.HasOne("petnb.DTL.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("Pets")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("ApplicationUserId");
                 });
 
             modelBuilder.Entity("petnb.DTL.Models.PetOffer", b =>

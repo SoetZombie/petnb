@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,11 +13,13 @@ namespace petnb.Controllers
 {
     public class PetsController : Controller
     {
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly ApplicationDbContext _context;
 
-        public PetsController(ApplicationDbContext context)
+        public PetsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Pets
@@ -54,15 +57,34 @@ namespace petnb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PetId,PetName,PetType,PetAge,PetDifficulty,PetWeight")] Pet pet)
+        public async Task<IActionResult> Create(Pet petModel)
         {
+            var userId = _userManager.GetUserId(HttpContext.User);
+            var user = _context.Users
+                .Include(p => p.Pets)
+                .FirstOrDefault(i => i.Id == userId);
+ 
             if (ModelState.IsValid)
             {
+                var pet = new Pet
+                {
+                    PetAge = petModel.PetAge,
+                    PetDifficulty = petModel.PetDifficulty,
+                    PetName = petModel.PetName,
+                    PetWeight = petModel.PetWeight,
+                    PetType = petModel.PetType
+                };
+                if (!user.IsPetOwner)
+                {
+                    user.IsPetOwner = true;
+                }
+                user.Pets.Add(pet);
                 _context.Add(pet);
+                _context.Update(user);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(pet);
+            return View();
         }
 
         // GET: Pets/Edit/5
