@@ -13,8 +13,23 @@ namespace petnb.DTL.Models
         public string FullName { get; set; }
         public double Rating { get; set; }
         public string Adress { get; set; }
-        //public bool Email { get; set; } ?
+        //public bool Email { get; set; } set in core values
         public int Age { get; set; }
-        
+
+
+        //Construtor
+        public ApplicationUser(string name)
+        {
+            FullName = name;
+        }
+
+        public ApplicationUser(bool sitter, string name, double rating, string adress, int age)
+        {
+            IsPetSitter = sitter;
+            FullName = name;
+            Rating = rating;
+            Adress = adress;
+            Age = age;
+        }
     }
 }
