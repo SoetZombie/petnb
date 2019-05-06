@@ -9,6 +9,12 @@ namespace petnb.DTL.Models
     // Add profile data for application users by adding properties to the ApplicationUser class
     public class ApplicationUser : IdentityUser
     {
-        public bool IsPetOwner { get; set; }
+        public bool IsPetSitter { get; set; }
+        public string FullName { get; set; }
+        public double Rating { get; set; }
+        public string Adress { get; set; }
+        //public bool Email { get; set; } ?
+        public int Age { get; set; }
+        
     }
 }
