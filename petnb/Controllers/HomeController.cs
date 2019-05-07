@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using petnb.Models;
@@ -12,13 +13,13 @@ namespace petnb.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+           return View();
         }
 
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
-
+            
             return View();
         }
 

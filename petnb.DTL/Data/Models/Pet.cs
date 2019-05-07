@@ -18,5 +18,6 @@ namespace petnb.DTL.Models
         public string UserId { get; set; }
 
         public ApplicationUser ApplicationUser { get; set; }
+        //
 }
 }

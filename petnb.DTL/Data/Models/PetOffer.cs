@@ -16,6 +16,6 @@ namespace petnb.DTL.Models
        // public User user
        public decimal Reward { get; set; }
        public DateTime StartOfSit { get; set; }
-       public DateTime EndOfSit { get; set; }
+       public DateTime EndOfSit { get; set; }//
     }
 }
