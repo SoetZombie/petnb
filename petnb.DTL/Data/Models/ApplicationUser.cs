@@ -14,10 +14,10 @@ namespace petnb.DTL.Models
         public List<Pet> Pets { get; set; } = new List<Pet>();
         public bool IsPetSitter { get; set; }
         public string FullName { get; set; }
-        public double Rating { get; set; }
-        public string Adress { get; set; }
+        public double? Rating { get; set; }
+        public string Address { get; set; }
         //public bool Email { get; set; } ?
-        public int Age { get; set; }
+        public int? Age { get; set; }
         
     }
     //

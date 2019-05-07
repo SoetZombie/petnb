@@ -14,7 +14,7 @@ namespace petnb.DTL.Models
         public string Content { get; set; }
        // public Pet Pet
        // public User user
-       public decimal Reward { get; set; }
+       public decimal? Reward { get; set; }
        public DateTime StartOfSit { get; set; }
        public DateTime EndOfSit { get; set; }
         public Pet Pet { get; set; }
