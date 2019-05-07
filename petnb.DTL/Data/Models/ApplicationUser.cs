@@ -12,6 +12,8 @@ namespace petnb.DTL.Models
         public bool IsPetOwner { get; set; }
 
         public List<Pet> Pets { get; set; } = new List<Pet>();
+        ////
+        //// 
     }
     //
 }
