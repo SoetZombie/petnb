@@ -8,6 +8,7 @@ namespace petnb.DTL.Data.Models
     public class Review
     {
         //properties
+        public int ReviewId { get; set; }
         public ApplicationUser ReviewedApplicationUser { get; set; }
         public int UserId { get; set; }
         public int ReviewingApplicationUserId { get; set; }

@@ -1,17 +1,22 @@
 ﻿@using System.Text
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
 
 @{
-    var test = "testik";
-    var bytes = Encoding.ASCII.GetBytes(test);
-    
-    var banan = ASCIIEncoding.ASCII.GetString(bytes);
+    var token = HttpContextAccessor.HttpContext.Session.GetString("FirebaseToken");
 }
+
 <script>
-
-    let test = "@Html.Raw(banan)";
-    console.log(test);
+    const key = "@Html.Raw(token)";
+    console.log(key);
+    firebase.auth().signInWithCustomToken(key).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // ...
+    });
 </script>
-
 
 
 

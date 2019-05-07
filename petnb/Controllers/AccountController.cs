@@ -8,6 +8,7 @@ using FirebaseAdmin.Auth;
 using Google.Apis.Auth.OAuth2;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -69,14 +70,17 @@ namespace petnb.Controllers
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
+                    //TODO move this to separate service and call it only when required
                     FirebaseApp.Create(new AppOptions()
                     {
                         Credential = GoogleCredential.FromFile("wwwroot/service-account-file.json"),
                         
                     });
-                    var uid = "test";
-                    string customToken = await FirebaseAuth.DefaultInstance.CreateCustomTokenAsync(uid);
+                    var user = await _userManager.GetUserAsync(HttpContext.User);
+                    var userId = user.Id;
 
+                    var customToken = await FirebaseAuth.DefaultInstance.CreateCustomTokenAsync(userId);
+                    HttpContext.Session.SetString("FirebaseToken",customToken);
 
                     _logger.LogInformation("User logged in.");
                     return RedirectToLocal(returnUrl);
