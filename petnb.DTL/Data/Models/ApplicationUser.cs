@@ -11,15 +11,17 @@ namespace petnb.DTL.Models
     public class ApplicationUser : IdentityUser
     {
         public bool IsPetOwner { get; set; }
+
+        public List<Pet> Pets { get; set; } = new List<Pet>();
         public bool IsPetSitter { get; set; }
         public string FullName { get; set; }
-        public double Rating { get; set; }
         public List<Review> Review { get; set; }
-        public string Adress { get; set; }
-        //public bool Email { get; set; } set in core values
-        public int Age { get; set; }
-        public Pet Pet { get; set; }
-        public Review Review { get; set; }
 
+        public double? Rating { get; set; }
+        public string Address { get; set; }
+        //public bool Email { get; set; } ?
+        public int? Age { get; set; }
+        
     }
+    //
 }

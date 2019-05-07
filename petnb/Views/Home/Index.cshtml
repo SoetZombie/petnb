@@ -1,4 +1,16 @@
-﻿
+﻿@using System.Text
+
+@{
+    var test = "testik";
+    var bytes = Encoding.ASCII.GetBytes(test);
+    
+    var banan = ASCIIEncoding.ASCII.GetString(bytes);
+}
+<script>
+
+    let test = "@Html.Raw(banan)";
+    console.log(test);
+</script>
 
 
 
