@@ -22,53 +22,8 @@ namespace petnb.Data.Models
         public string PetNeeds { get; set; }
         public DateTime StartOfSit { get; set; }
         public DateTime EndOfSit { get; set; }
-        public ApplicationUser User
-        {
-            get
-            {
-                return user;
-            }
-            set
-            {
-                if (value != null)
-                {
-                    user = value;
-                }
-            }
-        }
-        public Pet Pet
-        {
-            get
-            {
-                return pet;
-            }
-            set
-            {
-                if (value != null)
-                {
-                    pet = value;
-                }
-            }
-        }
+        public ApplicationUser User { get; set; }
+        public Pet Pet { get; set; }
 
-        //Constructor
-        public PetOffer()
-        {
-           
-        }
-
-        public PetOffer(int petOfferId, string heading, string content, decimal reward, string petLocation, string petNeeds, DateTime startOfSit, DateTime endOfSit, ApplicationUser user, Pet pet)
-        {
-            PetOfferId   = petOfferId;
-            Heading = heading;
-            Content = content;
-            Reward = reward;
-            PetLocation = petLocation;
-            PetNeeds = petNeeds;
-            StartOfSit = startOfSit;
-            EndOfSit = endOfSit;
-            User = user;
-            Pet = pet;
-        }
     }
 }

@@ -15,21 +15,5 @@ namespace petnb.DTL.Data.Models
         public double Difficulty { get; set; }
         public double Weight { get; set; }
 
-
-        //Construtor
-        public Pet(string name)
-        {
-            PetName = name;
-        }
-
-        public Pet(string name, int type, string breed, int age, double difficulty, double weight)
-        {
-            PetName = name;
-            Type = type;
-            Breed = breed;
-            Age = age;
-            Difficulty = difficulty;
-            Weight = weight;
-        }
     }
 }
