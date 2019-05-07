@@ -15,7 +15,7 @@ namespace petnb.DTL.Models
         public List<Pet> Pets { get; set; } = new List<Pet>();
         public bool IsPetSitter { get; set; }
         public string FullName { get; set; }
-        public List<Review> Review { get; set; }
+        public List<Review> Reviews { get; set; } = new List<Review>();
 
         public double? Rating { get; set; }
         public string Address { get; set; }

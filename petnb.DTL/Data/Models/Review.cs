@@ -10,7 +10,7 @@ namespace petnb.DTL.Data.Models
         //properties
         public ApplicationUser ReviewedApplicationUser { get; set; }
         public int UserId { get; set; }
-        public int ReviewingdApplicationUserId { get; set; }
+        public int ReviewingApplicationUserId { get; set; }
         public string Heading { get; set; }
         public string Content { get; set; }
         public double Rating { get; set; }

@@ -31,9 +31,8 @@ namespace petnb.DTL.Data
                 .HasForeignKey(k => k.UserId);
 
             builder.Entity<ApplicationUser>()
-                .HasOne(a => a.Review)
-                .WithOne(b => b.ReviewedApplicationUser)
-                .HasForeignKey<Review>(b => b.UserId);
+                .HasMany(a => a.Reviews)
+                .WithOne(b => b.ReviewedApplicationUser);
 
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
