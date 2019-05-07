@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans|Raleway");
 .mssg::after {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
@@ -64,72 +63,41 @@ form {
     overflow-y: auto;
     margin-top: 20px; }
 
-* {
-  font-family: 'Raleway', sans-serif; }
+/* Change this breakpoint if you change the breakpoint of the navbar */
+@media (min-width: 992px) {
+  .animate {
+    animation-duration: 0.3s;
+    -webkit-animation-duration: 0.3s;
+    animation-fill-mode: both;
+    -webkit-animation-fill-mode: both; } }
 
-header h1 {
-  font-size: 5rem; }
+@keyframes slideIn {
+  0% {
+    transform: translateY(1rem);
+    opacity: 0; }
+  100% {
+    transform: translateY(0rem);
+    opacity: 1; }
+  0% {
+    transform: translateY(1rem);
+    opacity: 0; } }
 
-header h3 {
-  font-family: 'Open Sans', sans-serif;
-  margin-top: -10px; }
+@-webkit-keyframes slideIn {
+  0% {
+    -webkit-transform: transform;
+    -webkit-opacity: 0; }
+  100% {
+    -webkit-transform: translateY(0);
+    -webkit-opacity: 1; }
+  0% {
+    -webkit-transform: translateY(1rem);
+    -webkit-opacity: 0; } }
 
-.wrapper-responsive {
-  display: grid;
-  grid-gap: 20px; }
+.slideIn {
+  -webkit-animation-name: slideIn;
+  animation-name: slideIn; }
 
-.intro {
-  background: transparent;
-  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/660925/bosque-del-apache.jpg");
-  background-position: center bottom;
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 350px; }
-
-.mainheader-res {
-  grid-row: 1; }
-
-.content-res {
-  grid-row: 2; }
-
-.content-res p {
-  font-family: 'Open Sans', sans-serif; }
-
-.panel-res {
-  grid-row: 3; }
-
-.mainfooter-res {
-  grid-row: 4;
-  background-color: #222;
-  color: #ffffff;
-  padding: 15px;
-  text-align: center;
-  margin-top: 50px; }
-
-@media (min-width: 550px) {
-  .wrapper-responsive {
-    width: 100%;
-    max-width: 960px;
-    margin: 0 auto;
-    grid-template-columns: 1fr 3fr; }
-  .mainheader-res {
-    width: 100%;
-    grid-column: 1 / 3;
-    grid-row: 1; }
-  .panel-res {
-    grid-column: 1;
-    grid-row: 2; }
-  .content-res {
-    grid-column: 2;
-    grid-row: 2; }
-  .mainfooter-res {
-    grid-column: 1 / 3;
-    grid-row: 3;
-    background-color: #222;
-    color: #ffffff;
-    padding: 15px;
-    text-align: center;
-    margin-top: 50px; } }
-
-#main-navbar {
-  transition: all 0.5s linear; }
+/* Other styles for the page not related to the animated dropdown */
+body {
+  background: #007bff;
+  background: linear-gradient(to right, #0062E6, #33AEFF); }
