@@ -1,19 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
+using petnb.DTL.Data.Models.Enums;
 
-namespace petnb.DTL.Data.Models
+namespace petnb.DTL.Models
 {
-    class Pet
+   public class Pet
     {
-        //properties
         public int PetId { get; set; }
         public string PetName { get; set; }
-        public int Type { get; set; }
+        public PetType PetType { get; set; }
+        public int PetAge { get; set; }
+        public double PetDifficulty { get; set; }
+        public double PetWeight { get; set; }
         public string Breed { get; set; }
-        public int Age { get; set; }
-        public double Difficulty { get; set; }
-        public double Weight { get; set; }
 
-    }
+        public string UserId { get; set; }
+
+        public ApplicationUser ApplicationUser { get; set; }
+}
 }
