@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using petnb.DTL.Data;
 
 namespace petnb.DTL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190501130135_PetsRefference")]
+    partial class PetsRefference
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -129,6 +131,27 @@ namespace petnb.DTL.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("petnb.DTL.Data.Models.Pet", b =>
+                {
+                    b.Property<int>("PetId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("PetAge");
+
+                    b.Property<double>("PetDifficulty");
+
+                    b.Property<string>("PetName");
+
+                    b.Property<int>("PetType");
+
+                    b.Property<double>("PetWeight");
+
+                    b.HasKey("PetId");
+
+                    b.ToTable("Pets");
+                });
+
             modelBuilder.Entity("petnb.DTL.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -182,32 +205,7 @@ namespace petnb.DTL.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("petnb.DTL.Models.Pet", b =>
-                {
-                    b.Property<int>("PetId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("PetAge");
-
-                    b.Property<double>("PetDifficulty");
-
-                    b.Property<string>("PetName");
-
-                    b.Property<int>("PetType");
-
-                    b.Property<double>("PetWeight");
-
-                    b.Property<string>("UserId");
-
-                    b.HasKey("PetId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Pets");
-                });
-
-            modelBuilder.Entity("petnb.DTL.Models.PetOffer", b =>
+            modelBuilder.Entity("petnb.Data.Models.PetOffer", b =>
                 {
                     b.Property<int>("PetOfferId")
                         .ValueGeneratedOnAdd()
@@ -277,16 +275,9 @@ namespace petnb.DTL.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("petnb.DTL.Models.Pet", b =>
+            modelBuilder.Entity("petnb.Data.Models.PetOffer", b =>
                 {
-                    b.HasOne("petnb.DTL.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany("Pets")
-                        .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("petnb.DTL.Models.PetOffer", b =>
-                {
-                    b.HasOne("petnb.DTL.Models.Pet", "Pet")
+                    b.HasOne("petnb.DTL.Data.Models.Pet", "Pet")
                         .WithMany()
                         .HasForeignKey("PetId");
                 });
