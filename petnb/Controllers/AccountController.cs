@@ -82,9 +82,9 @@ namespace petnb.Controllers
                     //var userId = user.Id;
 
                     //var customToken = await FirebaseAuth.DefaultInstance.CreateCustomTokenAsync(userId);
-                    //HttpContext.Session.SetString("FirebaseToken",customToken);
 
-                    var custom = await _firebaseService.GenerateCustomToken("test");
+                    var customToken = await _firebaseService.GenerateCustomToken("test");
+                    HttpContext.Session.SetString("FirebaseToken",customToken);
 
 
                     _logger.LogInformation("User logged in.");
