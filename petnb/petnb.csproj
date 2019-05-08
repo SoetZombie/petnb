@@ -31,6 +31,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\petnb.DTL\petnb.DTL.csproj" />
+    <ProjectReference Include="..\petnb.Services\petnb.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>

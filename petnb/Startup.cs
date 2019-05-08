@@ -15,6 +15,7 @@ using petnb.DTL.Data;
 using petnb.DTL.Models;
 using petnb.Models;
 using petnb.Services;
+using petnb.Services.Implementations;
 
 namespace petnb
 {
@@ -43,6 +44,7 @@ namespace petnb
             services.AddMemoryCache();
             services.AddSession();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<IFirebaseService, FirebaseService>();
 
 
             // Add application services.

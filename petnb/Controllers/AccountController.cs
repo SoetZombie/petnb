@@ -29,17 +29,19 @@ namespace petnb.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
+        private readonly IFirebaseService _firebaseService;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
-            ILogger<AccountController> logger)
+            ILogger<AccountController> logger, IFirebaseService firebaseService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
+            _firebaseService = firebaseService;
         }
 
         [TempData]
@@ -71,16 +73,19 @@ namespace petnb.Controllers
                 if (result.Succeeded)
                 {
                     //TODO move this to separate service and call it only when required
-                    FirebaseApp.Create(new AppOptions()
-                    {
-                        Credential = GoogleCredential.FromFile("wwwroot/service-account-file.json"),
+                    //FirebaseApp.Create(new AppOptions()
+                    //{
+                    //    Credential = GoogleCredential.FromFile("wwwroot/service-account-file.json"),
                         
-                    });
-                    var user = await _userManager.GetUserAsync(HttpContext.User);
-                    var userId = user.Id;
+                    //});
+                    //var user = await _userManager.GetUserAsync(HttpContext.User);
+                    //var userId = user.Id;
 
-                    var customToken = await FirebaseAuth.DefaultInstance.CreateCustomTokenAsync(userId);
-                    HttpContext.Session.SetString("FirebaseToken",customToken);
+                    //var customToken = await FirebaseAuth.DefaultInstance.CreateCustomTokenAsync(userId);
+                    //HttpContext.Session.SetString("FirebaseToken",customToken);
+
+                    var custom = await _firebaseService.GenerateCustomToken("test");
+
 
                     _logger.LogInformation("User logged in.");
                     return RedirectToLocal(returnUrl);

@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "petnb", "petnb\petnb.csproj", "{F2CFB55B-2D7E-448A-B98D-939C34A3D851}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "petnb.DTL", "petnb.DTL\petnb.DTL.csproj", "{0BBDA538-C258-49A1-8464-5A89797E8EB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "petnb.DTL", "petnb.DTL\petnb.DTL.csproj", "{0BBDA538-C258-49A1-8464-5A89797E8EB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "petnb.Services", "petnb.Services\petnb.Services.csproj", "{79713754-CDF1-4C63-96A8-A79EB85C3A88}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{0BBDA538-C258-49A1-8464-5A89797E8EB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BBDA538-C258-49A1-8464-5A89797E8EB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0BBDA538-C258-49A1-8464-5A89797E8EB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79713754-CDF1-4C63-96A8-A79EB85C3A88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79713754-CDF1-4C63-96A8-A79EB85C3A88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79713754-CDF1-4C63-96A8-A79EB85C3A88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79713754-CDF1-4C63-96A8-A79EB85C3A88}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
