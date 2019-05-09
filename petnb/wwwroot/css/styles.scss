@@ -139,7 +139,7 @@ body {
     background: linear-gradient(to right, #0062E6, #33AEFF);
 }
 /*Landing page styles*/
-.grid-container {
+.landing-page-grid-container {
     display: grid;
     grid-template-columns: 0.5fr 1fr 1.5fr 1fr 0.2fr;
     grid-template-rows: 1.2fr 1.1fr 1.1fr 0.6fr;
@@ -148,6 +148,9 @@ body {
     background-image: url("../images/animal-carry-cute-1975989.jpg");
     background-size: 100%;
     background-position: left;
+    position: absolute;
+    top: 0;
+    z-index: -1;
 }
 
 .SearchPet {
@@ -165,4 +168,85 @@ body {
     text-transform:uppercase;
     letter-spacing:0.12em;
 
+}
+/*Navbar styles*/
+.navbar-background {
+    background: rgba(255, 255, 255, 0.70);
+    z-index: 2;
+}
+
+/*TODO: font Quicksand medium*/
+
+.navbar-grid-container {
+    grid-column: 1;
+    display: grid;
+    grid-template-columns: 35% 45% 20%;
+    padding: 10px;
+    height: 5rem;
+}
+
+.authentication-btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-btn {
+    margin-right: 20px;
+    border-color: #65C2AD;
+    border-style: solid;
+    background: transparent;
+    border-radius: 5px;
+    color: #65C2AD;
+    padding: 2.5px 0 2.5px 0;
+    width: 85px;
+}
+
+.register-btn {
+    border-color: #65C2AD;
+    border-style: solid;
+    background: #65C2AD;
+    border-radius: 5px;
+    color: white;
+    padding: 2.5px 0 2.5px 0;
+    width: 85px;
+}
+
+.navi-links {
+    display: flex;
+    align-items: center;
+}
+
+
+.navi-link {
+    color: #4F4F4F;
+    margin-right: 25px;
+}
+
+.underline:hover {
+    text-decoration: none;
+    color: #4F4F4F;
+    border-bottom: 3px solid #65C2AD;
+}
+
+.nav-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-logo-background {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background: white;
+    margin-top: -10px;
+    height: 100px;
+}
+
+.nav-logo-img {
+    max-width: 80%;
 }
