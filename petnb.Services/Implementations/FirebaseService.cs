@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using FirebaseAdmin;
@@ -10,15 +11,16 @@ namespace petnb.Services.Implementations
 {
     public class FirebaseService: IFirebaseService
     {
-        public FirebaseService()
+        public FirebaseService(string credentials)
         {
-            CreateFirebase();
+            CreateFirebase(credentials);
         }
-        public void CreateFirebase()
+        public void CreateFirebase(string credentials)
         {
+            var firebaseAdminCredentials = Encoding.UTF8.GetString(Convert.FromBase64String(credentials));
             FirebaseApp.Create(new AppOptions()
             {
-                Credential = GoogleCredential.FromFile("wwwroot/service-account-file.json"),
+                Credential = GoogleCredential.FromJson(firebaseAdminCredentials),
 
             });
         }

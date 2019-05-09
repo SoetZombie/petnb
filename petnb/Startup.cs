@@ -44,7 +44,9 @@ namespace petnb
             services.AddMemoryCache();
             services.AddSession();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddSingleton<IFirebaseService, FirebaseService>();
+            services.AddSingleton<IFirebaseService>(s => new FirebaseService(Configuration["FirebaseAuth"]));
+            
+        
 
 
             // Add application services.

@@ -5,7 +5,7 @@ namespace petnb.Services
 {
     public interface IFirebaseService
     {
-        void CreateFirebase();
+        void CreateFirebase(string credentials);
         Task<string> GenerateCustomToken(string userId);
     }
 }
