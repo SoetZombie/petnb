@@ -39,9 +39,14 @@
 }
 else
 {
+
+    var controller = ViewContext.RouteData.Values["Controller"];
+    var action = ViewContext.RouteData.Values["Action"];
+    var result = "/" + controller + "/" + action + "/";
+    
 <ul class="nav navbar-nav navbar-right">
     <li><a asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
-    <li><a asp-area="" asp-controller="Account" asp-action="Login">Log in</a></li>
+    <li><a asp-area="" asp-route-returnUrl="@result" asp-controller="Account" asp-action="Login">Log in</a></li>
 </ul>
 }
 <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
@@ -59,4 +64,4 @@ else
     const userName = "@Html.Raw(userName)";
 
 </script>
-<script src="js/chat.js"></script>
+<script src="~/js/chat.js"></script>

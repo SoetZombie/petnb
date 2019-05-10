@@ -66,8 +66,10 @@
             </ul>
             <div class="authentication-btns">
                 <div class="input-group authentication-btns">
-                    <a asp-action="Login" asp-controller="Account" class="login-btn">Login</a>
-                    <button class="register-btn">Register</button>
+                    @*<a asp-action="Login" asp-controller="Account"  class="login-btn">Login</a>
+                    <button class="register-btn">Register</button>*@
+                    @await Html.PartialAsync("_LoginPartial")
+
                 </div>
             </div>
         </div>
