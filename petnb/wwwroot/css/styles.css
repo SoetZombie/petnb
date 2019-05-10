@@ -105,9 +105,9 @@ body {
 /*Landing page styles*/
 .landing-page-grid-container {
   display: grid;
-  grid-template-columns: 0.5fr 1fr 1.5fr 1fr 0.2fr;
-  grid-template-rows: 1.2fr 1.1fr 1.1fr 0.6fr;
-  grid-template-areas: ". . . . ." ". Slogan . SearchPet ." ". . . SearchPet ." ". . . . .";
+  grid-template-columns: 1fr 1fr 1.5fr 1fr 0.5fr;
+  grid-template-rows: 6em 0.8fr 1.2fr 1.2fr 0.8fr;
+  grid-template-areas: ". . . . ." ". . . . ." ". Slogan . SearchPet ." ". Slogan . SearchPet ." ". . . . .";
   height: 100vh;
   background-image: url("../images/animal-carry-cute-1975989.jpg");
   background-size: 100%;
