@@ -169,14 +169,15 @@ body {
     letter-spacing:0.12em;
 
 }
-/*Navbar styles*/
+/*Navbar styles
 .navbar-background {
     background: rgba(255, 255, 255, 0.70);
     z-index: 2;
 }
+*/
 
 /*TODO: font Quicksand medium*/
-
+/*
 .navbar-grid-container {
     grid-column: 1;
     display: grid;
@@ -249,4 +250,87 @@ body {
 
 .nav-logo-img {
     max-width: 80%;
+}
+*/
+/* Add a black background color to the top navigation */
+.custom-navbar {
+    background: rgba(255, 255, 255, 0.70);
+    overflow: hidden;
+    justify-content: space-between;
+    padding: 0 2em;
+}
+
+.logo-placeholder {
+    height: 6em;
+    width: 10rem;
+}
+
+.custom-menu-items {
+    justify-content: space-between;
+
+}
+
+.petnb-logo {
+    height: 6em;
+    width: 10rem;
+    background: url("../images/Logo.png");
+    background-color: white;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    position: absolute;
+    font-size: 16px;
+    margin-right:0;
+}
+
+
+    /* Style the links inside the navigation bar */
+    .nav-item a {
+        float: right;
+        color: #4F4F4F;
+        text-align: center;
+        margin-right: 20px;
+        padding: 1px;
+        text-decoration: none;
+        font-size: 20px;
+    }
+    /* Change the color of links on hover */
+    /* Add a color to the active/current link */
+    .topnav a.active {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .menu-underline:hover {
+        text-decoration: none;
+        color: #4F4F4F;
+        border-bottom: 3px solid #65C2AD;
+    }
+
+.authentication-btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-btn {
+    margin-right: 20px;
+    border-color: #65C2AD;
+    border-style: solid;
+    background: transparent;
+    border-radius: 5px;
+    color: #65C2AD;
+    padding: 2.5px 0 2.5px 0;
+    width: 85px;
+}
+
+.register-btn {
+    border-color: #65C2AD;
+    border-style: solid;
+    background: #65C2AD;
+    border-radius: 5px;
+    color: white;
+    padding: 2.5px 0 2.5px 0;
+    width: 85px;
 }
