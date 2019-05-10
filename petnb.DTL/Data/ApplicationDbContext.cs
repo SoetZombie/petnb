@@ -34,6 +34,10 @@ namespace petnb.DTL.Data
                 .HasMany(a => a.Reviews)
                 .WithOne(b => b.ReviewedApplicationUser);
 
+            builder.Entity<PetSitterOffer>()
+                .HasOne(a => a.User)
+                .WithMany(b => b.PetSitterOffers);
+
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
