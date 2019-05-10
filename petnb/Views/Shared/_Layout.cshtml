@@ -12,39 +12,76 @@
 
 </head>
 <body>
-<div class="navbar-background">
-    <div class="navbar-grid-container ">
-        <div class="nav-grid nav-logo">
-            <div class="nav-logo-background">
-                <img class="nav-logo-img" src="images/Logo.png"/>
+
+    <!--
+    <div class="navbar-background">
+        <div class="navbar-grid-container ">
+            <div class="nav-grid nav-logo">
+                <div class="nav-logo-background">
+                    <img class="nav-logo-img" src="images/Logo.png"/>
+                </div>
+            </div>
+            <div class="nav-grid navi-links">
+                <a href="" class="navi-link underline">Home </a>
+                <a href="" class="navi-link underline">Find petsitter</a>
+                <a href="" class="navi-link underline">Become petsitter</a>
+                <a href="" class="navi-link underline">About</a>
+            </div>
+            <div class="authentication-btns">
+                <div class="input-group authentication-btns">
+                    <button class="login-btn">Login</button>
+                    <button class="register-btn">Register</button>
+                </div>
             </div>
         </div>
-        <div class="nav-grid navi-links">
-            <a href="" class="navi-link underline">Home </a>
-            <a href="" class="navi-link underline">Find petsitter</a>
-            <a href="" class="navi-link underline">Become petsitter</a>
-            <a href="" class="navi-link underline">About</a>
-        </div>
-        <div class="authentication-btns">
-            <div class="input-group authentication-btns">
-                <button class="login-btn">Login</button>
-                <button class="register-btn">Register</button>
-            </div>
-        </div>
+    </div> -->
+    >
+    <!--<div class="topnav">
+        <a class="active" href="#home">Home</a>
+        <a class="underline" href="#news">Find petsitter</a>
+        <a class="underline" href="#contact">Become petsitter</a>
+        <a class="underline" href="#about">About</a>
     </div>
-</div>
+    -->
+
+    <nav class="custom-navbar navbar-expand-md">
+        <a class="navbar-brand petnb-logo" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse custom-menu-items" id="collapsibleNavbar">
+            <div class="logo-placeholder"> &nbsp;</div>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="menu-underline" href="#">Find petsitter</a>
+                </li>
+                <li class="nav-item">
+                    <a class="menu-underline" href="#">Become petsitter</a>
+                </li>
+                <li class="nav-item">
+                    <a class="menu-underline" href="#">About</a>
+                </li>
+            </ul>
+            <div class="authentication-btns">
+                <div class="input-group authentication-btns">
+                    <button class="login-btn">Login</button>
+                    <button class="register-btn">Register</button>
+                </div>
+          </div>
+
+</nav>
 
 
 
 
 
-@RenderBody()
+    @RenderBody()
 
 
 
-@RenderSection("Scripts", required: false)
-<script src="~/vendor.min.js"></script>
-<script src="~/js/site.js"></script>
+    @RenderSection("Scripts", required: false)
+    <script src="~/vendor.min.js"></script>
+    <script src="~/js/site.js"></script>
 
 
 </body>

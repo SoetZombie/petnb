@@ -19,7 +19,7 @@ namespace petnb.DTL.Data
 
         public DbSet<PetOffer> PetOffers { get; set; }
         public DbSet<Pet> Pets { get; set; }
-
+        public DbSet<PetSitterOffer> PetSitterOffers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

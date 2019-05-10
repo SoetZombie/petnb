@@ -1,0 +1,71 @@
+﻿@model IEnumerable<petnb.DTL.Data.Models.PetSitterOffer>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Heading)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PetType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PetBreed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartOfSit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndOfSit)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Heading)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PetType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PetBreed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartOfSit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndOfSit)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PetSitterOfferId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PetSitterOfferId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PetSitterOfferId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

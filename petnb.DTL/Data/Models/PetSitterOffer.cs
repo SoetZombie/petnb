@@ -18,5 +18,6 @@ namespace petnb.DTL.Data.Models
         public DateTime EndOfSit { get; set; }
         public ApplicationUser User { get; set; }
         public int ExpectedSalary { get; set; }
+        public string UserId { get; set; }
     }
 }
