@@ -25,7 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\css\styles.scss" />
     <None Include="wwwroot\js\chat.js" />
   </ItemGroup>
 
@@ -38,6 +37,10 @@
     <Content Update="wwwroot\service-account-file.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\css\" />
   </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">

@@ -61,6 +61,9 @@ namespace petnb
 
             services.AddMvc();
 
+            services.AddDbContext<petnbContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("petnbContext")));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
