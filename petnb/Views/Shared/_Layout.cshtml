@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - petnb</title>
 
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="~/css/styles.css">
     <link rel="stylesheet" href="~/vendor.min.css" />
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -66,7 +66,7 @@
             </ul>
             <div class="authentication-btns">
                 <div class="input-group authentication-btns">
-                    <button class="login-btn">Login</button>
+                    <a asp-action="Login" asp-controller="Account" class="login-btn">Login</a>
                     <button class="register-btn">Register</button>
                 </div>
             </div>

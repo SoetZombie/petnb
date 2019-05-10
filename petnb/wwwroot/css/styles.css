@@ -223,6 +223,7 @@ body {
   justify-content: space-between;
   padding: 0 2em; }
 
+/* define color in variable*/
 .logo-placeholder {
   height: 6em;
   width: 15%;
@@ -231,6 +232,7 @@ body {
 .custom-menu-items {
   justify-content: space-between; }
 
+/*nesting (362) and redefine em to rem*/
 nav .petnb-logo {
   height: 8em;
   width: 12rem;
@@ -246,6 +248,7 @@ nav .petnb-logo {
   margin: 0;
   right: 0; }
 
+/*use nesting eg line 362*/
 /* Style the links inside the navigation bar */
 .nav-item a {
   float: right;
@@ -266,6 +269,7 @@ nav .petnb-logo {
   width: 0;
   background-color: #65C2AD; }
 
+/*Rename to menu underline and use nesting as defined on line 362*/
 .nav-item a:hover:after {
   animation: SlideLeftToRight;
   transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
@@ -292,10 +296,17 @@ nav .petnb-logo {
   text-decoration: none;
   color: #4F4F4F; }
 
+/*modify according line 362*/
 .authentication-btns {
   text-align: left;
   width: 15%; }
+  .authentication-btns a:hover {
+    text-decoration: none;
+    color: #65C2AD; }
 
+/*As u can se above this is nesting use the same for the whole menu in the styles e.g move both buttons inside authenticationbnts class so it wont interfere with other possibly same named elements
+
+*/
 .login-btn {
   margin-right: 20px;
   border-color: #65C2AD;
@@ -305,6 +316,7 @@ nav .petnb-logo {
   color: #65C2AD;
   padding: 2.5px 0 2.5px 0;
   width: 85px;
+  text-align: center;
   /*delete widths for buttons use padding instead*/ }
 
 .register-btn {
@@ -314,4 +326,6 @@ nav .petnb-logo {
   border-radius: 5px;
   color: white;
   padding: 2.5px 0 2.5px 0;
-  width: 85px; }
+  width: 85px;
+  text-align: center;
+  /*Rewrite buttons not to be buttnos but A tags*/ }
