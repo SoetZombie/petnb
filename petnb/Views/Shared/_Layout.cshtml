@@ -35,7 +35,7 @@
             </div>
         </div>
     </div> -->
-    >
+    
     <!--<div class="topnav">
         <a class="active" href="#home">Home</a>
         <a class="underline" href="#news">Find petsitter</a>
@@ -45,12 +45,14 @@
     -->
 
     <nav class="custom-navbar navbar-expand-md">
-        <a class="navbar-brand petnb-logo" href="#">Navbar</a>
+        
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse custom-menu-items" id="collapsibleNavbar">
-            <div class="logo-placeholder"> &nbsp;</div>
+            <div class="logo-placeholder">
+                <a class="navbar-brand petnb-logo" asp-controller="Home" asp-action="Index"></a>
+            </div>
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="menu-underline" href="#">Find petsitter</a>
@@ -67,7 +69,8 @@
                     <button class="login-btn">Login</button>
                     <button class="register-btn">Register</button>
                 </div>
-          </div>
+            </div>
+        </div>
 
 </nav>
 

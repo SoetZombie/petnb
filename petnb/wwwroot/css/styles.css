@@ -112,9 +112,11 @@ body {
   background-image: url("../images/animal-carry-cute-1975989.jpg");
   background-size: 100%;
   background-position: left;
+  background-position-y: 30%;
   position: absolute;
-  top: 0;
-  z-index: -1; }
+  margin-top: -6em;
+  z-index: -1;
+  width: 100%; }
 
 .SearchPet {
   grid-area: SearchPet;
@@ -214,31 +216,35 @@ body {
 }
 */
 /* Add a black background color to the top navigation */
+/*MENU STYLES*/
 .custom-navbar {
   background: rgba(255, 255, 255, 0.7);
-  overflow: hidden;
+  overflow: visible;
   justify-content: space-between;
   padding: 0 2em; }
 
 .logo-placeholder {
   height: 6em;
-  width: 10rem; }
+  width: 15%;
+  position: relative; }
 
 .custom-menu-items {
   justify-content: space-between; }
 
-.petnb-logo {
-  height: 6em;
-  width: 10rem;
+nav .petnb-logo {
+  height: 8em;
+  width: 12rem;
   background: url("../images/Logo.png");
   background-color: white;
   background-repeat: no-repeat;
   background-size: contain;
+  background-position-y: 50%;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   position: absolute;
   font-size: 16px;
-  margin-right: 0; }
+  margin: 0;
+  right: 0; }
 
 /* Style the links inside the navigation bar */
 .nav-item a {
@@ -248,23 +254,47 @@ body {
   margin-right: 20px;
   padding: 1px;
   text-decoration: none;
-  font-size: 20px; }
+  font-size: 20px;
+  position: relative; }
+
+.nav-item a::after {
+  position: absolute;
+  content: " ";
+  left: 0;
+  bottom: -2px;
+  height: 4px;
+  width: 0;
+  background-color: #65C2AD; }
+
+.nav-item a:hover:after {
+  animation: SlideLeftToRight;
+  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+  width: 100%; }
+
+@keyframes SlideLeftToRight {
+  0% {
+    width: 0; }
+  50% {
+    width: 30%; }
+  100% {
+    width: 100%; } }
 
 /* Change the color of links on hover */
 /* Add a color to the active/current link */
 .topnav a.active {
-  background-color: #4CAF50;
+  background-color: #65C2AD;
   color: white; }
+
+.menu-underline {
+  border-bottom: 3px solid transparent; }
 
 .menu-underline:hover {
   text-decoration: none;
-  color: #4F4F4F;
-  border-bottom: 3px solid #65C2AD; }
+  color: #4F4F4F; }
 
 .authentication-btns {
-  display: flex;
-  justify-content: center;
-  align-items: center; }
+  text-align: left;
+  width: 15%; }
 
 .login-btn {
   margin-right: 20px;
@@ -274,7 +304,8 @@ body {
   border-radius: 5px;
   color: #65C2AD;
   padding: 2.5px 0 2.5px 0;
-  width: 85px; }
+  width: 85px;
+  /*delete widths for buttons use padding instead*/ }
 
 .register-btn {
   border-color: #65C2AD;
