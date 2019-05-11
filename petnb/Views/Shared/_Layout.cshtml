@@ -13,68 +13,33 @@
 </head>
 <body>
 
-    <!--
-    <div class="navbar-background">
-        <div class="navbar-grid-container ">
-            <div class="nav-grid nav-logo">
-                <div class="nav-logo-background">
-                    <img class="nav-logo-img" src="images/Logo.png"/>
-                </div>
-            </div>
-            <div class="nav-grid navi-links">
-                <a href="" class="navi-link underline">Home </a>
-                <a href="" class="navi-link underline">Find petsitter</a>
-                <a href="" class="navi-link underline">Become petsitter</a>
-                <a href="" class="navi-link underline">About</a>
-            </div>
-            <div class="authentication-btns">
-                <div class="input-group authentication-btns">
-                    <button class="login-btn">Login</button>
-                    <button class="register-btn">Register</button>
-                </div>
-            </div>
-        </div>
-    </div> -->
-    
-    <!--<div class="topnav">
-        <a class="active" href="#home">Home</a>
-        <a class="underline" href="#news">Find petsitter</a>
-        <a class="underline" href="#contact">Become petsitter</a>
-        <a class="underline" href="#about">About</a>
-    </div>
-    -->
-
     <nav class="custom-navbar navbar-expand-md">
-        
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse custom-menu-items" id="collapsibleNavbar">
             <div class="logo-placeholder">
-                <a class="navbar-brand petnb-logo" asp-controller="Home" asp-action="Index"></a>
-            </div>
+                <div class="logo-background">
+                    <a class="navbar-brand petnb-logo" asp-controller="Home" asp-action="Index"></a>
+                </div>
+             </div>
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="menu-underline" href="#">Find petsitter</a>
+                <li class="nav-item ">
+                    <a class="menu-underline nav-item-underline" href="#">Find petsitter</a>
                 </li>
                 <li class="nav-item">
-                    <a class="menu-underline" href="#">Become petsitter</a>
+                    <a class="menu-underline nav-item-underline" href="#">Become petsitter</a>
                 </li>
                 <li class="nav-item">
-                    <a class="menu-underline" href="#">About</a>
+                    <a class="menu-underline nav-item-underline" href="#">About</a>
                 </li>
             </ul>
-            <div class="authentication-btns">
-                <div class="input-group authentication-btns">
-                    @*<a asp-action="Login" asp-controller="Account"  class="login-btn">Login</a>
-                    <button class="register-btn">Register</button>*@
-                    @await Html.PartialAsync("_LoginPartial")
+            @await Html.PartialAsync("_LoginPartial")
 
-                </div>
-            </div>
         </div>
 
-</nav>
+    </nav>
 
 
 

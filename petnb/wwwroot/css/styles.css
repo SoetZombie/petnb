@@ -133,133 +133,55 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.12em; }
 
-/*Navbar styles
-.navbar-background {
-    background: rgba(255, 255, 255, 0.70);
-    z-index: 2;
-}
-*/
-/*TODO: font Quicksand medium*/
-/*
-.navbar-grid-container {
-    grid-column: 1;
-    display: grid;
-    grid-template-columns: 35% 45% 20%;
-    padding: 10px;
-    height: 5rem;
-}
-
-.authentication-btns {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.login-btn {
-    margin-right: 20px;
-    border-color: #65C2AD;
-    border-style: solid;
-    background: transparent;
-    border-radius: 5px;
-    color: #65C2AD;
-    padding: 2.5px 0 2.5px 0;
-    width: 85px;
-}
-
-.register-btn {
-    border-color: #65C2AD;
-    border-style: solid;
-    background: #65C2AD;
-    border-radius: 5px;
-    color: white;
-    padding: 2.5px 0 2.5px 0;
-    width: 85px;
-}
-
-.navi-links {
-    display: flex;
-    align-items: center;
-}
-
-
-.navi-link {
-    color: #4F4F4F;
-    margin-right: 25px;
-}
-
-.underline:hover {
-    text-decoration: none;
-    color: #4F4F4F;
-    border-bottom: 3px solid #65C2AD;
-}
-
-.nav-logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.nav-logo-background {
-    width: 40%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    background: white;
-    margin-top: -10px;
-    height: 100px;
-}
-
-.nav-logo-img {
-    max-width: 80%;
-}
-*/
-/* Add a black background color to the top navigation */
-/*MENU STYLES*/
+/*NAV BAR STYLING*/
+/*TO DO: change font to: Quicksand Medium*/
 .custom-navbar {
   background: rgba(255, 255, 255, 0.7);
   overflow: visible;
   justify-content: space-between;
   padding: 0 2em; }
 
-/* define color in variable*/
+/*Logo on the left*/
 .logo-placeholder {
   height: 6em;
-  width: 15%;
+  width: 15rem;
   position: relative; }
 
-.custom-menu-items {
-  justify-content: space-between; }
-
-/*nesting (362) and redefine em to rem*/
-nav .petnb-logo {
-  height: 8em;
+.logo-placeholder .logo-background {
+  height: 7em;
   width: 12rem;
-  background: url("../images/Logo.png");
   background-color: white;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  margin-left: 3rem; }
+
+nav .petnb-logo {
+  height: 5rem;
+  width: 10rem;
+  background: url("../images/Logo.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position-y: 50%;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
   position: absolute;
-  font-size: 16px;
-  margin: 0;
-  right: 0; }
+  font-size: 1.1rem;
+  margin: 1rem; }
 
-/*use nesting eg line 362*/
-/* Style the links inside the navigation bar */
+/*Spacing between nav-items and logo*/
+.custom-menu-items {
+  justify-content: space-between; }
+
+/*Navigation buttons*/
 .nav-item a {
   float: right;
   color: #4F4F4F;
   text-align: center;
-  margin-right: 20px;
+  margin-right: 1.4rem;
   padding: 1px;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 1.5rem;
   position: relative; }
 
+/*Animated underline by hovering*/
 .nav-item a::after {
   position: absolute;
   content: " ";
@@ -269,8 +191,7 @@ nav .petnb-logo {
   width: 0;
   background-color: #65C2AD; }
 
-/*Rename to menu underline and use nesting as defined on line 362*/
-.nav-item a:hover:after {
+.nav-item-underline:hover:after {
   animation: SlideLeftToRight;
   transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
   width: 100%; }
@@ -283,49 +204,40 @@ nav .petnb-logo {
   100% {
     width: 100%; } }
 
-/* Change the color of links on hover */
-/* Add a color to the active/current link */
-.topnav a.active {
-  background-color: #65C2AD;
-  color: white; }
-
-.menu-underline {
-  border-bottom: 3px solid transparent; }
-
+/*Removing default hover effects on a tag*/
 .menu-underline:hover {
   text-decoration: none;
   color: #4F4F4F; }
 
-/*modify according line 362*/
-.authentication-btns {
-  text-align: left;
-  width: 15%; }
-  .authentication-btns a:hover {
-    text-decoration: none;
-    color: #65C2AD; }
+/*General authentication button styling*/
+.authentication-btn {
+  border-style: solid;
+  border-radius: 5px;
+  text-align: center;
+  border-color: #65C2AD; }
 
-/*As u can se above this is nesting use the same for the whole menu in the styles e.g move both buttons inside authenticationbnts class so it wont interfere with other possibly same named elements
+/*Removing default hover effects on a tag*/
+.authentication-btns a:hover {
+  text-decoration: none;
+  color: #65C2AD; }
 
-*/
-.login-btn {
+/*Login button styling*/
+.authentication-btns .login-btn {
   margin-right: 20px;
-  border-color: #65C2AD;
-  border-style: solid;
   background: transparent;
-  border-radius: 5px;
   color: #65C2AD;
-  padding: 2.5px 0 2.5px 0;
-  width: 85px;
-  text-align: center;
-  /*delete widths for buttons use padding instead*/ }
+  padding: 0.5rem 1rem 0.5rem 1rem; }
 
-.register-btn {
-  border-color: #65C2AD;
-  border-style: solid;
+.authentication-btns .login-btn:hover {
   background: #65C2AD;
-  border-radius: 5px;
+  color: white; }
+
+/*Register button styling*/
+.authentication-btns .register-btn {
+  background: #65C2AD;
   color: white;
-  padding: 2.5px 0 2.5px 0;
-  width: 85px;
-  text-align: center;
-  /*Rewrite buttons not to be buttnos but A tags*/ }
+  padding: 0.5rem 0.8rem 0.5rem 0.8rem; }
+
+.authentication-btns .register-btn:hover {
+  background: transparent;
+  color: #65C2AD; }
