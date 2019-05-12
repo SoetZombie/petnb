@@ -9,20 +9,10 @@
 </div>
 
 
-@{
-    var token = HttpContextAccessor.HttpContext.Session.GetString("FirebaseToken");
-}
 
-<script>
-    const key = "@Html.Raw(token)";
-    console.log(key);
-    firebase.auth().signInWithCustomToken(key).catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // ...
-    });
-</script>
+
+
+
 
 
 

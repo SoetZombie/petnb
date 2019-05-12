@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using petnb.DTL.Models;
 using petnb.Models;
 using petnb.Models.AccountViewModels;
@@ -56,6 +58,53 @@ namespace petnb.Controllers
 
             ViewData["ReturnUrl"] = returnUrl;
             return View();
+        }
+        [AllowAnonymous]
+        public async Task<IActionResult> AjaxLogin()
+        {
+            var email ="";
+            var password="";
+            var rememberMe= false;
+            MemoryStream stream = new MemoryStream();
+            Request.Body.CopyTo(stream);
+            stream.Position = 0;
+            //if (username == null)
+            //{
+            //    return RedirectToAction(nameof(Index));
+            //}
+
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                string requestBody = reader.ReadToEnd();
+                if (requestBody.Length > 0)
+                {
+                    var obj = JsonConvert.DeserializeObject<AjaxLoginViewModel>(requestBody);
+
+                    if (obj != null)
+                    {
+                        email = obj.Email;
+                        password = obj.Password;
+                        rememberMe = obj.RememberMe;
+                    }
+                    if(password !=null || email!=null) {
+
+                        var result = await _signInManager.PasswordSignInAsync(email, password, rememberMe, lockoutOnFailure:false);
+
+                        if (result.Succeeded)
+                        {
+                            return new JsonResult("Success");
+
+                        }
+
+                        else
+                        {
+                            return BadRequest("Invalid login attempt, please check your credentials");
+                        }
+                    }
+                }
+            }
+        
+            return new JsonResult("Suchsecs");
         }
 
         [HttpPost]
@@ -291,7 +340,7 @@ namespace petnb.Controllers
             if (remoteError != null)
             {
                 ErrorMessage = $"Error from external provider: {remoteError}";
-                return RedirectToAction(nameof(Login));
+                return RedirectToAction(nameof(Login), "Account");
             }
             var info = await _signInManager.GetExternalLoginInfoAsync();
             if (info == null)

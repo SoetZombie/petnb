@@ -1,4 +1,15 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@using petnb.DTL.Models
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@inject SignInManager<ApplicationUser> SignInManager
+@using System.Collections.Generic
+@using System.Linq
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Http.Authentication
+@using petnb.DTL.Models
+@model LoginViewModel
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -7,7 +18,7 @@
 
     <link rel="stylesheet" href="~/css/styles.css">
     <link rel="stylesheet" href="~/vendor.min.css" />
-
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
 </head>
@@ -23,7 +34,7 @@
                 <div class="logo-background">
                     <a class="navbar-brand petnb-logo" asp-controller="Home" asp-action="Index"></a>
                 </div>
-             </div>
+            </div>
             <ul class="navbar-nav">
                 <li class="nav-item ">
                     <a class="menu-underline nav-item-underline" href="#">Find petsitter</a>
@@ -36,23 +47,210 @@
                 </li>
             </ul>
             @await Html.PartialAsync("_LoginPartial")
-
         </div>
 
     </nav>
 
 
+    <div class="col-md-12 login-modal hidden" id="login-overlay">
+        <div class="login-form col-md-4 mx-auto">
+            <div class="close-button" id="close-btn">
+                <i class="fas fa-times"></i>
+            </div>
+            <form id="ajax-login-form">
 
+                <br />
+                <h4 class="main-heading">Sign in with</h4>
+                <hr />
+                <div id="input-container">
+                    <div class="form-group">
+                        <label>
+                            Email
+                            <input id="email" placeholder="Type your email" class="form-control" />
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            Password
+                            <input id="password" placeholder="Type your password" type="password" class="form-control" />
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input id="rememberMe" type="checkbox" />
+                                Remember me?
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <h4 class="main-heading text-center">Or sign in with</h4>
+                <br />
+            </form>
+                @{
+                    var loginProviders = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+                }
+
+                <form asp-controller="Account" asp-action="ExternalLogin" asp-route-returnurl="" method="post" class="form-horizontal">
+                    <div>
+                        <p>
+                            @foreach (var provider in loginProviders)
+                            {
+                                <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.Name</button>
+                            }
+                        </p>
+                    </div>
+                </form>
+                <br />
+                <div class="login-btn-container">
+                    <a id="login-btn-ajax-submit" class="ajax-login-submit">Log in</a>
+                </div>
+
+
+                @*<div class="form-group">
+                        <p>
+                            <a asp-action="ForgotPassword">Forgot your password?</a>
+                        </p>
+                        <p>
+                            <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a>
+                        </p>
+                    </div>*@
+            
+        </div>
+    </div>
 
 
     @RenderBody()
 
 
 
+    @{
+        var token = HttpContextAccessor.HttpContext.Session.GetString("FirebaseToken");
+    }
     <script src="~/vendor.min.js"></script>
     <script src="~/js/site.js"></script>
+    <script src="~/js/anime.min.js"></script>
     @RenderSection("Scripts", required: false)
+    <script>
+    const key = "@Html.Raw(token)";
+    console.log(key);
+    firebase.auth().signInWithCustomToken(key).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // ...
+    });
+    @{
+        var controller = ViewContext.RouteData.Values["Controller"];
+        var action = ViewContext.RouteData.Values["Action"];
+        var result = "/" + controller + "/" + action + "/";
+    }
 
+    const login = document.getElementById("login-btn-ajax");
+    const close = document.getElementById("close-btn");
+    const loginModal = document.getElementById("login-overlay");
+    const ajaxSubmitBtn = document.getElementById("login-btn-ajax-submit");
+    const loginFrom = document.getElementById("ajax-login-form");
+    attachOnClickListeners();
+    function attachOnClickListeners() {
+        login.addEventListener("click",
+            function() {
+                loginModal.classList.toggle("hidden");
+            });
+        close.addEventListener("click",
+            function () {
+                loginModal.classList.toggle("hidden");
+            });
+        ajaxSubmitBtn.addEventListener("click",
+            function () {
+                loginAjax();
+            });
+    }
+
+    function createErrorMsg() {
+        var errorMsg = document.createElement('div');
+        errorMsg.setAttribute("id", "error-msg");
+        loginFrom.prepend(errorMsg);
+    }
+
+    function loginAjax() {
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        var rememberMe = true;
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("AjaxLogin","Account")",
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader("XSRF-TOKEN",
+                    $('input:hidden[name="__RequestVerificationToken"]').val());
+            },
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify({
+                email: email,
+                password: password
+            }),
+            success: function (response) {
+                location.reload();
+            },
+            error: function (response) {
+                //createErrorMsg();
+               // document.getElementById("error-msg").innerHTML = response.responseText;
+                send();
+            }
+        });
+    }
+
+
+
+    const xMax = 16;
+    const shake = anime({
+        targets: '#input-container',
+        easing: 'easeInOutSine',
+        duration: 550,
+        translateX: [
+            {
+                value: xMax * -1,
+            },
+            {
+                value: xMax,
+            },
+            {
+                value: xMax/-2,
+            },
+            {
+                value: xMax/2,
+            },
+            {
+                value: 0,
+            }
+        ],
+        autoplay: false,
+    });
+    const colorAnims = [
+        anime({
+            targets: '#js-login-form',
+            borderTopColor: '#FF4848',
+            easing: 'linear',
+            duration: 500,
+            autoplay: false,
+        }),
+        anime({
+            targets: '.form-group input',
+            borderColor: '#FF4848',
+            easing: 'linear',
+            duration: 200,
+            autoplay: false,
+
+        }),
+    ];
+    const send = () => {
+        shake.restart();
+        colorAnims.forEach(a => a.restart());
+    };
+    </script>
 
 </body>
 </html>

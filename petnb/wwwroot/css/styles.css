@@ -8,7 +8,7 @@
 
 li {
   list-style: none;
-  font-family: Arial, Helvetica, sans-serif; }
+  font-family: 'Quicksand', sans-serif; }
   li .trash {
     margin-left: 20px; }
   li .trash:hover {
@@ -222,22 +222,86 @@ nav .petnb-logo {
   color: #65C2AD; }
 
 /*Login button styling*/
-.authentication-btns .login-btn {
+.login-btn {
   margin-right: 20px;
   background: transparent;
   color: #65C2AD;
-  padding: 0.5rem 1rem 0.5rem 1rem; }
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  cursor: pointer; }
 
-.authentication-btns .login-btn:hover {
+.login-btn:hover {
   background: #65C2AD;
-  color: white; }
+  color: white !important; }
 
 /*Register button styling*/
-.authentication-btns .register-btn {
+.register-btn {
   background: #65C2AD;
   color: white;
   padding: 0.5rem 0.8rem 0.5rem 0.8rem; }
 
-.authentication-btns .register-btn:hover {
+.register-btn:hover {
   background: transparent;
-  color: #65C2AD; }
+  color: #65C2AD;
+  cursor: pointer; }
+
+/*Login modal*/
+div.login-modal {
+  padding-top: 6em;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  z-index: 200000;
+  background: rgba(160, 160, 160, 0.8); }
+  div.login-modal .login-form {
+    position: relative; }
+  div.login-modal .close-button {
+    position: absolute;
+    right: -8rem;
+    top: -3rem;
+    font-size: 2rem;
+    color: white; }
+    div.login-modal .close-button :hover {
+      cursor: pointer;
+      color: red;
+      transition: all 0.1s linear; }
+
+.hidden {
+  visibility: hidden; }
+
+/*ajax login button*/
+.ajax-login-submit {
+  background: #65C2AD;
+  color: white !important;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 1rem 2.5rem;
+  font-weight: 500; }
+
+#error-msg {
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: 2px solid #65C2AD; }
+
+.form-group input {
+  border-width: 2px; }
+
+.form-group label {
+  width: 100%;
+  color: white;
+  font-family: "Quicksand", sans-serif; }
+
+h4.main-heading {
+  font-family: "Quicksand", sans-serif; }
+
+.login-btn-container {
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center; }

@@ -24,7 +24,7 @@
     </form>
     <div id="chatWidget">
         <div id="allMessages">
-
+              
         </div>
 
 
@@ -40,12 +40,10 @@
 else
 {
 
-    var controller = ViewContext.RouteData.Values["Controller"];
-    var action = ViewContext.RouteData.Values["Action"];
-    var result = "/" + controller + "/" + action + "/";
+    
 
     <div class="authentication-btns">
-        <a asp-area="" asp-route-returnUrl="@result" asp-controller="Account" asp-action="Login" class="authentication-btn login-btn">Log in</a>
+        <a id="login-btn-ajax" class="authentication-btn login-btn">Log in</a>
         <a asp-area="" asp-controller="Account" asp-action="Register" class="authentication-btn register-btn">Register</a>
     </div>
 }
