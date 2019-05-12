@@ -2,12 +2,14 @@
 @using petnb.DTL.Models
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @inject SignInManager<ApplicationUser> SignInManager
-@using System.Collections.Generic
 @using System.Linq
-@using Microsoft.AspNetCore.Http
 @using Microsoft.AspNetCore.Http.Authentication
-@using petnb.DTL.Models
 @model LoginViewModel
+
+@{
+    var loginProviders = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+    var token = HttpContextAccessor.HttpContext.Session.GetString("FirebaseToken");
+}
 
 <!DOCTYPE html>
 <html>
@@ -57,8 +59,8 @@
             <div class="close-button" id="close-btn">
                 <i class="fas fa-times"></i>
             </div>
-            <form id="ajax-login-form">
 
+            <form id="ajax-login-form">
                 <br />
                 <h4 class="main-heading">Sign in with</h4>
                 <hr />
@@ -89,9 +91,7 @@
                 <h4 class="main-heading text-center">Or sign in with</h4>
                 <br />
             </form>
-                @{
-                    var loginProviders = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-                }
+
 
                 <form asp-controller="Account" asp-action="ExternalLogin" asp-route-returnurl="" method="post" class="form-horizontal">
                     <div>
@@ -124,16 +124,11 @@
 
     @RenderBody()
 
-
-
-    @{
-        var token = HttpContextAccessor.HttpContext.Session.GetString("FirebaseToken");
-    }
     <script src="~/vendor.min.js"></script>
     <script src="~/js/site.js"></script>
-    <script src="~/js/anime.min.js"></script>
     @RenderSection("Scripts", required: false)
-    <script>
+
+<script>
     const key = "@Html.Raw(token)";
     console.log(key);
     firebase.auth().signInWithCustomToken(key).catch(function(error) {
@@ -142,43 +137,47 @@
         var errorMessage = error.message;
         // ...
     });
-    @{
-        var controller = ViewContext.RouteData.Values["Controller"];
-        var action = ViewContext.RouteData.Values["Action"];
-        var result = "/" + controller + "/" + action + "/";
-    }
 
     const login = document.getElementById("login-btn-ajax");
     const close = document.getElementById("close-btn");
     const loginModal = document.getElementById("login-overlay");
     const ajaxSubmitBtn = document.getElementById("login-btn-ajax-submit");
     const loginFrom = document.getElementById("ajax-login-form");
+
     attachOnClickListeners();
+
     function attachOnClickListeners() {
         login.addEventListener("click",
             function() {
                 loginModal.classList.toggle("hidden");
+                modalSlideIn.restart();
             });
-        close.addEventListener("click",
-            function () {
-                loginModal.classList.toggle("hidden");
-            });
+        close.addEventListener("click", slideOut);
         ajaxSubmitBtn.addEventListener("click",
             function () {
                 loginAjax();
             });
     }
 
-    function createErrorMsg() {
-        var errorMsg = document.createElement('div');
-        errorMsg.setAttribute("id", "error-msg");
-        loginFrom.prepend(errorMsg);
-    }
+
+   async function slideOut() {
+       loginModal.classList.toggle("custom-slide-out");
+       loginModal.style.cssText = "top:-999px; bottom:999px";
+       await sleep(200);
+       loginModal.classList.toggle("custom-slide-out");
+       loginModal.classList.toggle("hidden");
+   }
+
+    //function createErrorMsg() {
+    //    var errorMsg = document.createElement('div');
+    //    errorMsg.setAttribute("id", "error-msg");
+    //    loginFrom.prepend(errorMsg);
+    //}
 
     function loginAjax() {
-        var email = document.getElementById("email").value;
-        var password = document.getElementById("password").value;
-        var rememberMe = true;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const rememberMe = document.getElementById("rememberMe").checked;
         $.ajax({
             type: "POST",
             url: "@Url.Action("AjaxLogin","Account")",
@@ -190,7 +189,8 @@
             dataType: "json",
             data: JSON.stringify({
                 email: email,
-                password: password
+                password: password,
+                rememberMe: rememberMe
             }),
             success: function (response) {
                 location.reload();
@@ -202,9 +202,7 @@
             }
         });
     }
-
-
-
+        
     const xMax = 16;
     const shake = anime({
         targets: '#input-container',
@@ -229,6 +227,7 @@
         ],
         autoplay: false,
     });
+
     const colorAnims = [
         anime({
             targets: '#js-login-form',
@@ -246,10 +245,26 @@
 
         }),
     ];
+
     const send = () => {
         shake.restart();
         colorAnims.forEach(a => a.restart());
     };
+
+    const modalSlideIn = anime({
+        targets: '#login-overlay',
+        top: '0px',
+        bottom: '0px',
+        autoplay: false,
+
+    });
+        
+
+    
+
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
     </script>
 
 </body>

@@ -100,7 +100,8 @@ form {
 /* Other styles for the page not related to the animated dropdown */
 body {
   background: #007bff;
-  background: linear-gradient(to right, #0062E6, #33AEFF); }
+  background: linear-gradient(to right, #0062E6, #33AEFF);
+  overflow-y: hidden; }
 
 /*Landing page styles*/
 .landing-page-grid-container {
@@ -248,8 +249,6 @@ nav .petnb-logo {
 div.login-modal {
   padding-top: 6em;
   position: absolute;
-  top: 0;
-  bottom: 0;
   left: 0;
   right: 0;
   vertical-align: middle;
@@ -269,10 +268,15 @@ div.login-modal {
     div.login-modal .close-button :hover {
       cursor: pointer;
       color: red;
-      transition: all 0.1s linear; }
+      transition: color 0.1s linear; }
 
 .hidden {
-  visibility: hidden; }
+  visibility: hidden;
+  top: -999px;
+  bottom: 999px; }
+
+.custom-slide-out {
+  transition: all 0.2s linear; }
 
 /*ajax login button*/
 .ajax-login-submit {
