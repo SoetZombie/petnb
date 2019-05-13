@@ -14,7 +14,7 @@ namespace petnb.DTL.Data.Models
         public string Content { get; set; }
         public string Location { get; set; }
         //   public int PetType { get; set; }
-        //    public string PetBreed { get; set; }
+        //   public string PetBreed { get; set; }
         public DateTime StartOfSit { get; set; }
         public DateTime EndOfSit { get; set; }
         public ApplicationUser User { get; set; }

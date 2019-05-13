@@ -20,6 +20,7 @@ namespace petnb.DTL.Models
         public DateTime StartOfSit { get; set; }
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime EndOfSit { get; set; }
+        //The user is not the owner is the sitter
         public ApplicationUser User { get; set; }
         public Pet Pet { get; set; }
 
