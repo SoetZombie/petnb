@@ -150,11 +150,12 @@ body {
 
 .logo-placeholder .logo-background {
   height: 7em;
-  width: 12rem;
+  width: 14rem;
   background-color: white;
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
-  margin-left: 3rem; }
+  margin-left: 4rem;
+  box-shadow: 0px 6px 11px 0px rgba(0, 0, 0, 0.5); }
 
 nav .petnb-logo {
   height: 5rem;
@@ -164,8 +165,9 @@ nav .petnb-logo {
   background-size: contain;
   background-position-y: 50%;
   position: absolute;
-  font-size: 1.1rem;
-  margin: 1rem; }
+  font-size: 1.2rem;
+  margin: 1rem;
+  margin-left: 2rem; }
 
 /*Spacing between nav-items and logo*/
 .custom-menu-items {
@@ -231,7 +233,8 @@ nav .petnb-logo {
   background: transparent;
   color: #65C2AD;
   padding: 0.5rem 1rem 0.5rem 1rem;
-  cursor: pointer; }
+  cursor: pointer;
+  letter-spacing: 1px; }
 
 .login-btn:hover {
   background: #65C2AD;
@@ -288,7 +291,8 @@ div.login-modal {
   cursor: pointer;
   border-radius: 5px;
   padding: 1rem 2.5rem;
-  font-weight: 500; }
+  font-weight: 500;
+  letter-spacing: 1px; }
 
 #error-msg {
   color: white;
@@ -315,7 +319,7 @@ h4.main-heading {
 
 .grid-container {
   display: grid;
-  grid-template-columns: 0.5fr 1fr;
+  grid-template-columns: 2fr 4fr;
   grid-template-rows: 1fr;
   grid-template-areas: "filter cards";
   grid-column-gap: 2em;
@@ -328,29 +332,32 @@ h4.main-heading {
   grid-area: filter;
   grid-column-gap: 2em;
   background: white;
-  border-radius: 5px;
+  border-radius: .5rem;
   padding: 5% 5% 5% 5%;
   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.5); }
 
 .cards {
-  margin-right: 15%;
+  margin-right: 3rem;
   margin-top: 6%;
-  grid-area: cards;
-  grid-column-gap: 2em; }
+  grid-area: cards; }
 
 .card {
-  margin-right: 5%;
   margin-bottom: 70%;
   grid-area: cards;
   grid-column-gap: 2em;
   background: white;
-  border-radius: 5px;
-  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.5); }
+  border-radius: .5rem;
+  box-shadow: 0px 6px 11px 0px rgba(0, 0, 0, 0.25); }
 
 .btn-special {
-  position: relative;
-  left: 35%;
-  padding: 40%; }
+  text-align: right;
+  margin-right: 1rem;
+  margin-top: 8rem; }
+
+.btn-special2 {
+  text-align: right;
+  margin: 2rem;
+  margin-bottom: 1rem; }
 
 .form-search {
   color: black;

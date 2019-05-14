@@ -196,11 +196,12 @@ $basicTextColor: #4F4F4F;
 
 .logo-placeholder .logo-background {
     height: 7em;
-    width: 12rem;
+    width: 14rem;
     background-color: white;
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
-    margin-left: 3rem;
+    margin-left: 4rem;
+    box-shadow: 0px 6px 11px 0px rgba(0,0,0,0.50);
 }
 
 nav .petnb-logo {
@@ -211,8 +212,9 @@ nav .petnb-logo {
     background-size: contain;
     background-position-y: 50%;
     position: absolute;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     margin: 1rem;
+    margin-left: 2rem;
 }
 
 /*Spacing between nav-items and logo*/
@@ -295,6 +297,7 @@ nav .petnb-logo {
     color: $greenColor;
     padding: 0.5rem 1rem 0.5rem 1rem;
     cursor:pointer;
+    letter-spacing: 1px;
 }
 
 .login-btn:hover {
@@ -362,6 +365,7 @@ div.login-modal {
     border-radius:5px;
     padding: 1rem 2.5rem;
     font-weight:500;
+    letter-spacing: 1px;
 }
 
 #error-msg {
@@ -394,11 +398,12 @@ h4.main-heading {
 // Pet Sitter Offer Styling
 .grid-container {
     display: grid;
-    grid-template-columns: 0.5fr 1fr;
+    grid-template-columns: 2fr 4fr;
     grid-template-rows: 1fr;
     grid-template-areas: "filter cards";
     grid-column-gap: 2em;
     background: #F2F2F2;
+    
 }
 
 .filter {
@@ -408,34 +413,38 @@ h4.main-heading {
     grid-area: filter;
     grid-column-gap: 2em;
     background: white;
-    border-radius: 5px;
+    border-radius: .5rem;
     padding: 5% 5% 5% 5%;
     box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.50);
 }
 
 .cards {
-    margin-right: 15%;
+    margin-right: 3rem;
     margin-top: 6%;
     grid-area: cards;
-    grid-column-gap: 2em;
+    //grid-column-gap: 2em;
 }
 .card {
-    margin-right: 5%;
+    //margin-right: 2%;
     margin-bottom: 70%;
     grid-area: cards;
     grid-column-gap: 2em;
     background: white;
-    border-radius: 5px;
+    border-radius: .5rem;
     //padding: 5% 5% 5% 5%;
-    box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.50);
+    box-shadow: 0px 6px 11px 0px rgba(0,0,0,0.25);
 }
 
 .btn-special {
-    position: relative;
-    left: 35%;
-    //margin-bottom: 30px;
-    padding: 40%;
+    text-align: right;
+    margin-right: 1rem;
+    margin-top: 8rem;
+}
 
+.btn-special2 {
+    text-align: right;
+    margin: 2rem;
+    margin-bottom: 1rem;
 }
 
 .form-search {
