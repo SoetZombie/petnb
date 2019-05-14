@@ -12,16 +12,12 @@
 
     userName = UserManager.GetUserName(User).Split("@")[0];
 
-    <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
-        <ul class="nav navbar-nav navbar-right">
-            <button type="submit" class="btn btn-link navbar-btn navbar-link">Log out</button>
-        </ul>
-            </form>
+
     <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Profile
         </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
             <a class="dropdown-item" href="#">Pet adds</a>
             <a class="dropdown-item" href="#">Settings</a>
