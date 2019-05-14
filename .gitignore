@@ -1,5 +1,5 @@
 # Ignore the vendor path petnb\wwwroot\vendor.min.js and appsettings
-petnb\wwwroot\vendor.min.js
+petnb/wwwroot/vendor.min.js
 petnb/appsettings.json
 
 ## Ignore Visual Studio temporary files, build results, and
