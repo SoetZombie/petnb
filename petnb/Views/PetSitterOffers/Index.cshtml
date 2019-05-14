@@ -4,7 +4,61 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<div class="grid-container">
+    <div class="filter">
+        <div class="filter-heading">
+            Filter
+        </div>
+        <form>
+            
+            <div class="form-search">
+                <label for="Location">Location</label>
+                <input class="form-control" id="Location" name="Location" type="text" value>
+            </div>
+
+            <div class="form-search">
+                <label for="Animal">What animal do you have?</label>
+                <select class="form-control" id="Animal">
+                    <option>Dog</option>
+                    <option>Cat</option>
+                    <option>Bird</option>
+                    <option>Snake</option>
+                </select>
+            </div>
+            <div class="text-center">
+                <input class="authentication-btn register-btn" type="submit" value="Search">
+            </div>
+        </form>
+    </div>
+    <div class="cards">
+        <div class="filter-heading2">
+            Pet sitters 
+        </div>
+        <div class="filter-heading3">
+            Found 845
+        </div>
+
+
+        <div class="card">
+            <div class="grid">
+                <img src="wwwroot/images/image_1.jpg" alt="Title" style="width:150px" />
+            </div>
+            <div class="col-md-5">
+                Name
+
+            </div>
+
+            <div class="text-center">
+                <input class="authentication-btn register-btn" type="submit" value="contact">
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+
 
 <p>
     <a asp-action="Create">Create New</a>
