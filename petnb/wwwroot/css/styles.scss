@@ -430,7 +430,7 @@ h4.main-heading {
     grid-area: cards;
     grid-column-gap: 2em;
     background: white;
-    border-radius: .5rem;
+    //border-radius: 3rem;
     //padding: 5% 5% 5% 5%;
     box-shadow: 0px 6px 11px 0px rgba(0,0,0,0.25);
 }
@@ -443,8 +443,8 @@ h4.main-heading {
 
 .btn-special2 {
     text-align: right;
-    margin: 2rem;
-    margin-bottom: 1rem;
+    //margin: 0 2rem 1rem 3rem;
+    padding: 10rem 2rem 1rem 1rem;
 }
 
 .form-search {
@@ -478,4 +478,49 @@ h4.main-heading {
     margin: 2px 2px 0 0;
     //padding: 12px 20px;
 }
+.clip-circle {
+    clip-path: ellipse(100px 100px at center);
+    float: left;
+    margin: 1rem;
+    //margin-left:1rem;
+}
+
+.usr-description {
+    display:flex;
+    flex-direction: column;
+}
+
+.name-heading {
+    font-family: $quicksand;
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 1rem;
+    padding: 20px 0px 0px 0px;
+}
+
+.location {
+    font-family: $quicksand;
+    font-size: 15px;
+    font-weight: normal;
+    //margin: 2px 2px 0 0;
+
+}
+
+.description {
+    font-family: $quicksand;
+    font-size: 15px;
+    font-weight: normal;
+    padding: 2rem 1rem 0 0;
+}
+
+.grid {
+    border-radius: .5rem;
+}
+
+.grid2 {
+    display: flex;
+    flex-direction: row;
+}
+
+
     
