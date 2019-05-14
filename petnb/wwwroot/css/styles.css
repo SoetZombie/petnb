@@ -215,7 +215,10 @@ nav .petnb-logo {
   border-style: solid;
   border-radius: 5px;
   text-align: center;
-  border-color: #65C2AD; }
+  border-color: #65C2AD;
+  font-family: "Quicksand", sans-serif;
+  font-weight: bold;
+  letter-spacing: 1px; }
 
 /*Removing default hover effects on a tag*/
 .authentication-btns a:hover {
@@ -309,3 +312,70 @@ h4.main-heading {
   display: flex;
   align-items: center;
   justify-content: center; }
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "filter cards";
+  grid-column-gap: 2em;
+  background: #F2F2F2; }
+
+.filter {
+  margin-left: 15%;
+  margin-right: 8%;
+  margin-top: 15%;
+  grid-area: filter;
+  grid-column-gap: 2em;
+  background: white;
+  border-radius: 5px;
+  padding: 5% 5% 5% 5%;
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.5); }
+
+.cards {
+  margin-right: 15%;
+  margin-top: 6%;
+  grid-area: cards;
+  grid-column-gap: 2em; }
+
+.card {
+  margin-right: 5%;
+  margin-bottom: 70%;
+  grid-area: cards;
+  grid-column-gap: 2em;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.5); }
+
+.btn-special {
+  position: relative;
+  left: 35%;
+  padding: 40%; }
+
+.form-search {
+  color: black;
+  font-family: "Quicksand", sans-serif;
+  padding-bottom: 5%;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box; }
+
+.filter-heading {
+  font-family: "Quicksand", sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+  margin: 8px 0;
+  padding: 12px 20px; }
+
+.filter-heading2 {
+  font-family: "Quicksand", sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+  margin: 8px 0; }
+
+.filter-heading3 {
+  font-family: "Quicksand", sans-serif;
+  font-size: 15px;
+  font-weight: normal;
+  margin: 2px 2px 0 0; }
