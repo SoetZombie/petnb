@@ -13,20 +13,22 @@
     userName = UserManager.GetUserName(User).Split("@")[0];
 
 
+    <div class="profile-position"> 
     <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Profile
+        <button class="profile-button dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            
         </button>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
-            <a class="dropdown-item" href="#">Pet adds</a>
-            <a class="dropdown-item" href="#">Settings</a>
-            <form class="dropdown-item" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+        <div class="dropdown-menu dropdown-menu-custom dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item dropdown-custom" asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+            <a class="dropdown-item dropdown-custom" href="#">Pet adds</a>
+            <a class="dropdown-item dropdown-custom" href="#">Settings</a>
+            <form class="dropdown-item dropdown-custom" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
                 <a onclick="document.getElementById('logoutForm').submit()">Log out</a>
             </form>
         </div>
     </div>
- 
+    </div>
+
 
     <div id="chatWidget">
         <div id="allMessages">
