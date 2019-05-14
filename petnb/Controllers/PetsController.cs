@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using petnb.DTL.Data;
 using petnb.DTL.Models;
+using petnb.Services;
 
 namespace petnb.Controllers
 {
@@ -15,17 +16,19 @@ namespace petnb.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ApplicationDbContext _context;
+        private readonly IPetService _petService;
 
-        public PetsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+        public PetsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IPetService petService)
         {
-            _context = context;
+            
             _userManager = userManager;
+            _petService = petService;
         }
 
         // GET: Pets
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Pets.ToListAsync());
+            return View(await _petService.AllPets());
         }
 
         // GET: Pets/Details/5
@@ -61,28 +64,19 @@ namespace petnb.Controllers
         public async Task<IActionResult> Create(Pet petModel)
         {
             var userId = _userManager.GetUserId(HttpContext.User);
-            var user = _context.Users
-                .Include(p => p.Pets)
-                .FirstOrDefault(i => i.Id == userId);
+         
  
             if (ModelState.IsValid)
             {
-                var pet = new Pet
-                {
-                    PetAge = petModel.PetAge,
-                    PetDifficulty = petModel.PetDifficulty,
-                    PetName = petModel.PetName,
-                    PetWeight = petModel.PetWeight,
-                    PetType = petModel.PetType
-                };
-                if (!user.IsPetOwner)
-                {
-                    user.IsPetOwner = true;
-                }
-                user.Pets.Add(pet);
-                _context.Add(pet);
-                _context.Update(user);
-                await _context.SaveChangesAsync();
+                _petService.Create(
+                    petModel.PetAge,
+                    petModel.PetDifficulty, 
+                    petModel.PetName,
+                    petModel.PetWeight, 
+                    petModel.PetType, 
+                    petModel.PetBreed,
+                    userId
+                    );
                 return RedirectToAction(nameof(Index));
             }
             return View();
