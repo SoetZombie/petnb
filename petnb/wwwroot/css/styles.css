@@ -385,6 +385,40 @@ h4.main-heading {
   font-weight: normal;
   margin: 2px 2px 0 0; }
 
+.clip-circle {
+  clip-path: ellipse(100px 100px at center);
+  float: left;
+  margin: 1rem; }
+
+.usr-description {
+  display: flex;
+  flex-direction: column; }
+
+.name-heading {
+  font-family: "Quicksand", sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 1rem;
+  padding: 20px 0px 0px 0px; }
+
+.location {
+  font-family: "Quicksand", sans-serif;
+  font-size: 15px;
+  font-weight: normal; }
+
+.description {
+  font-family: "Quicksand", sans-serif;
+  font-size: 15px;
+  font-weight: normal;
+  padding: 2rem 1rem 0 0; }
+
+.grid {
+  border-radius: .5rem; }
+
+.grid2 {
+  display: flex;
+  flex-direction: row; }
+
 .profile-position {
   text-align: right;
   margin-right: 3rem; }
@@ -429,36 +463,15 @@ h4.main-heading {
     background-color: #65C2AD;
     opacity: .5; }
 
-.clip-circle {
-  clip-path: ellipse(100px 100px at center);
-  float: left;
-  margin: 1rem; }
+.register-grid {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 0.5fr;
+  grid-template-rows: 0.2fr 1fr;
+  grid-template-areas: ". . ." ". register .";
+  background-image: url("../images/animal-carry-cute-1975989.jpg");
+  background-size: 100%;
+  background-position: left;
+  background-position-y: 30%; }
 
-.usr-description {
-  display: flex;
-  flex-direction: column; }
-
-.name-heading {
-  font-family: "Quicksand", sans-serif;
-  font-size: 30px;
-  font-weight: bold;
-  margin-top: 1rem;
-  padding: 20px 0px 0px 0px; }
-
-.location {
-  font-family: "Quicksand", sans-serif;
-  font-size: 15px;
-  font-weight: normal; }
-
-.description {
-  font-family: "Quicksand", sans-serif;
-  font-size: 15px;
-  font-weight: normal;
-  padding: 2rem 1rem 0 0; }
-
-.grid {
-  border-radius: .5rem; }
-
-.grid2 {
-  display: flex;
-  flex-direction: row; }
+.register {
+  grid-area: register; }

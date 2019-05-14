@@ -580,3 +580,19 @@ h4.main-heading {
         }
     }
 }
+
+// Register page styling :D
+.register-grid {
+    display: grid;
+    grid-template-columns: 0.5fr 1fr 0.5fr;
+    grid-template-rows: 0.2fr 1fr;
+    grid-template-areas: ". . ." ". register .";
+    background-image: url("../images/animal-carry-cute-1975989.jpg");
+    background-size: 100%;
+    background-position: left;
+    background-position-y: 30%;
+}
+
+.register {
+    grid-area: register;
+}
