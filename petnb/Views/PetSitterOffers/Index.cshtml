@@ -43,7 +43,7 @@ ViewData["Title"] = "Index";
 
     <div class="card">
         <div class="grid">
-            <img src="~/images/image_1.jpg" alt="Title" style="width:250px" class="clip-circle" />
+            <img src="~/images/image_1.jpg" alt="Title" style="width: 250px" class="clip-circle"/>
             <div class="grid2">
                 <div class="usr-description">
                     <div class="name-heading"> Guillem Pujol</div>
@@ -56,7 +56,7 @@ ViewData["Title"] = "Index";
                 </div>
             </div>
         </div>
-        </div>
+    </div>
     </div>
 </div>
 
@@ -85,9 +85,9 @@ ViewData["Title"] = "Index";
             <th>
                 @Html.DisplayNameFor(model => model.EndOfSit)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.User)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.ExpectedSalary)
             </th>
@@ -114,7 +114,7 @@ ViewData["Title"] = "Index";
                     @Html.DisplayFor(modelItem => item.EndOfSit)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.User.Id)
+                    @Html.DisplayFor(modelItem => item.PetSitterId)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ExpectedSalary)
