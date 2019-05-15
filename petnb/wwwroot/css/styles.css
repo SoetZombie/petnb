@@ -466,13 +466,51 @@ h4.main-heading {
 
 .register-grid {
   display: grid;
-  grid-template-columns: 0.5fr 1fr 0.5fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 0.2fr 1fr;
   grid-template-areas: ". . ." ". register .";
-  background-image: url("../images/animal-carry-cute-1975989.jpg");
+  background-image: url("../images/bg_opacity.png");
   background-size: 100%;
   background-position: left;
-  background-position-y: 30%; }
+  background-position-y: 30%;
+  height: 100vh;
+  position: absolute;
+  margin-top: -6em;
+  z-index: -1;
+  width: 100%; }
 
 .register {
   grid-area: register; }
+
+.name-heading2 {
+  font-family: "Quicksand", sans-serif;
+  font-size: 25px;
+  font-weight: bold;
+  margin: 1rem 0 2rem 0;
+  text-align: center;
+  letter-spacing: 0.1rem; }
+
+.form-register {
+  color: white;
+  font-family: "Quicksand", sans-serif;
+  width: 100%;
+  padding: 0 6rem 1rem 6rem;
+  margin: 1rem 0; }
+
+.btn-register {
+  background-color: #65C2AD;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 22px;
+  font-family: "Quicksand", sans-serif;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+  border-radius: 0.2rem; }
+
+.register-button {
+  text-align: center;
+  margin: 4rem 0 0 0; }
