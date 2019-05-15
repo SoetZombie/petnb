@@ -3,30 +3,32 @@
     ViewData["Title"] = "Register";
 }
 
-<h2>@ViewData["Title"]</h2>
 
 <div class="register-grid">
-    <div class="col-md-4">
+    
+    <div class="register">
         <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
-            <h4>Create a new account.</h4>
-            <hr />
+            <h4 class="name-heading2">Register with</h4>
+            
             <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Email"></label>
+            <div class="form-register">
+                <label asp-for="Email" class="quck"></label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Password"></label>
+            <div class="form-register">
+                <label asp-for="Password" class="quck"></label>
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="ConfirmPassword"></label>
+            <div class="form-register">
+                <label asp-for="ConfirmPassword" class="quck"></label>
                 <input asp-for="ConfirmPassword" class="form-control" />
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
-            <button type="submit" class="btn btn-default">Register</button>
+            <div class="register-button">
+                <button type="submit" class="btn-register">Register</button>
+            </div>
         </form>
     </div>
 </div>

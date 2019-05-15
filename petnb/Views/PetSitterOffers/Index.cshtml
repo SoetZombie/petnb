@@ -1,67 +1,64 @@
 ﻿@model IEnumerable<petnb.DTL.Data.Models.PetSitterOffer>
 
 @{
-    ViewData["Title"] = "Index";
+ViewData["Title"] = "Index";
 }
 
 <div class="grid-container">
-    <div class="filter">
-        <div class="filter-heading">
-            Filter
-        </div>
-        <form>
-            
-            <div class="form-search">
-                <label for="Location">Location</label>
-                <input class="form-control" id="Location" name="Location" type="text" value>
-            </div>
-
-            <div class="form-search">
-                <label for="Animal">What animal do you have?</label>
-                <select class="form-control" id="Animal">
-                    <option>Dog</option>
-                    <option>Cat</option>
-                    <option>Bird</option>
-                    <option>Snake</option>
-                </select>
-            </div>
-            <div class="btn-special">
-                <input class="authentication-btn register-btn" type="submit" value="Search">
-            </div>
-        </form>
+<div class="filter">
+    <div class="filter-heading">
+        Filter
     </div>
-    <div class="cards">
-        <div class="filter-heading2">
-            Pet sitters 
+    <form>
+
+        <div class="form-search">
+            <label for="Location">Location</label>
+            <input class="form-control" id="Location" name="Location" type="text" value>
         </div>
-        <div class="filter-heading3">
-            Found 845
+
+        <div class="form-search">
+            <label for="Animal">What animal do you have?</label>
+            <select class="form-control" id="Animal">
+                <option>Dog</option>
+                <option>Cat</option>
+                <option>Bird</option>
+                <option>Fish</option>
+                <option>Hamster</option>
+                <option>Reptile</option>
+            </select>
         </div>
+        <div class="btn-special">
+            <input class="authentication-btn register-btn" type="submit" value="Search">
+        </div>
+    </form>
+</div>
+<div class="cards">
+    <div class="filter-heading2">
+        Pet sitters
+    </div>
+    <div class="filter-heading3">
+        Found 845
+    </div>
 
 
-        <div class="card">
-            <div class="grid">
-                <img src="~/images/image_1.jpg" alt="Title" style="width:250px" class="clip-circle" />
-                <div class="grid2">
-                    <div class="usr-description">
-                        <div class="name-heading"> Guillem Pujol</div>
-                        <div class="location"> Aarhus 8000</div>
-                        <div class="description"> Velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Bla bla diehda.Dkealdiifg. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui.0</div>
+    <div class="card">
+        <div class="grid">
+            <img src="~/images/image_1.jpg" alt="Title" style="width:250px" class="clip-circle" />
+            <div class="grid2">
+                <div class="usr-description">
+                    <div class="name-heading"> Guillem Pujol</div>
+                    <div class="location"> Aarhus 8000</div>
+                    <div class="description"> Velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Bla bla diehda.Dkealdiifg. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui.0</div>
 
-                    </div>
-                    <div class="btn-special2">
-                        <input class="authentication-btn register-btn" type="submit" value="contact">
-                    </div>
                 </div>
-                
+                <div class="btn-special2">
+                    <input class="authentication-btn register-btn" type="submit" value="contact">
+                </div>
             </div>
-            
-
-           
-
-
+        </div>
         </div>
     </div>
+</div>
 
 
 
@@ -98,35 +95,36 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Heading)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Content)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Location)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartOfSit)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndOfSit)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExpectedSalary)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.PetSitterOfferId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PetSitterOfferId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PetSitterOfferId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Heading)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Content)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartOfSit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndOfSit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpectedSalary)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.PetSitterOfferId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.PetSitterOfferId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.PetSitterOfferId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
