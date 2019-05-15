@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using petnb.DTL.Data.Models.Enums;
 
 namespace petnb.Models.AccountViewModels
 {
@@ -23,5 +24,7 @@ namespace petnb.Models.AccountViewModels
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+        [Required]
+        public UserType UserType { get; set; }
     }
 }

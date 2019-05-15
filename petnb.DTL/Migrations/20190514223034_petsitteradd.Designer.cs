@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using petnb.DTL.Data;
 
 namespace petnb.DTL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190514223034_petsitteradd")]
+    partial class petsitteradd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -164,13 +166,17 @@ namespace petnb.DTL.Migrations
 
                     b.Property<string>("Location");
 
-                    b.Property<int>("PetSitterId");
+                    b.Property<int?>("PetSitterId");
 
                     b.Property<DateTime>("StartOfSit");
+
+                    b.Property<string>("UserId");
 
                     b.HasKey("PetSitterOfferId");
 
                     b.HasIndex("PetSitterId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("PetSitterOffers");
                 });
@@ -377,10 +383,13 @@ namespace petnb.DTL.Migrations
 
             modelBuilder.Entity("petnb.DTL.Data.Models.PetSitterOffer", b =>
                 {
-                    b.HasOne("petnb.DTL.Data.Models.PetSitter", "PetSitter")
+                    b.HasOne("petnb.DTL.Data.Models.PetSitter")
                         .WithMany("PetSitterOffers")
-                        .HasForeignKey("PetSitterId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("PetSitterId");
+
+                    b.HasOne("petnb.DTL.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("petnb.DTL.Data.Models.Review", b =>

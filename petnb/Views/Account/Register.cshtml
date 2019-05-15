@@ -1,4 +1,5 @@
-﻿@model RegisterViewModel
+﻿@using petnb.DTL.Data.Models.Enums
+@model RegisterViewModel
 @{
     ViewData["Title"] = "Register";
 }
@@ -25,6 +26,11 @@
                 <label asp-for="ConfirmPassword"></label>
                 <input asp-for="ConfirmPassword" class="form-control" />
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <<div class="form-group">
+                <label asp-for="UserType" class="control-label"></label>
+                <select asp-for="UserType" class="form-control" asp-items="Html.GetEnumSelectList<UserType>()"></select>
+                <span asp-validation-for="UserType" class="text-danger"></span>
             </div>
             <button type="submit" class="btn btn-default">Register</button>
         </form>

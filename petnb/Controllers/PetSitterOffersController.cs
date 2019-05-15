@@ -29,7 +29,7 @@ namespace petnb.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.PetSitterOffers.Include(p => p.User);
+            var applicationDbContext = _context.PetSitterOffers.Include(p => p.PetSitter);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -42,7 +42,7 @@ namespace petnb.Controllers
             }
 
             var petSitterOffer = await _context.PetSitterOffers
-                .Include(p => p.User)
+                .Include(p => p.PetSitter)
                 .FirstOrDefaultAsync(m => m.PetSitterOfferId == id);
             if (petSitterOffer == null)
             {
@@ -81,9 +81,9 @@ namespace petnb.Controllers
                     StartOfSit = model.StartOfSit,
                     EndOfSit = model.EndOfSit,
                     ExpectedSalary = model.ExpectedSalary,
-                    UserId = user.Id
+                    PetSitterId = user.PetSitter.PetSitterId
                 };
-                 user.PetSitterOffers.Add(offer);
+                
                 _context.Add(offer);
                 _context.Update(user);
                 await _context.SaveChangesAsync();
@@ -105,7 +105,7 @@ namespace petnb.Controllers
             {
                 return NotFound();
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", petSitterOffer.UserId);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", petSitterOffer.PetSitterId);
             return View(petSitterOffer);
         }
 
@@ -141,7 +141,7 @@ namespace petnb.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", petSitterOffer.UserId);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", petSitterOffer.PetSitterId);
             return View(petSitterOffer);
         }
 
@@ -154,7 +154,7 @@ namespace petnb.Controllers
             }
 
             var petSitterOffer = await _context.PetSitterOffers
-                .Include(p => p.User)
+                .Include(p => p.PetSitter)
                 .FirstOrDefaultAsync(m => m.PetSitterOfferId == id);
             if (petSitterOffer == null)
             {

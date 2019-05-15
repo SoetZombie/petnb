@@ -306,7 +306,8 @@ div.login-modal {
 .form-group label {
   width: 100%;
   color: white;
-  font-family: "Quicksand", sans-serif; }
+  font-family: "Quicksand", sans-serif;
+  letter-spacing: 0.12em; }
 
 h4.main-heading {
   font-family: "Quicksand", sans-serif; }
