@@ -25,6 +25,7 @@ namespace petnb.Models.AccountViewModels
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
         [Required]
+        [Display(Name = "Are you pet sitter or pet owner?")]
         public UserType UserType { get; set; }
     }
 }

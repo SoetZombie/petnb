@@ -290,6 +290,11 @@ namespace petnb.Controllers
         [AllowAnonymous]
         public IActionResult Register(string returnUrl = null)
         {
+            var authenticated = _userManager.GetUserId(HttpContext.User);
+            if (authenticated != null)
+            {
+                return RedirectToAction(nameof(HomeController.Index), "home");
+            }
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
