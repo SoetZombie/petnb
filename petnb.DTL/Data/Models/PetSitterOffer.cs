@@ -17,8 +17,8 @@ namespace petnb.DTL.Data.Models
         //   public string PetBreed { get; set; }
         public DateTime StartOfSit { get; set; }
         public DateTime EndOfSit { get; set; }
-        public ApplicationUser User { get; set; }
+        public PetSitter PetSitter { get; set; }
         public int ExpectedSalary { get; set; }
-        public string UserId { get; set; }
+        public int PetSitterId { get; set; }
     }
 }

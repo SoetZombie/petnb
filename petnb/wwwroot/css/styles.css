@@ -100,8 +100,7 @@ form {
 /* Other styles for the page not related to the animated dropdown */
 body {
   background: #007bff;
-  background: linear-gradient(to right, #0062E6, #33AEFF);
-  overflow-y: hidden; }
+  background: linear-gradient(to right, #0062E6, #33AEFF); }
 
 /*Landing page styles*/
 .landing-page-grid-container {
@@ -300,13 +299,11 @@ div.login-modal {
   border-radius: 5px;
   border: 2px solid #65C2AD; }
 
-.form-group input {
-  border-width: 2px; }
-
-.form-group label {
+.custom-login {
   width: 100%;
   color: white;
-  font-family: "Quicksand", sans-serif; }
+  font-family: "Quicksand", sans-serif;
+  letter-spacing: 0.12em; }
 
 h4.main-heading {
   font-family: "Quicksand", sans-serif; }
@@ -465,18 +462,31 @@ h4.main-heading {
 
 .register-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 0.2fr 1fr;
+  grid-template-columns: 1.1fr 0.8fr 1.1fr;
+  grid-template-rows: 6em 1fr;
   grid-template-areas: ". . ." ". register .";
-  background-image: url("../images/bg_opacity.png");
+  background-image: url(../images/bg_opacity.png);
   background-size: 100%;
   background-position: left;
   background-position-y: 30%;
-  height: 100vh;
+  min-height: 100vh;
   position: absolute;
   margin-top: -6em;
   z-index: -1;
-  width: 100%; }
+  width: 100%;
+  align-items: center; }
+
+.form-register-btn {
+  border: none;
+  background: #65C2AD;
+  color: white !important;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 1rem 2.5rem;
+  font-weight: 500;
+  text-align: center;
+  letter-spacing: 1px;
+  margin-top: 1rem; }
 
 .register {
   grid-area: register; }
@@ -493,7 +503,6 @@ h4.main-heading {
   color: white;
   font-family: "Quicksand", sans-serif;
   width: 100%;
-  padding: 0 6rem 1rem 6rem;
   margin: 1rem 0; }
 
 .btn-register {
@@ -513,3 +522,34 @@ h4.main-heading {
 .register-button {
   text-align: center;
   margin: 4rem 0 0 0; }
+
+.user-type-select-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 1rem; }
+  .user-type-select-container .owner + .owner-label {
+    background-image: url("../images/owner.png");
+    background-color: white;
+    background-size: 90%;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    border: 3px solid #e9e9e9;
+    height: 5rem;
+    width: 5rem; }
+  .user-type-select-container .owner:checked + .owner-label {
+    border-color: #65C2AD; }
+  .user-type-select-container .sitter + .sitter-label {
+    background-image: url("../images/sitter.png");
+    background-color: white;
+    background-size: 90%;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    border: 3px solid #e9e9e9;
+    height: 5rem;
+    width: 5rem; }
+  .user-type-select-container .sitter:checked + .sitter-label {
+    border-color: #65C2AD; }
+  .user-type-select-container input[type=radio] {
+    display: none; }

@@ -23,6 +23,7 @@ namespace petnb.Controllers
             
             _userManager = userManager;
             _petService = petService;
+            _context = context;
         }
 
         // GET: Pets
@@ -64,8 +65,7 @@ namespace petnb.Controllers
         public async Task<IActionResult> Create(Pet petModel)
         {
             var userId = _userManager.GetUserId(HttpContext.User);
-         
- 
+            
             if (ModelState.IsValid)
             {
                 _petService.Create(
