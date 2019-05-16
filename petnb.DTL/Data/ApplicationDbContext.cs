@@ -20,6 +20,7 @@ namespace petnb.DTL.Data
         public DbSet<PetOffer> PetOffers { get; set; }
         public DbSet<Pet> Pets { get; set; }
         public DbSet<PetSitterOffer> PetSitterOffers { get; set; }
+        public DbSet<PetSitter> PetSitters { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -34,10 +35,15 @@ namespace petnb.DTL.Data
                 .HasMany(a => a.Reviews)
                 .WithOne(b => b.ReviewedApplicationUser);
 
-            builder.Entity<PetSitterOffer>()
-                .HasOne(a => a.User)
-                .WithMany(b => b.PetSitterOffers);
+            builder.Entity<PetSitter>()
+                .HasOne(p => p.ApplicationUser)
+                .WithOne(o => o.PetSitter)
+                .HasForeignKey<PetSitter>(u => u.UserId);
 
+            builder.Entity<PetSitterOffer>()
+                .HasOne(u => u.PetSitter)
+                .WithMany(p => p.PetSitterOffers)
+                .HasForeignKey(k => k.PetSitterId);
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);

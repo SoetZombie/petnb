@@ -16,10 +16,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using petnb.DTL.Data;
+using petnb.DTL.Data.Models;
+using petnb.DTL.Data.Models.Enums;
 using petnb.DTL.Models;
 using petnb.Models;
 using petnb.Models.AccountViewModels;
 using petnb.Services;
+using petnb.Services.Implementations;
 
 namespace petnb.Controllers
 {
@@ -32,18 +36,24 @@ namespace petnb.Controllers
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
         private readonly IFirebaseService _firebaseService;
+        private readonly IAccountService _accountService;
+
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
-            ILogger<AccountController> logger, IFirebaseService firebaseService)
+            ILogger<AccountController> logger, 
+            IFirebaseService firebaseService,
+            IAccountService accountService
+            )
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
             _firebaseService = firebaseService;
+            _accountService = accountService;
         }
 
         [TempData]
@@ -280,6 +290,11 @@ namespace petnb.Controllers
         [AllowAnonymous]
         public IActionResult Register(string returnUrl = null)
         {
+            var authenticated = _userManager.GetUserId(HttpContext.User);
+            if (authenticated != null)
+            {
+                return RedirectToAction(nameof(HomeController.Index), "home");
+            }
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
@@ -301,6 +316,17 @@ namespace petnb.Controllers
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
                     await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
+
+                    if (model.UserType == UserType.Sitter)
+                    {
+                        _accountService.CreatePetSitter(user.Id);
+                    }
+
+                    if (model.UserType == UserType.Owner)
+                    {
+                        _accountService.CreatePetOwner(user.Id);
+                    }
+
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation("User created a new account with password.");

@@ -66,20 +66,20 @@
                 <hr />
                 <div id="input-container">
                     <div class="form-group">
-                        <label>
+                        <label class="custom-login">
                             Email
                             <input id="email" placeholder="Type your email" class="form-control" />
                         </label>
                     </div>
                     <div class="form-group">
-                        <label>
+                        <label class="custom-login">
                             Password
                             <input id="password" placeholder="Type your password" type="password" class="form-control" />
                         </label>
                     </div>
                     <div class="form-group">
                         <div class="checkbox">
-                            <label>
+                            <label class="custom-login">
                                 <input id="rememberMe" type="checkbox" />
                                 Remember me?
                             </label>
@@ -150,9 +150,12 @@
         login.addEventListener("click",
             function() {
                 loginModal.classList.toggle("hidden");
-                modalSlideIn.restart();
+                document.getElementsByTagName('body')[0].style.overflowY = 'hidden';
+                slideIn();
             });
+
         close.addEventListener("click", slideOut);
+
         ajaxSubmitBtn.addEventListener("click",
             function () {
                 loginAjax();
@@ -160,7 +163,8 @@
     }
 
 
-   async function slideOut() {
+    async function slideOut() {
+       document.getElementsByTagName('body')[0].style.overflowY = 'visible';
        loginModal.classList.toggle("custom-slide-out");
        loginModal.style.cssText = "top:-999px; bottom:999px";
        await sleep(200);
@@ -250,14 +254,23 @@
         shake.restart();
         colorAnims.forEach(a => a.restart());
     };
-
-    const modalSlideIn = anime({
+    const slideIn = () => {
+        modalSlideIn.forEach(a => a.restart());
+    }
+    const modalSlideIn = [
+        anime({
         targets: '#login-overlay',
         top: '0px',
         bottom: '0px',
         autoplay: false,
 
-    });
+        }),
+        anime({
+            targets: 'body',
+            overflowY:'hidden'
+
+        })
+    ];
         
 
     
