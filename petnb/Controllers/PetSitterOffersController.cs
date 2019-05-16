@@ -68,7 +68,8 @@ namespace petnb.Controllers
         public async Task<IActionResult> Create(PetSitterOffer model)
         {
             var user = _context.Users
-                .Include(p => p.Pets)
+                .Include(p => p.PetSitter)
+                .ThenInclude(o => o.PetSitterOffers)
                 .FirstOrDefault(i => i.Id == _userManager.GetUserId(HttpContext.User));
 
             if (ModelState.IsValid)

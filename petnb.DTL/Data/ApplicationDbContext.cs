@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using petnb.DTL.Data.Models;
-using petnb.DTL.Migrations;
 using petnb.DTL.Models;
 
 namespace petnb.DTL.Data

@@ -63,6 +63,11 @@ namespace petnb.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Login(string returnUrl = null)
         {
+            var authenticated = _userManager.GetUserId(HttpContext.User);
+            if (authenticated != null)
+            {
+                return RedirectToAction(nameof(HomeController.Index), "home");
+            }
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
@@ -142,8 +147,8 @@ namespace petnb.Controllers
 
                     //var customToken = await FirebaseAuth.DefaultInstance.CreateCustomTokenAsync(userId);
 
-                    var customToken = await _firebaseService.GenerateCustomToken("test");
-                    HttpContext.Session.SetString("FirebaseToken",customToken);
+                    //var customToken = await _firebaseService.GenerateCustomToken("test");
+                    //HttpContext.Session.SetString("FirebaseToken",customToken);
 
 
                     _logger.LogInformation("User logged in.");

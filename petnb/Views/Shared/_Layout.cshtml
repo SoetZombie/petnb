@@ -129,14 +129,6 @@
     @RenderSection("Scripts", required: false)
 
 <script>
-    const key = "@Html.Raw(token)";
-    console.log(key);
-    firebase.auth().signInWithCustomToken(key).catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // ...
-    });
 
     const login = document.getElementById("login-btn-ajax");
     const close = document.getElementById("close-btn");
@@ -189,7 +181,7 @@
                 xhr.setRequestHeader("XSRF-TOKEN",
                     $('input:hidden[name="__RequestVerificationToken"]').val());
             },
-            contentType: "application/json; charset=utf-8",
+            contentType: "application/json; /*cha*/rset=utf-8",
             dataType: "json",
             data: JSON.stringify({
                 email: email,

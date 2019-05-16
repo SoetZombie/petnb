@@ -1,7 +1,44 @@
-﻿
+﻿@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @{
-    ViewData["Title"] = "Index";
+    var token = HttpContextAccessor.HttpContext.Session.GetString("FirebaseToken");
 }
+<script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
 
-<h2>Index</h2>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyCoKatVz8xlteNJGwY5hg_tDWEQ36foOGI",
+        authDomain: "frontend-69cae.firebaseapp.com",
+        databaseURL: "https://frontend-69cae.firebaseio.com",
+        projectId: "frontend-69cae",
+        storageBucket: "frontend-69cae.appspot.com",
+        messagingSenderId: "574904259542"
+    };
+    firebase.initializeApp(config);
 
+    var token = "@Html.Raw(token)";
+    console.log(token)
+
+    var user = firebase.auth().currentUser;
+    if (user == null) {
+
+    firebase.auth().signInWithCustomToken(token).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorMessage);
+        console.log("succ");
+        // ...
+    }).then(function() {
+    console.log(firebase.auth().currentUser);
+
+            });
+
+    }
+
+
+
+    var user = firebase.auth().currentUser;
+
+</script>

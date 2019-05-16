@@ -10,8 +10,8 @@ using petnb.DTL.Data;
 namespace petnb.DTL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190510115003_petsoffers")]
-    partial class petsoffers
+    [Migration("20190516085354_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -131,6 +131,25 @@ namespace petnb.DTL.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("petnb.DTL.Data.Models.PetSitter", b =>
+                {
+                    b.Property<int>("PetSitterId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<double?>("Rating");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("PetSitterId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
+
+                    b.ToTable("PetSitters");
+                });
+
             modelBuilder.Entity("petnb.DTL.Data.Models.PetSitterOffer", b =>
                 {
                     b.Property<int>("PetSitterOfferId")
@@ -147,13 +166,13 @@ namespace petnb.DTL.Migrations
 
                     b.Property<string>("Location");
 
-                    b.Property<DateTime>("StartOfSit");
+                    b.Property<int>("PetSitterId");
 
-                    b.Property<string>("UserId");
+                    b.Property<DateTime>("StartOfSit");
 
                     b.HasKey("PetSitterOfferId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("PetSitterId");
 
                     b.ToTable("PetSitterOffers");
                 });
@@ -207,8 +226,6 @@ namespace petnb.DTL.Migrations
                     b.Property<string>("FullName");
 
                     b.Property<bool>("IsPetOwner");
-
-                    b.Property<bool>("IsPetSitter");
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -353,11 +370,19 @@ namespace petnb.DTL.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("petnb.DTL.Data.Models.PetSitter", b =>
+                {
+                    b.HasOne("petnb.DTL.Models.ApplicationUser", "ApplicationUser")
+                        .WithOne("PetSitter")
+                        .HasForeignKey("petnb.DTL.Data.Models.PetSitter", "UserId");
+                });
+
             modelBuilder.Entity("petnb.DTL.Data.Models.PetSitterOffer", b =>
                 {
-                    b.HasOne("petnb.DTL.Models.ApplicationUser", "User")
+                    b.HasOne("petnb.DTL.Data.Models.PetSitter", "PetSitter")
                         .WithMany("PetSitterOffers")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("PetSitterId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("petnb.DTL.Data.Models.Review", b =>
