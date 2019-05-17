@@ -138,7 +138,8 @@ form {
 
 body {
     background: #F2F2F2;
-    //background: linear-gradient(to right, #0062E6, #33AEFF);
+    //background: linear-gradient(to right, #F2F2F2, #65C2AD);
+    background: linear-gradient(to left, #F2F2F2, #65C2AD);
 }
 /*Landing page styles*/
 .landing-page-grid-container {
@@ -495,6 +496,7 @@ h4.main-heading {
 .usr-description {
     display:flex;
     flex-direction: column;
+
 }
 
 .name-heading {
@@ -518,6 +520,7 @@ h4.main-heading {
     font-size: 15px;
     font-weight: normal;
     padding: 2rem 1rem 0 .2rem;
+    //width: 40rem;
 }
 
 .grid {
@@ -701,5 +704,78 @@ h4.main-heading {
         display: none;
     }
 }
+
+// Create Ad Styling :D
+.grid-container-ad {
+    display: grid;
+    grid-template-columns: 0.5fr 1fr 0.5fr;
+    grid-template-rows: 0.2fr 1fr;
+    grid-template-areas: "progress-bar-left progress-bar-center progress-bar-right" ". fill-ad .";
+    background-color: white;
+}
+
+.progress-bar-center {
+    grid-area: progress-bar-center;
+    border-bottom: solid 1px #f7f7f7;
+    height: 65px;
+    background-color: white;
+}
+.progress-bar-left {
+    grid-area: progress-bar-left;
+    border-bottom: solid 1px #f7f7f7;
+    height: 65px;
+    background-color: white;
+}
+.progress-bar-right {
+    grid-area: progress-bar-right;
+    border-bottom: solid 1px #f7f7f7;
+    height: 65px;
+    background-color: white;
+}
+.progress-logo {
+    margin-top: .65rem;
+}
+.wrapper-bar {
+    display:flex;
+
+}
+.percent {
+    display:flex;
+    flex-direction:column;
+    font-family:$quicksand;
+    font-weight: bold;
+    margin: 1.2rem .65rem 0 .7rem;
+}
+.progress-bar-bar {
+    display: flex;
+    flex-direction: column;
+    display: inline-block;
+    width: 80%;
+    width: calc(100% - 32px - 20px - 40px);
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    height: 6px;
+    background-color: #f7f7f7;
+    vertical-align: middle;
+    margin-top: 1.8rem;
+
+}
+
+.progress-bar-bar .bar {
+    border-radius: 5px;
+    height: 6px;
+    background-color: $greenColor;
+}
+
+.fill-ad {
+    grid-area: fill-ad;
+}
+
+.header-petad {
+    font-family: $quicksand;
+    font-weight: bold;
+    font-size: 30px;
+}
+
 
 
