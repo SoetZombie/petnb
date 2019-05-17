@@ -11,7 +11,7 @@ namespace petnb.Services
     public interface IPetService
     {
 
-        void Create(int petAge, double petDifficulty, string petName, double petWeight, PetType petType, string petBreed, string userId);
+        void Create(int petAge, double petDifficulty, string petName, double petWeight, PetTypeEnum petType, string petBreed, string userId);
 
         Task<List<Pet>>  AllPets();
     }

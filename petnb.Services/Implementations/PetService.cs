@@ -24,7 +24,7 @@ namespace petnb.Services.Implementations
             _userManager = userManager;
         }
 
-        public async void Create(int petAge, double petDifficulty, string petName, double petWeight, PetType petType, string petBreed, string userId)
+        public async void Create(int petAge, double petDifficulty, string petName, double petWeight, PetTypeEnum petType, string petBreed, string userId)
         {
             var user = _context.Users
                 .Include(p => p.Pets)
