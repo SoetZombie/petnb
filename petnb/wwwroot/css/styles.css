@@ -708,3 +708,94 @@ h4.main-heading {
   font-weight: bold;
   font-size: 18px;
   color: black; }
+
+/*.grid-container {
+    display: grid;
+    grid-template-columns: 2fr 4fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "filter cards";
+    grid-column-gap: 2em;
+    background: #F2F2F2;
+}
+*/
+.person-message {
+  height: 4rem;
+  width: 17rem;
+  border-radius: 5px;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  margin-bottom: 1rem;
+  background: #e0e0e0;
+  cursor: pointer; }
+
+.profile-picture-message {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  border-color: none;
+  background: url("https://cdn.images.express.co.uk/img/dynamic/11/590x/KKSKS-717334.jpg");
+  background-size: contain;
+  background-position-x: 50%;
+  background-position-y: 50%;
+  display: flex;
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+  position: absolute; }
+
+.profile-picture-message p {
+  margin-bottom: 1rem;
+  padding-left: 4rem;
+  margin-top: 0.6rem;
+  color: white;
+  font: "Quicksand", sans-serif;
+  font-weight: 500;
+  width: 16rem;
+  position: absolute; }
+
+.messages-placeholder {
+  grid-column-gap: 2em;
+  background: white;
+  border-radius: 1rem;
+  padding: 5% 5% 5% 5%;
+  margin-right: 7%;
+  margin-top: 8%;
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.5); }
+
+.message-right {
+  text-align: right; }
+
+.message-picture {
+  border-radius: 50%;
+  border-color: none;
+  background-size: contain;
+  background-position-x: 50%;
+  background-position-y: 50%;
+  height: 1.5rem;
+  width: 1.5rem;
+  margin-left: 1rem;
+  margin-right: 1rem; }
+
+.message-input-field-text {
+  width: 38rem;
+  height: 3rem;
+  border: none;
+  margin-left: 0.5rem;
+  padding-left: 1rem;
+  background-color: transparent; }
+
+.message-input-placeholder {
+  bottom: 5.5rem;
+  position: absolute;
+  width: 42rem;
+  height: 3rem;
+  background: #e0e0e0;
+  border: none;
+  border-radius: 2rem;
+  margin-left: 0.5rem; }
+
+.message-input-placeholder:focus {
+  border: none; }
+
+.message-send-btn {
+  border: none;
+  background-color: transparent; }
