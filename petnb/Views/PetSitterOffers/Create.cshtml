@@ -1,4 +1,5 @@
 ﻿@using System.Globalization
+@using petnb.DTL.Data.Models.Enums
 @model petnb.DTL.Data.Models.PetSitterOffer
 
 @{
@@ -19,6 +20,52 @@
     <div class="progress-bar-right"></div>
     <div class="fill-ad">
         <div class="header-petad">Select all the pets that you want to sit 😻</div>
+
+        <div class="form-register form-group ">
+            <label asp-for="PetType"></label>
+            <div class="user-type-select-container">
+
+                <div class=" d-flex flex-column">
+                    <input asp-for="PetType" type="checkbox" value="dog" name="dog" id="dog" class="dog" />
+                    <label class="dog-label" for="type-dog"></label>
+                    <label class="pet-label">Dog</label>
+
+                </div>
+                <div class=" d-flex flex-column">
+                    <input asp-for="PetType" type="checkbox" value="reptile" name="cat" id="cat" class="cat" />
+                    <label class="cat-label" for="type-cat"></label>
+                    <label class="pet-label">Cat</label>
+                </div>
+                <div class=" d-flex flex-column">
+                    <input asp-for="PetType" type="checkbox" value="reptile" name="fish" id="fish" class="fish" />
+                    <label class="fish-label" for="type-fish"></label>
+                    <label class="pet-label">Fish</label>
+                </div>
+                <div class=" d-flex flex-column">
+                    <input asp-for="PetType" type="checkbox" value="reptile" name="bird" id="bird" class="bird" />
+                    <label class="bird-label" for="type-bird"></label>
+                    <label class="pet-label">Bird</label>
+                </div>
+                <div class=" d-flex flex-column">
+                    <input asp-for="PetType" type="checkbox" value="reptile" name="hamster" id="hamster" class="hamster" />
+                    <label class="hamster-label" for="type-hamster"></label>
+                    <label class="pet-label">Hamster</label>
+                </div>
+                <div class=" d-flex flex-column">
+                    <input asp-for="PetType" type="checkbox" value="reptile" name="reptile" id="reptile" class="reptile" />
+                    <label class="reptile-label" for="type-reptile"></label>
+                    <label class="pet-label">Reptile</label>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
         <div class="btn-special2">
             <input class="authentication-btn register-btn" type="submit" value="continue">
         </div>
