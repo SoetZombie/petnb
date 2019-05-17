@@ -11,7 +11,7 @@ namespace petnb.DTL.Models
     {
         public int PetId { get; set; }
         public string PetName { get; set; }
-        public PetType PetType { get; set; }
+        public PetTypeEnum PetType { get; set; }
         public int PetAge { get; set; }
         public double PetDifficulty { get; set; }
         public double PetWeight { get; set; }

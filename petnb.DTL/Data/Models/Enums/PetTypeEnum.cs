@@ -4,7 +4,7 @@ using System.Text;
 
 namespace petnb.DTL.Data.Models.Enums
 {
-    public enum PetType
+    public enum PetTypeEnum
     {
         Unknown = 0,
         Dog = 1,
@@ -15,4 +15,6 @@ namespace petnb.DTL.Data.Models.Enums
         Hamster = 6
 
     }
+
+    
 }
