@@ -5,7 +5,16 @@
 }
 <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
 
+<div>
+    <div></div>
+</div>
 <script>
+
+   
+
+
+
+
     // Initialize Firebase
     var config = {
         apiKey: "AIzaSyCoKatVz8xlteNJGwY5hg_tDWEQ36foOGI",
@@ -20,9 +29,49 @@
     var token = "@Html.Raw(token)";
     console.log(token)
 
-    var user = firebase.auth().currentUser;
-    if (user == null) {
+    //var user = firebase.auth().currentUser;
+    //if (user == null) {
 
+     //to be put here the logic for login.
+       
+    
+    //}
+
+
+    function signIn() {
+        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+            .then(function() {
+                // Existing and future Auth states are now persisted in the current
+                // session only. Closing the window would clear any existing state even
+                // if a user forgets to sign out.
+                // ...
+                // New sign-in will be persisted with session persistence.
+                return firebase.auth().signInWithCustomToken(token);
+            })
+            .catch(function(error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+            });
+    }
+
+
+
+    function returnThread (uid1, uid2)
+    {
+
+        if (uid1 < uid2) {
+            return uid1+uid2;  
+        }
+        else{
+            return uid2+uid1;
+        }
+    }
+
+</script>
+
+
+<noscript>
     firebase.auth().signInWithCustomToken(token).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
@@ -31,14 +80,38 @@
         console.log("succ");
         // ...
     }).then(function() {
-    console.log(firebase.auth().currentUser);
-
-            });
-
-    }
+        console.log(firebase.auth().currentUser);
 
 
+        const id1 = "adrian";
+        const id2 = "guillem";
+        //  const messagesRef = firebase.database().ref(`Messages/Thread/${returnThread(id1, id2)}`);
+        const messagesRef = firebase.database().ref('Messages/Thread/');
+        var something = {
+            message: "nasrat",
+            time: new Date().toDateString(),
+            sender: firebase.auth().currentUser.uid
 
-    var user = firebase.auth().currentUser;
+        }
 
-</script>
+        messagesRef.push(something);
+        var test = messagesRef.child("adrianguillem")
+        console.log(test);
+
+        messagesRef.child("adrianguillem").once('value', function(snapshot) {
+            if (snapshot.exists()) {
+                alert('exists');
+            }
+        });
+        //messagesRef.orderByKey.equalTo(returnThread(id1, id2)).once("value",
+        //    snapshot => {
+        //        if (snapshot.exists()) {
+        //            const userData = snapshot.val();
+        //            console.log("exists!", userData);
+        //        } else {
+        //            console.log("kokote")
+        //        }
+        //    });
+
+    });
+</noscript>
