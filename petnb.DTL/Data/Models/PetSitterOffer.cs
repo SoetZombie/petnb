@@ -13,15 +13,14 @@ namespace petnb.DTL.Data.Models
         public int PetSitterOfferId { get; set; }
         public string Heading { get; set; }
         public string Content { get; set; }
-        public string Location { get; set; }
-        public PetTypeModel PetTypeModels { get; set; }
         //   public string PetBreed { get; set; }
         public DateTime StartOfSit { get; set; }
         public DateTime EndOfSit { get; set; }
+        public string Location { get; set; }
         public PetSitter PetSitter { get; set; }
         public int ExpectedSalary { get; set; }
         public int PetSitterId { get; set; }
+        public List<PetSitterOfferPetTypeModel> PetSitterOfferPetTypeModels { get; set; } = new List<PetSitterOfferPetTypeModel>();
 
-        public List<PetSitterOfferPetTypeModel> PetSitterOfferPetTypeModels { get; set; }
     }
 }

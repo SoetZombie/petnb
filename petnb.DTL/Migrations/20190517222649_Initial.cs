@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace petnb.DTL.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -50,6 +50,19 @@ namespace petnb.DTL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PetType",
+                columns: table => new
+                {
+                    PetTypeId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    PetTypeEnum = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PetType", x => x.PetTypeId);
                 });
 
             migrationBuilder.CreateTable(
@@ -269,9 +282,9 @@ namespace petnb.DTL.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Heading = table.Column<string>(nullable: true),
                     Content = table.Column<string>(nullable: true),
-                    Location = table.Column<string>(nullable: true),
                     StartOfSit = table.Column<DateTime>(nullable: false),
                     EndOfSit = table.Column<DateTime>(nullable: false),
+                    Location = table.Column<string>(nullable: true),
                     ExpectedSalary = table.Column<int>(nullable: false),
                     PetSitterId = table.Column<int>(nullable: false)
                 },
@@ -283,6 +296,30 @@ namespace petnb.DTL.Migrations
                         column: x => x.PetSitterId,
                         principalTable: "PetSitters",
                         principalColumn: "PetSitterId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PetSitterOfferPetTypeModel",
+                columns: table => new
+                {
+                    PetSitterOfferId = table.Column<int>(nullable: false),
+                    PetTypeId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PetSitterOfferPetTypeModel", x => new { x.PetSitterOfferId, x.PetTypeId });
+                    table.ForeignKey(
+                        name: "FK_PetSitterOfferPetTypeModel_PetSitterOffers_PetSitterOfferId",
+                        column: x => x.PetSitterOfferId,
+                        principalTable: "PetSitterOffers",
+                        principalColumn: "PetSitterOfferId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PetSitterOfferPetTypeModel_PetType_PetTypeId",
+                        column: x => x.PetTypeId,
+                        principalTable: "PetType",
+                        principalColumn: "PetTypeId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -341,6 +378,11 @@ namespace petnb.DTL.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_PetSitterOfferPetTypeModel_PetTypeId",
+                table: "PetSitterOfferPetTypeModel",
+                column: "PetTypeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PetSitterOffers_PetSitterId",
                 table: "PetSitterOffers",
                 column: "PetSitterId");
@@ -379,7 +421,7 @@ namespace petnb.DTL.Migrations
                 name: "PetOffers");
 
             migrationBuilder.DropTable(
-                name: "PetSitterOffers");
+                name: "PetSitterOfferPetTypeModel");
 
             migrationBuilder.DropTable(
                 name: "Review");
@@ -389,6 +431,12 @@ namespace petnb.DTL.Migrations
 
             migrationBuilder.DropTable(
                 name: "Pets");
+
+            migrationBuilder.DropTable(
+                name: "PetSitterOffers");
+
+            migrationBuilder.DropTable(
+                name: "PetType");
 
             migrationBuilder.DropTable(
                 name: "PetSitters");

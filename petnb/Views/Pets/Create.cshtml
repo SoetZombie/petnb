@@ -20,7 +20,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="PetType" class="control-label"></label>
-                <select asp-for="PetType" class="form-control" asp-items="Html.GetEnumSelectList<PetType>()"></select>
+                <select asp-for="PetType" class="form-control" asp-items="Html.GetEnumSelectList<PetTypeEnum>()"></select>
                 <span asp-validation-for="PetType" class="text-danger"></span>
             </div>
             <div class="form-group">

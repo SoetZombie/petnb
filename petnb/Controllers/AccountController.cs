@@ -402,12 +402,8 @@ namespace petnb.Controllers
                 if (outcome.Succeeded)
                 {
                     outcome = await _userManager.AddLoginAsync(user, info);
-                    if (result.Succeeded)
-                    {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
-                        _logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);
-
-                    }
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    _logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);      
                 }
                 AddErrors(outcome);
                 return RedirectToAction("Index", "Home");

@@ -5,9 +5,9 @@ using petnb.DTL.Data.Models.Enums;
 
 namespace petnb.DTL.Data.Models
 {
-    public class PetTypeModel
+    public class PetType
     {
-        public int PetTypeModelId { get; set; }
+        public int PetTypeId { get; set; }
         public PetTypeEnum PetTypeEnum { get; set; }
         public List<PetSitterOfferPetTypeModel> PetSitterOfferPetTypeModels { get; set; }
     }

@@ -9,7 +9,7 @@ namespace petnb.DTL.Data.Models
         public int PetSitterOfferId { get; set; }
         public PetSitterOffer PetSitterOffer { get; set; }
         public int PetTypeId { get; set; }
-        public PetTypeModel PetTypeModel { get; set; }
+        public PetType PetTypeModel { get; set; }
 
     }
 }

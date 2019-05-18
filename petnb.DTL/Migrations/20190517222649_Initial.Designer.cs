@@ -10,8 +10,8 @@ using petnb.DTL.Data;
 namespace petnb.DTL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190516085354_initial")]
-    partial class initial
+    [Migration("20190517222649_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -175,6 +175,32 @@ namespace petnb.DTL.Migrations
                     b.HasIndex("PetSitterId");
 
                     b.ToTable("PetSitterOffers");
+                });
+
+            modelBuilder.Entity("petnb.DTL.Data.Models.PetSitterOfferPetTypeModel", b =>
+                {
+                    b.Property<int>("PetSitterOfferId");
+
+                    b.Property<int>("PetTypeId");
+
+                    b.HasKey("PetSitterOfferId", "PetTypeId");
+
+                    b.HasIndex("PetTypeId");
+
+                    b.ToTable("PetSitterOfferPetTypeModel");
+                });
+
+            modelBuilder.Entity("petnb.DTL.Data.Models.PetType", b =>
+                {
+                    b.Property<int>("PetTypeId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("PetTypeEnum");
+
+                    b.HasKey("PetTypeId");
+
+                    b.ToTable("PetType");
                 });
 
             modelBuilder.Entity("petnb.DTL.Data.Models.Review", b =>
@@ -382,6 +408,19 @@ namespace petnb.DTL.Migrations
                     b.HasOne("petnb.DTL.Data.Models.PetSitter", "PetSitter")
                         .WithMany("PetSitterOffers")
                         .HasForeignKey("PetSitterId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("petnb.DTL.Data.Models.PetSitterOfferPetTypeModel", b =>
+                {
+                    b.HasOne("petnb.DTL.Data.Models.PetSitterOffer", "PetSitterOffer")
+                        .WithMany("PetSitterOfferPetTypeModels")
+                        .HasForeignKey("PetSitterOfferId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("petnb.DTL.Data.Models.PetType", "PetTypeModel")
+                        .WithMany("PetSitterOfferPetTypeModels")
+                        .HasForeignKey("PetTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

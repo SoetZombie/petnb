@@ -56,13 +56,7 @@
 </div>
 <script>
 
-   
-
-
-
-
-    // Initialize Firebase
-    var config = {
+    const config = {
         apiKey: "AIzaSyCoKatVz8xlteNJGwY5hg_tDWEQ36foOGI",
         authDomain: "frontend-69cae.firebaseapp.com",
         databaseURL: "https://frontend-69cae.firebaseio.com",
@@ -70,18 +64,58 @@
         storageBucket: "frontend-69cae.appspot.com",
         messagingSenderId: "574904259542"
     };
+
+    const token = "@Html.Raw(token)";
     firebase.initializeApp(config);
+    var user = firebase.auth().currentUser;
+    var senderRef, receiverRef;
 
-    var token = "@Html.Raw(token)";
-    console.log(token)
+    if (user == null) {
+        signIn();
 
-    //var user = firebase.auth().currentUser;
-    //if (user == null) {
-
-     //to be put here the logic for login.
-       
+    } 
+   
+    const id1 = "adrian";
+    const id2 = "guillem";
+    //  const messagesRef = firebase.database().ref(`Messages/Thread/${returnThread(id1, id2)}`);
+    const usersRef = firebase.database().ref('Users/');
     
-    //}
+
+    function checkThread() {
+        //user get from firebase
+        initializeChat(id1);
+        //save as value somewhere
+        initializeChat(id2);
+
+        senderRef = firebase.database().ref(`Users/${id1}/${returnThread(id1, id2)}`);
+        receiverRef = firebase.database().ref(`Users/${id2}/${returnThread(id1, id2)}`);
+    }
+
+    function initializeChat(userId) {
+        usersRef.child(userId).once('value',
+            function(snapshot) {
+                if (snapshot.exists()) {
+                    alert('exists');
+                } else {
+                    usersRef.child(userId).set(userId);
+                }
+            });
+    }
+
+    
+    function sendMsg() {
+
+
+        var something = {
+            message: "nasrat",
+            time: new Date().toDateString(),
+            sender: firebase.auth().currentUser.uid
+
+        }
+        senderRef.push(something);
+        receiverRef.push(something);
+    }
+
 
 
     function signIn() {
@@ -92,7 +126,12 @@
                 // if a user forgets to sign out.
                 // ...
                 // New sign-in will be persisted with session persistence.
+
                 return firebase.auth().signInWithCustomToken(token);
+                
+            }).then(function() {
+                user = firebase.auth().currentUser;
+
             })
             .catch(function(error) {
                 // Handle Errors here.

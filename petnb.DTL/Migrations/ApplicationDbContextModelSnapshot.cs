@@ -175,6 +175,32 @@ namespace petnb.DTL.Migrations
                     b.ToTable("PetSitterOffers");
                 });
 
+            modelBuilder.Entity("petnb.DTL.Data.Models.PetSitterOfferPetTypeModel", b =>
+                {
+                    b.Property<int>("PetSitterOfferId");
+
+                    b.Property<int>("PetTypeId");
+
+                    b.HasKey("PetSitterOfferId", "PetTypeId");
+
+                    b.HasIndex("PetTypeId");
+
+                    b.ToTable("PetSitterOfferPetTypeModel");
+                });
+
+            modelBuilder.Entity("petnb.DTL.Data.Models.PetType", b =>
+                {
+                    b.Property<int>("PetTypeId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("PetTypeEnum");
+
+                    b.HasKey("PetTypeId");
+
+                    b.ToTable("PetType");
+                });
+
             modelBuilder.Entity("petnb.DTL.Data.Models.Review", b =>
                 {
                     b.Property<int>("ReviewId")
@@ -380,6 +406,19 @@ namespace petnb.DTL.Migrations
                     b.HasOne("petnb.DTL.Data.Models.PetSitter", "PetSitter")
                         .WithMany("PetSitterOffers")
                         .HasForeignKey("PetSitterId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("petnb.DTL.Data.Models.PetSitterOfferPetTypeModel", b =>
+                {
+                    b.HasOne("petnb.DTL.Data.Models.PetSitterOffer", "PetSitterOffer")
+                        .WithMany("PetSitterOfferPetTypeModels")
+                        .HasForeignKey("PetSitterOfferId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("petnb.DTL.Data.Models.PetType", "PetTypeModel")
+                        .WithMany("PetSitterOfferPetTypeModels")
+                        .HasForeignKey("PetTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
