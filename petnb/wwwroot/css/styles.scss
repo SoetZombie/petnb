@@ -871,6 +871,7 @@ h4.main-heading {
     font-family: $quicksand;
     font-weight: bold;
     font-size: 30px;
+    margin-bottom:1.2rem;
 }
 
 .pet-label {
@@ -880,6 +881,72 @@ h4.main-heading {
     font-size: 18px;
     color: black;
 }
+
+.info-petad {
+    padding: 30px 30px 30px 40px;
+    background-color: $greenColor;
+    display:flex;
+    border-radius: 0 1rem 1rem;
+    margin-bottom:2rem;
+}
+
+.info-petad-text {
+    font-family: $quicksand;
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    padding-left: 1rem;
+}
+.info-image {
+    display: flex;
+    padding-bottom: 7rem;
+}
+.text-button {
+    font-family:$quicksand;
+    color:black;
+    font-size:14px;
+    font-weight:bold;
+    padding-left:0.5rem;
+    padding-top:0.1rem;
+}
+.button-move1 {
+    background-color: #D9D9D9;
+    margin: 0.5rem;
+    padding: 0.6rem;
+    display: flex;
+    width: 50%;
+}
+.button-move2 {
+    background-color: #D9D9D9;
+    margin: 0.5rem;
+    padding: 0.6rem;
+    display: flex;
+    width: 50%;
+}
+.button-move3 {
+    background-color: #D9D9D9;
+    margin: 0.5rem;
+    padding: 0.6rem;
+    display: flex;
+}
+.button-wrapper {
+    display:flex;
+
+}
+.button-move-special {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    cursor:pointer;
+    margin-left:0.4rem;
+
+}
+
+
 
 
 //MESSAGING STYLING

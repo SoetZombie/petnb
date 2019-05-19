@@ -20,109 +20,163 @@
     </div>
     <div class="progress-bar-right"></div>
     <div class="fill-ad">
-        <div class="header-petad">Select all the pets that you want to sit 😻</div>
-
-        <div class="form-register form-group ">
-             <label></label>
-            <div class="user-type-select-container">
-
-                <div class=" d-flex flex-column">
-                    <input  type="checkbox" value="dog" name="dog" id="dog" class="dog" />
-                    <label class="dog-label" for="type-dog"></label>
-                    <label class="pet-label">Dog</label>
-
-                </div>
-                <div class=" d-flex flex-column">
-                    <input  type="checkbox" value="reptile" name="cat" id="cat" class="cat" />
-                    <label class="cat-label" for="type-cat"></label>
-                    <label class="pet-label">Cat</label>
-                </div>
-                <div class=" d-flex flex-column">
-                    <input  type="checkbox" value="reptile" name="fish" id="fish" class="fish" />
-                    <label class="fish-label" for="type-fish"></label>
-                    <label class="pet-label">Fish</label>
-                </div>
-                <div class=" d-flex flex-column">
-                    <input  type="checkbox" value="reptile" name="bird" id="bird" class="bird" />
-                    <label class="bird-label" for="type-bird"></label>
-                    <label class="pet-label">Bird</label>
-                </div>
-                <div class=" d-flex flex-column">
-                    <input  type="checkbox" value="reptile" name="hamster" id="hamster" class="hamster" />
-                    <label class="hamster-label" for="type-hamster"></label>
-                    <label class="pet-label">Hamster</label>
-                </div>
-                <div class=" d-flex flex-column">
-                    <input  type="checkbox" value="reptile" name="reptile" id="reptile" class="reptile" />
-                    <label class="reptile-label" for="type-reptile"></label>
-                    <label class="pet-label">Reptile</label>
-                </div>
-            </div>
+        <div class="header-petad">
+            Let's find
+            a nice and original title for your ad 💎
         </div>
 
+        <div class="petad-form">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <textarea maxlength="250" data-maxlength="250" class="form-control" name="heading"
+                              placeholder="eg: Full-time pet sitter/dog walker. Offering loving care in their own comfortable and familiar environment"
+                              spellcheck="false"></textarea>
+                </div>
+            </form>
+            <div class="info-petad">
+                <img src="~/images/i.svg" class="info-image" />
+                <div class="info-petad-text">
+                    A perfect title is the key to a good ad. Think about it, you must have a hook and have at least 12 words, like:
+                    <br />
+                    <br />
+                    • Mention the pets you want to sit
+                    <br />
+                    • The city where you will pet sit or your area of activity
+                    <br />
+                    • Something to highlight (experienced with ...)
+                    <br />
+                    <br />
+                    eg: "Full-time pet sitter/dog walker. Offering loving care in their own comfortable and familiar environment".
+                </div>
+            </div>
 
 
-
-
-
-
-
-        <div class="btn-special2">
-            <input class="authentication-btn register-btn" type="submit" value="continue">
-        </div>
-
-
-
-    </div>
-</div>
-
-
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Heading" class="control-label"></label>
-                <input asp-for="Heading" class="form-control" value="test"/>
-                <span asp-validation-for="Heading" class="text-danger"></span>
+            <div class="header-petad">
+                Tell us what is your experience in pet sitting ✍️
             </div>
             <div class="form-group">
-                <label asp-for="Content" class="control-label"></label>
-                <input asp-for="Content" class="form-control" value="test" />
+                <textarea maxlength="600" data-maxlength="600" class="form-control" name="content"
+                          placeholder="Type here"
+                          spellcheck="false"></textarea>
                 <span asp-validation-for="Content" class="text-danger"></span>
             </div>
+            <div class="info-petad">
+                <img src="~/images/i.svg" class="info-image" />
+                <div class="info-petad-text">
+                    Show your professionalism and inspire confidence in the owner of the pet. It is the first thing they will see about you, do not forget to take care of the spelling and the shape of your texts so that they are as attractive as possible.
+                    <br />
+                    <br />
+                    Do not forget that your last names, contact information, logo or URLs should not appear in your texts ; )
+                </div>
+            </div>
+
+            <div class="header-petad">
+                Your postal address 🏠
+            </div>
             <div class="form-group">
-                <label asp-for="Location" class="control-label"></label>
-                <input asp-for="Location" class="form-control" value="test"/>
+                <input asp-for="Location" class="form-control" value="Location" />
                 <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+            <div class="info-petad">
+                <img src="~/images/i.svg" class="info-image" />
+                <div class="info-petad-text">
+                    This address will never appear on the web page. It will be shared only with those users that you have selected.
+                </div>
+            </div>
+            <div class="button-wrapper">
+                <div class="button-move1">
+                    <input type="radio" name="move" value="yes" class="button-move-special">
+                    <span class="text-button">Yes, I can make the trip</span>
+                </div>
+                <div class="button-move2">
+                    <input type="radio" name="move" value="no" class="button-move-special">
+                    <span class="text-button">No, the owner has to bring him</span>
+                </div>
+            </div>
+            <div class="button-move3">
+                <input type="radio" name="move" value="depends" class="button-move-special">
+                <span class="text-button">Maybe, I need to discuss it with the owner</span>
+            </div>
+
+            <div class="header-petad">
+                Select your availability 📅
             </div>
             <div class="form-group">
                 <label asp-for="StartOfSit" class="control-label"></label>
-                <input asp-for="StartOfSit" class="form-control" type="date" value=@DateTime.Now.Date.ToString("yyyy/MM/dd")/>
+                <input asp-for="StartOfSit" class="form-control" type="date" value=@DateTime.Now.Date.ToString("yyyy/MM/dd") />
                 <span asp-validation-for="StartOfSit" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="EndOfSit" class="control-label"></label>
-                <input asp-for="EndOfSit" class="form-control"  value=@DateTime.Now.Date.ToString("yyyy/MM/dd") type="date"/>
+                <input asp-for="EndOfSit" class="form-control" value=@DateTime.Now.Date.ToString("yyyy/MM/dd") type="date" />
                 <span asp-validation-for="EndOfSit" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="ExpectedSalary" class="control-label"></label>
-                <input asp-for="ExpectedSalary" class="form-control" value="test"/>
-                <span asp-validation-for="ExpectedSalary" class="text-danger"></span>
+
+
+
+
+
+
+            <div class="btn-special2">
+                <input class="authentication-btn register-btn" type="submit" value="continue">
             </div>
-            
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
+
+
+
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
-@section Scripts {
+<!--
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Heading" class="control-label"></label>
+                    <input asp-for="Heading" class="form-control" value="test" />
+                    <span asp-validation-for="Heading" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Content" class="control-label"></label>
+                    <input asp-for="Content" class="form-control" value="test" />
+                    <span asp-validation-for="Content" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Location" class="control-label"></label>
+                    <input asp-for="Location" class="form-control" value="test" />
+                    <span asp-validation-for="Location" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="StartOfSit" class="control-label"></label>
+                    <input asp-for="StartOfSit" class="form-control" type="date" value=@DateTime.Now.Date.ToString("yyyy/MM/dd") />
+                    <span asp-validation-for="StartOfSit" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EndOfSit" class="control-label"></label>
+                    <input asp-for="EndOfSit" class="form-control" value=@DateTime.Now.Date.ToString("yyyy/MM/dd") type="date" />
+                    <span asp-validation-for="EndOfSit" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ExpectedSalary" class="control-label"></label>
+                    <input asp-for="ExpectedSalary" class="form-control" value="test" />
+                    <span asp-validation-for="ExpectedSalary" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+    @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    }
+-->
