@@ -6,7 +6,7 @@
 
 
 <div class="register-grid">
-    
+
     <div class="register">
         <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
             <h4 class="name-heading2">Register with</h4>
@@ -40,7 +40,7 @@
                     </div>
 
                     <div class=" d-flex flex-column">
-                        <input asp-for="UserType" type="radio" value="2" id="type-sitter" checked="checked"class="sitter" />
+                        <input asp-for="UserType" type="radio" value="2" id="type-sitter" checked="checked" class="sitter" />
                         <label class="sitter-label" for="type-sitter"></label>
                         <label>Pet sitter</label>
                     </div>
@@ -48,16 +48,22 @@
             </div>
 
             @*<div class="form-register form-group">
-                <label asp-for="UserType" class="control-label"></label>
-                <select asp-for="UserType" class="form-control" asp-items="Html.GetEnumSelectList<UserType>()"></select>
-                <span asp-validation-for="UserType" class="text-danger"></span>
-            </div>*@
+                    <label asp-for="UserType" class="control-label"></label>
+                    <select asp-for="UserType" class="form-control" asp-items="Html.GetEnumSelectList<UserType>()"></select>
+                    <span asp-validation-for="UserType" class="text-danger"></span>
+                </div>*@
             <div class="text-center">
                 <button type="submit" class="form-register-btn">Register</button>
             </div>
         </form>
     </div>
 </div>
+@if (!ViewData.ModelState.IsValid)
+{
+    <script>
+        console.log("pojebalsto");
+    </script>
+}
 
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")

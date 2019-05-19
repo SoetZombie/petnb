@@ -709,15 +709,17 @@ h4.main-heading {
   font-size: 18px;
   color: black; }
 
-/*.grid-container {
-    display: grid;
-    grid-template-columns: 2fr 4fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: "filter cards";
-    grid-column-gap: 2em;
-    background: #F2F2F2;
-}
-*/
+.messages-grid-container {
+  display: grid;
+  grid-template-columns: 0.8fr 2.2fr;
+  grid-template-rows: calc(100vh - 10em);
+  grid-column-gap: 5rem;
+  background: #F2F2F2;
+  padding-top: 2.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1300px; }
+
 .person-message {
   height: 4rem;
   width: 17rem;
@@ -727,6 +729,13 @@ h4.main-heading {
   margin-bottom: 1rem;
   background: #e0e0e0;
   cursor: pointer; }
+
+.messages-filter {
+  grid-column-gap: 2em;
+  background: white;
+  border-radius: 1rem;
+  padding: 5% 5% 5% 5%;
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.5); }
 
 .profile-picture-message {
   height: 3rem;
@@ -756,46 +765,79 @@ h4.main-heading {
   grid-column-gap: 2em;
   background: white;
   border-radius: 1rem;
-  padding: 5% 5% 5% 5%;
-  margin-right: 7%;
-  margin-top: 8%;
+  padding: 2rem;
+  padding-bottom: 0;
   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.5); }
-
-.message-right {
-  text-align: right; }
-
-.message-picture {
-  border-radius: 50%;
-  border-color: none;
-  background-size: contain;
-  background-position-x: 50%;
-  background-position-y: 50%;
-  height: 1.5rem;
-  width: 1.5rem;
-  margin-left: 1rem;
-  margin-right: 1rem; }
-
-.message-input-field-text {
-  width: 38rem;
-  height: 3rem;
-  border: none;
-  margin-left: 0.5rem;
-  padding-left: 1rem;
-  background-color: transparent; }
-
-.message-input-placeholder {
-  bottom: 5.5rem;
-  position: absolute;
-  width: 42rem;
-  height: 3rem;
-  background: #e0e0e0;
-  border: none;
-  border-radius: 2rem;
-  margin-left: 0.5rem; }
-
-.message-input-placeholder:focus {
-  border: none; }
-
-.message-send-btn {
-  border: none;
-  background-color: transparent; }
+  .messages-placeholder .messages-content {
+    height: 85%;
+    overflow-wrap: break-word;
+    margin-bottom: 2rem;
+    overflow-y: scroll; }
+  .messages-placeholder .message-right {
+    text-align: right; }
+  .messages-placeholder .message-picture {
+    border-radius: 50%;
+    background-size: 170%;
+    background-position-x: 50%;
+    background-position-y: 50%;
+    background-repeat: no-repeat;
+    height: 3rem;
+    width: 3rem;
+    margin-left: 1rem;
+    margin-right: 1rem; }
+  .messages-placeholder .message-input-field-text {
+    width: 100%;
+    line-height: 3rem;
+    border: none;
+    padding-left: 1rem;
+    padding-right: 4rem;
+    background-color: transparent; }
+  .messages-placeholder .message-sender {
+    display: flex;
+    align-items: center;
+    width: 65%;
+    margin-bottom: 2rem; }
+    .messages-placeholder .message-sender .message {
+      background: #e9e9e9;
+      padding: 0.3rem 1rem;
+      border-radius: 10px;
+      box-shadow: 1px 1px 4px 0px #6e6c6c; }
+  .messages-placeholder .message-receiver {
+    display: flex;
+    align-items: center;
+    width: 65%;
+    margin-bottom: 2rem;
+    text-align: right;
+    justify-content: flex-end;
+    margin-left: auto; }
+    .messages-placeholder .message-receiver .message {
+      background: #3578e5;
+      padding: 0.3rem 1rem;
+      border-radius: 10px;
+      box-shadow: 1px 1px 4px 0px #6e6c6c;
+      color: white; }
+  .messages-placeholder .message-input-placeholder {
+    bottom: 1em;
+    position: relative;
+    width: 80%;
+    background: #e0e0e0;
+    border: none;
+    border-radius: 2rem;
+    margin: 0 auto;
+    margin-bottom: 1rem; }
+  .messages-placeholder .send-msg-svg {
+    top: 50%;
+    position: absolute;
+    transform: translateY(-50%);
+    left: 0; }
+  .messages-placeholder .message-input-placeholder:focus {
+    border: none; }
+  .messages-placeholder .message-send-btn {
+    border: none;
+    background-color: transparent;
+    top: 50%;
+    position: absolute;
+    transform: translateY(-50%);
+    right: 2rem;
+    height: 1.73rem;
+    width: 1.625rem; }

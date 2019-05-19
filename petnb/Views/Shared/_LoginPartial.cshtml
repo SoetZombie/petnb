@@ -1,48 +1,55 @@
 @using Microsoft.AspNetCore.Http
 @using Microsoft.AspNetCore.Identity
 @using petnb.DTL.Models
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
-@{ var userName = "";}
+@{
 
-@if (SignInManager.IsSignedIn(User))
+    var signedIn = SignInManager.IsSignedIn(User);
+ 
+}
+
+
+
+
+@if (signedIn)
 {
 
-    userName = UserManager.GetUserName(User).Split("@")[0];
 
 
-    <div class="profile-position"> 
-    <div class="dropdown">
-        <button class="profile-button dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            
-        </button>
-        <div class="dropdown-menu dropdown-menu-custom dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item dropdown-custom" asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
-            <a class="dropdown-item dropdown-custom" href="#">Pet adds</a>
-            <a class="dropdown-item dropdown-custom" href="#">Settings</a>
-            <form class="dropdown-item dropdown-custom" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
-                <a onclick="document.getElementById('logoutForm').submit()">Log out</a>
-            </form>
+    <div class="profile-position">
+        <div class="dropdown">
+            <button class="profile-button dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+            <div class="dropdown-menu dropdown-menu-custom dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item dropdown-custom" asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User).Split("@")[0]
+                     !</a>
+                <a class="dropdown-item dropdown-custom" href="#">Pet adds</a>
+                <a class="dropdown-item dropdown-custom" href="#">Settings</a>
+                <form class="dropdown-item dropdown-custom" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+                    <a onclick="document.getElementById('logoutForm').submit()">Log out</a>
+                </form>
+            </div>
         </div>
-    </div>
     </div>
 
 
     @*<div id="chatWidget">
-        <div id="allMessages">
+            <div id="allMessages">
 
-        </div>
-
-
-        <form id="msgForm" method="POST">
-            <div id="msgbtnwrap">
-                <textarea type="text" id="message" name="Message"></textarea>
-                <button id="sendMsg" type="submit"><svg class="svgIcon" height="28px" width="26px" version="1.1" viewBox="0 0 16 16" x="0px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" y="0px"><path d="M11,8.3L2.6,8.8C2.4,8.8,2.3,8.9,2.3,9l-1.2,4.1c-0.2,0.5,0,1.1,0.4,1.5C1.7,14.9,2,15,2.4,15c0.2,0,0.4,0,0.6-0.1l11.2-5.6 C14.8,9,15.1,8.4,15,7.8c-0.1-0.4-0.4-0.8-0.8-1L3,1.1C2.5,0.9,1.9,1,1.5,1.3C1,1.7,0.9,2.3,1.1,2.9L2.3,7c0,0.1,0.2,0.2,0.3,0.2 L11,7.7c0,0,0.3,0,0.3,0.3S11,8.3,11,8.3z" fill="#BEC3C9"></path></svg></button>
             </div>
-        </form>
-    </div>*@
+
+
+            <form id="msgForm" method="POST">
+                <div id="msgbtnwrap">
+                    <textarea type="text" id="message" name="Message"></textarea>
+                    <button id="sendMsg" type="submit"><svg class="svgIcon" height="28px" width="26px" version="1.1" viewBox="0 0 16 16" x="0px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" y="0px"><path d="M11,8.3L2.6,8.8C2.4,8.8,2.3,8.9,2.3,9l-1.2,4.1c-0.2,0.5,0,1.1,0.4,1.5C1.7,14.9,2,15,2.4,15c0.2,0,0.4,0,0.6-0.1l11.2-5.6 C14.8,9,15.1,8.4,15,7.8c-0.1-0.4-0.4-0.8-0.8-1L3,1.1C2.5,0.9,1.9,1,1.5,1.3C1,1.7,0.9,2.3,1.1,2.9L2.3,7c0,0.1,0.2,0.2,0.3,0.2 L11,7.7c0,0,0.3,0,0.3,0.3S11,8.3,11,8.3z" fill="#BEC3C9"></path></svg></button>
+                </div>
+            </form>
+        </div>*@
+
 
 }
 else
@@ -55,3 +62,5 @@ else
         <a asp-area="" asp-controller="Account" asp-action="Register" class="authentication-btn register-btn">Register</a>
     </div>
 }
+    
+

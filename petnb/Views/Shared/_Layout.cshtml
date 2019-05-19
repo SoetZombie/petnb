@@ -1,14 +1,34 @@
 ﻿@using Microsoft.AspNetCore.Http
 @using petnb.DTL.Models
-@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
-@inject SignInManager<ApplicationUser> SignInManager
+
 @using System.Linq
 @using Microsoft.AspNetCore.Http.Authentication
+
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 
 
 @{
     var loginProviders = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
+}
+@{
+    var fullName = "";
+    var userId = "";
     var token = HttpContextAccessor.HttpContext.Session.GetString("FirebaseToken");
+    var signedIn = SignInManager.IsSignedIn(User);
+    var jsSigned = "";
+    ApplicationUser user;
+}
+
+@if (signedIn)
+{
+    user = await UserManager.GetUserAsync(User);
+    fullName = user.FullName;
+    userId = user.Id;
+    jsSigned = "true";
 }
 
 <!DOCTYPE html>
@@ -93,31 +113,31 @@
             </form>
 
 
-                <form asp-controller="Account" asp-action="ExternalLogin" asp-route-returnurl="" method="post" class="form-horizontal">
-                    <div>
-                        <p>
-                            @foreach (var provider in loginProviders)
-                            {
-                                <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.Name</button>
-                            }
-                        </p>
-                    </div>
-                </form>
-                <br />
-                <div class="login-btn-container">
-                    <a id="login-btn-ajax-submit" class="ajax-login-submit">Log in</a>
+            <form asp-controller="Account" asp-action="ExternalLogin" asp-route-returnurl="" method="post" class="form-horizontal">
+                <div>
+                    <p>
+                        @foreach (var provider in loginProviders)
+                        {
+                            <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.Name</button>
+                        }
+                    </p>
                 </div>
+            </form>
+            <br />
+            <div class="login-btn-container">
+                <a id="login-btn-ajax-submit" class="ajax-login-submit">Log in</a>
+            </div>
 
 
-                @*<div class="form-group">
-                        <p>
-                            <a asp-action="ForgotPassword">Forgot your password?</a>
-                        </p>
-                        <p>
-                            <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a>
-                        </p>
-                    </div>*@
-            
+            @*<div class="form-group">
+                    <p>
+                        <a asp-action="ForgotPassword">Forgot your password?</a>
+                    </p>
+                    <p>
+                        <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a>
+                    </p>
+                </div>*@
+
         </div>
     </div>
 
@@ -128,7 +148,83 @@
     <script src="~/js/site.js"></script>
     @RenderSection("Scripts", required: false)
 
-<script>
+    <script>
+
+    const config = {
+        apiKey: "AIzaSyCoKatVz8xlteNJGwY5hg_tDWEQ36foOGI",
+        authDomain: "frontend-69cae.firebaseapp.com",
+        databaseURL: "https://frontend-69cae.firebaseio.com",
+        projectId: "frontend-69cae",
+        storageBucket: "frontend-69cae.appspot.com",
+        messagingSenderId: "574904259542"
+    };
+    firebase.initializeApp(config);
+    var isSignedIn = @jsSigned;
+    const userId = "@Html.Raw(userId)";
+    const fullName = "@Html.Raw(fullName)";
+
+
+
+    const token = "@Html.Raw(token)";
+
+    if (isSignedIn) {
+
+        var user = firebase.auth().currentUser;
+        if (user == null) {
+            signIn();
+
+        }
+        initializeUser(userId, fullName);
+
+    }
+
+
+
+
+    function initializeUser(userId, fullName) {
+        const usersRef = firebase.database().ref('Users/');
+
+        usersRef.child(userId).once('value',
+            function (snapshot) {
+                if (snapshot.exists()) {
+                    //alert('exists');
+                } else {
+                    usersRef.child(userId).set(userId);
+                    usersRef.child(userId).set({
+                        FullName: fullName
+
+                    });
+
+                }
+            });
+    }
+
+    function signIn() {
+        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+            .then(function () {
+                // Existing and future Auth states are now persisted in the current
+                // session only. Closing the window would clear any existing state even
+                // if a user forgets to sign out.
+                // ...
+                // New sign-in will be persisted with session persistence.
+
+                return firebase.auth().signInWithCustomToken(token);
+
+            }).then(function () {
+                user = firebase.auth().currentUser;
+
+            })
+            .catch(function (error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+            });
+    }
+
+    </script>
+
+
+    <script>
 
     const login = document.getElementById("login-btn-ajax");
     const close = document.getElementById("close-btn");
@@ -198,7 +294,7 @@
             }
         });
     }
-        
+
     const xMax = 16;
     const shake = anime({
         targets: '#input-container',
@@ -263,9 +359,9 @@
 
         })
     ];
-        
 
-    
+
+
 
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));

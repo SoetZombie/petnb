@@ -14,6 +14,7 @@ namespace petnb.DTL.Models
 
         public List<Pet> Pets { get; set; } = new List<Pet>();
         public string FullName { get; set; }
+        public byte[] ProfilePicture { get; set; }
         public List<Review> Reviews { get; set; } = new List<Review>();
 
         public PetSitter PetSitter { get; set; }
