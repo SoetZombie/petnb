@@ -55,37 +55,45 @@
     </div>
 </div>
 
-<script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
+
 
 
 </div>
 <script>
 
+   // firebase.initializeApp(config);
 
 
     var senderRef, receiverRef;
     let allChats;
+    let recipientFullName;
 
-    const id2 = "karel";
+    const id2 = "1a5c20f2-bf86-4d33-aaf5-5d2a6a2af05b";
     //  const messagesRef = firebase.database().ref(`Messages/Thread/${returnThread(id1, id2)}`);
 
     async function getAllChats() {
         return new Promise((resolve, reject) => {
 
             var chats = [];
+            recipientFullName ="";
             const allChatsRef =  firebase.database().ref(`Users/${userId}/Messages`);
             allChatsRef.once('value').then(function (snapshot) {
                 //could have just called populateFilter() from here;
                 snapshot.forEach(function(childSnap) {
                     chats.push(childSnap.key);
-                    // console.log(childSnap.val())
+                    //var snap = childSnap.val();
+                    //var recipientKey = Object.keys(snap)[0];
+                    //Remember these lines. I spent 1 hour doing them realizing that key is not child.child of massages ;]
+                    //recipientFullName = childSnap.val()[recipientKey].RecipientFullName;
+
+                    recipientFullName = childSnap.val().RecipientFullName;
                 });
                 allChats = chats;
                 if (chats.length == 0) {
                     reject(new Error ('user not initialized or without chats'));
                 }
                 else {
-                    resolve(chats);
+                    resolve(chats, recipientFullName);
                 }
             })
             setTimeout(function() {
@@ -101,10 +109,38 @@
         //user get from firebase
        // initializeUser(id1);
         //save as value somewhere
-        initializeUser(id2);
+       // initializeUser(id2);
         //Modify to include /Messages/
         senderRef = firebase.database().ref(`Users/${userId}/Messages/${returnThread(userId, id2)}`);
         receiverRef = firebase.database().ref(`Users/${id2}/Messages/${returnThread(userId, id2)}`);
+        console.log(userId);
+        senderRef.once('value').then(function(snapshot) {
+            if (!snapshot.child('RecipientFullName').exists()) {
+
+               var receiverProfile;
+                    firebase.database().ref(`Users/${id2}/FullName`).once('value').then(function(snapshot) {
+                        receiverProfile = snapshot.val();
+
+                        senderRef.set({
+                            RecipientFullName: receiverProfile
+                        });
+                    });
+                };
+        });
+
+        receiverRef.once('value').then(function(snapshot) {
+            if (!snapshot.child('RecipientFullName').exists()) {
+
+                var receiverProfile;
+                firebase.database().ref(`Users/${userId}/FullName`).once('value').then(function(snapshot) {
+                    receiverProfile = snapshot.val();
+
+                    receiverRef.set({
+                        RecipientFullName: receiverProfile
+                    });
+                });
+            };
+        });
     }
 
 
@@ -119,19 +155,13 @@
                 const profilePictureMessage = createNode('div');
                 const userName = createNode('p');
                 const filterNode = document.getElementById('messages-filter');
-                const recepiendId = allChats[i].toString().replace(userId, "");
-                console.log(recepiendId);
-                var recipientName;
-                 firebase.database().ref(`Users/${recepiendId}`).child('FullName').once('value').then(
-                    function (snapshot) {
-                         console.log(snapshot.val());
-                    });
-
-                console.log(allChats);
-
+                const recipientId = allChats[i].toString().replace(userId, "");
+                
                 personMessage.classList.add('person-message');
+                personMessage.value = recipientId;
+                console.log(recipientId);
                 profilePictureMessage.classList.add('profile-picture-message');
-                userName.innerHTML = recipientName;
+                userName.innerHTML = recipientFullName;
 
                 appendElement(filterNode, personMessage);
                 appendElement(personMessage, profilePictureMessage);
