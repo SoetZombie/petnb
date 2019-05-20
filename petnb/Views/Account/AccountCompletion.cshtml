@@ -19,47 +19,62 @@
         </div>
     </div>
 
-    <!--First screen: Personal details-->
+    <!--FIRST SCREEN: Personal details-->
     <div class="progress-bar-right"></div>
     <div class="fill-ad" id="completion-0">
         <div class="header-petad">Personal details</div>
         <div class="form-group col-12">
-            <label>Your full name:</label>
-            <form action="">
-                <input type="text" name="firstname" value="">
-            </form>
 
-            <label>Your date of birth:</label>
-            <form action="">
-                <input type="date" name="birth-date">
-            </form>
+            <!--Name-->
+            <div class="personal-details-subheaders">
+                <label>Your full name:</label>
+                <form action="">
+                    <input type="text" class="form-control" name="firstname" value="">
+                </form>
+            </div>
 
-            <form class="col-12">
-                <div class="form-row">
-                    <label class="col-sm-2 col-form-label">Street</label>
-                    <input type="text" class="form-control col-sm-4" />
+            <!--Date of birth-->
+            <div class="personal-details-subheaders">
+                <label>Your date of birth:</label>
+                <form action="">
+                    <input type="date" class="date-of-birth-box" name="birth-date">
+                </form>
+            </div>
 
-                    <label class="col-sm-2 col-form-label">Zip code</label>
-                    <input type="text" class="form-control col-sm-4" />
-                </div>
-            </form>
+            <!--Adress-->
+            <div class="personal-details-subheaders">
+                <form class="col-12">
+                    <div class="form-row">
+                        <label class="col-sm-2 col-form-label">Street</label>
+                        <input type="text" class="form-control col-sm-4" />
 
-            <form>
-                <label class="header">Upload profile picture:</label>
-                <input id="image" type="file" name="profile_photo" placeholder="Photo" required="" capture>
-            </form> 
+                        <label class="col-sm-2 col-form-label">Zip code</label>
+                        <input type="text" class="form-control col-sm-4" />
+                    </div>
+                </form>
+            </div>
 
+            <!--Upload picture-->
+            <div class="personal-details-subheaders">
+                <form>
+                    <label class="header">Upload profile picture:</label>
+                    <input id="image" class="form-control" type="file" name="profile_photo" placeholder="Photo" required="" capture>
+                </form>
+            </div>
 
-            <!--Second screen: Select the pet you would like to sit -->
+            <!-- JavaScript Screen change-->
             <div class="user-type-select-container">
-                <button onclick="ChangeView(0, 1)">next</button>
+                <button class="btn-screen-change-next" onclick="ChangeView(0, 1)">Next</button>
             </div>
         </div>
     </div>
+
+    <!--SECOND SCREEN: Select the pet you would like to sit -->
     <div class="fill-ad" id="completion-1" style="display: none">
         <div class="header-petad">Select the pets that you would like to sit 😻</div>
         <div class="form-register form-group ">
 
+            <!--Animal checkboxes-->
             <div class="form-group ">
                 <label></label>
                 <div class="user-type-select-container">
@@ -97,25 +112,28 @@
                     </div>
                 </div>
             </div>
-            <label></label>
+
+            <!--JavaScript Screen change-->
             <div class="user-type-select-container">
-                <button onclick="ChangeView(1, 0)">previous</button>
-                <button onclick="ChangeView(1, 2)">next</button>
+                <button class="btn-screen-change-next" onclick="ChangeView(1, 0)">Previous</button>
+                <button class="btn-screen-change-next" onclick="ChangeView(1, 2)">Next</button>
             </div>
         </div>
     </div>
-    
+
     <!--Third screen : Have you been a pet sitter before?-->
     <div class="fill-ad" id="completion-2" style="display: none">
-        <div class="header-petad"> Have you been a pet sitter before? ✌️ </div>
-        
+        <div class="header-petad"> Experience 💡 </div>
+
+        <div class="experience-details-subheaders"> Have you been a pet sitter before? </div>
+
         <form>
-                <input type="radio" name="experience" value="experienced"> Yes <br>
-                <input type="radio" name="experience" value="notexperienced"> No <br>
+            <input type="radio" name="experience" value="experienced"> Yes <br>
+            <input type="radio" name="experience" value="notexperienced"> No <br>
         </form>
-        
-        <div class="subheader-petad"> How would you rate your pet sitting experience? ✌️ </div>
-        
+
+        <div class="experience-details-subheaders"> How would you rate your pet sitting experience?</div>
+
 
         <div class="rate">
             <input type="radio" id="star5" name="rate" value="5" />
@@ -134,40 +152,41 @@
         <div class="form-group ">
             <label></label>
             <div class="user-type-select-container">
-                <button onclick="ChangeView(2,1)">previous</button>
-                <button onclick="ChangeView(2,3)">next</button>
+                <button class="btn-screen-change-next" onclick="ChangeView(2,1)">Previous</button>
+                <button class="btn-screen-change-next" onclick="ChangeView(2,3)">Next</button>
             </div>
         </div>
     </div>
-    
-    
+
+
     <!--Fourth screen : Tell us more about yourself!-->
     <div class="fill-ad" id="completion-3" style="display: none">
         <div class="header-petad"> Tell us more about yourself! ✍️ </div>
-        
+
         <form action="">
-            <input type="text-area" value="">
+            <input class="text-area-yourself" placeholder="Type here.." type="text-area" value="">
         </form>
 
-            <div class="user-type-select-container">
-                <button onclick="ChangeView(3,2)">previous</button>
-                <button onclick="ChangeView(3,4)">next</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="fill-ad" id="completion-4" style="display: none">
-        <div class="header-petad">Wow, your profile looks pawesome! 🐾 </div>
-        <div class="form-group ">
-            <label></label>
-            <div class="user-type-select-container">
-                <button onclick="ChangeView(4,3)">previous</button>
-                <button onclick="">done</button>
-            </div>
+        <div class="user-type-select-container">
+            <button class="btn-screen-change-next" onclick="ChangeView(3,2)">Previous</button>
+            <button class="btn-screen-change-next" onclick="ChangeView(3,4)">Next</button>
         </div>
     </div>
 </div>
 
+
+<div class="fill-ad" id="completion-4" style="display: none">
+    <div class="header-petad"> Wow, your profile looks pawesome! 🐾 </div>
+
+    <div class="user-type-select-container">
+        <button class="btn-screen-change-next" onclick="ChangeView(4,3)">Previous</button>
+        <button class="btn-screen-change-next" onclick="">Done</button>
+    </div>
+</div>
+</div>
+
+
+<!--Function to switch screens, ´when click on button 'previous' or 'next' it takes in 2 (parameters) screens and selects which one to display-->
 <script>
     function ChangeView(completionLevelToHide, completionLevelToDisplay) {
         var completionIdToHide = "completion-" + completionLevelToHide;
