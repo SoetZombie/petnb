@@ -969,12 +969,13 @@ div.login-modal {
         grid-area: fill-ad;
     }
 
-    .header-petad {
-        font-family: $quicksand;
-        font-weight: bold;
-        font-size: 30px;
-        margin-bottom: 1.2rem;
-    }
+.header-petad {
+    font-family: $quicksand;
+    font-weight: bold;
+    font-size: 30px;
+    margin-top: 3rem;
+    margin-bottom: 1.2rem;
+}
 
     .pet-label {
         text-align: center;
