@@ -157,15 +157,17 @@
         let firebaseCurrentUserPicture;
         let firstTime = true;
 
-    const config = {
-        apiKey: "AIzaSyCoKatVz8xlteNJGwY5hg_tDWEQ36foOGI",
-        authDomain: "frontend-69cae.firebaseapp.com",
-        databaseURL: "https://frontend-69cae.firebaseio.com",
-        projectId: "frontend-69cae",
-        storageBucket: "frontend-69cae.appspot.com",
-        messagingSenderId: "574904259542"
+    var config = {
+        apiKey: "AIzaSyB0TsAqzapyK4WS4NpyrLW_fVjHElyt_nA",
+        authDomain: "petnb-16f28.firebaseapp.com",
+        databaseURL: "https://petnb-16f28.firebaseio.com",
+        projectId: "petnb-16f28",
+        storageBucket: "petnb-16f28.appspot.com",
+        messagingSenderId: "772154609232",
+        appId: "1:772154609232:web:7248207eeb71bd80"
     };
-        firebase.initializeApp(config);
+    // Initialize Firebase
+    firebase.initializeApp(config);
 
     var isSignedIn = @jsSigned;
     const userId = "@Html.Raw(userId)";

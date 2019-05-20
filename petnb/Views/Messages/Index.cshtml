@@ -129,7 +129,7 @@
 
                     senderRef.set({
                         RecipientFullName: snapshot.val().FullName,
-                        RecipientProfilePicture: snapshot.val().ProfilePicture
+                       // RecipientProfilePicture: snapshot.val().ProfilePicture
                     });
                 });
             };
@@ -142,7 +142,7 @@
 
                     receiverRef.set({
                         RecipientFullName: snapshot.val().FullName,
-                        RecipientProfilePicture: snapshot.val().ProfilePicture
+                       // RecipientProfilePicture: snapshot.val().ProfilePicture
                     });
                 });
             };
@@ -150,7 +150,6 @@
 
         document.getElementById('messages-content').innerHTML = "";
         populateChat(recipientId);
-        document.getElementById('sendMsg').removeEventListener('click', sendMsg);
         document.getElementById('sendMsg').addEventListener('click', sendMsg);
         firstTime = true;
         subscribeToChat();
@@ -297,17 +296,23 @@
                 const message = createNode('span')
                 //check who is who depends on db 
                 if (chat[i].sender == userId) {
-                    messageSender.classList.add('message-sender')
-                    //
-                } else {
                     messageSender.classList.add('message-receiver')
+                    //
+                    appendElement(messageSender, picture);
+
+                } else {
+                    messageSender.classList.add('message-sender')
                     appendElement(messageSender, picture);
                     console.log(picture);
                 }
+                if (messageSender.classList.contains('message-sender')) {
 
+                    appendElement(messageSender, message);
+                } else {
+                    messageSender.insertBefore(message, messageSender.firstChild);
+                }
                 message.innerHTML = chat[i].message;
                 message.classList.add('message');
-                messageSender.insertBefore(message, messageSender.firstChild);
                 appendElement(messageWrap, messageSender);
                 appendElement(messagesNode, messageWrap); 
 
@@ -325,11 +330,12 @@
                 function (snapshot) {
                     if (!firstTime) {
                         var data = snapshot.val();
+                        console.log(transpiled);
                         var transpiled = Object.values(data);
-                        if (transpiled.length != 2) {
+                        if (transpiled.length != 1) {
 
                         
-                        var messageToAdd = transpiled[transpiled.length - 3];
+                        var messageToAdd = transpiled[transpiled.length - 2];
 
 
                         const messageWrap = createNode('div');
@@ -337,14 +343,14 @@
                         const message = createNode('span')
                         if (messageToAdd.sender === userId) {
                             //TODO: redo to include actuall user picture;
-                            messageSender.classList.add('message-sender')
+                            messageSender.classList.add('message-receiver')
                             const picture = createNode('div');
                             picture.classList.add('message-picture');
                             picture.innerHTML = firebaseCurrentUserPicture;
                             appendElement(messageSender, picture);
 
                         } else {
-                            messageSender.classList.add('message-receiver')
+                            messageSender.classList.add('message-sender')
                             const picture = createNode('div');
                             picture.classList.add('message-picture');
                             picture.innerHTML = firebaseCurrentUserPicture;
