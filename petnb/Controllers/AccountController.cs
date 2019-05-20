@@ -107,6 +107,14 @@ namespace petnb.Controllers
 
                         if (result.Succeeded)
                         {
+                            var checkToken = HttpContext.Session.GetString("FirebaseToken");
+
+                            if (checkToken == null)
+                            {
+                                var user = await _userManager.FindByEmailAsync(email);
+                                var customToken = await _firebaseService.GenerateCustomToken(user.Id);
+                                HttpContext.Session.SetString("FirebaseToken", customToken);
+                            }
                             return new JsonResult("Success");
 
                         }
@@ -140,15 +148,22 @@ namespace petnb.Controllers
                     //FirebaseApp.Create(new AppOptions()
                     //{
                     //    Credential = GoogleCredential.FromFile("wwwroot/service-account-file.json"),
-                        
+
                     //});
                     //var user = await _userManager.GetUserAsync(HttpContext.User);
                     //var userId = user.Id;
 
                     //var customToken = await FirebaseAuth.DefaultInstance.CreateCustomTokenAsync(userId);
 
-                    //var customToken = await _firebaseService.GenerateCustomToken("test");
+                    //var customToken = await _firebaseService.GenerateCustomToken("/*test*/");
                     //HttpContext.Session.SetString("FirebaseToken",customToken);
+                    var checkToken = HttpContext.Session.GetString("FirebaseToken");
+
+                    if (checkToken == null)
+                    {
+                        var customToken = await _firebaseService.GenerateCustomToken(_userManager.GetUserId(HttpContext.User));
+                        HttpContext.Session.SetString("FirebaseToken", customToken);
+                    }
 
 
                     _logger.LogInformation("User logged in.");
@@ -312,7 +327,7 @@ namespace petnb.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FullName = model.FullName};
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -328,13 +343,14 @@ namespace petnb.Controllers
                     if (model.UserType == UserType.Sitter)
                     {
                         _accountService.CreatePetSitter(user.Id);
+
                     }
 
                     if (model.UserType == UserType.Owner)
                     {
                         _accountService.CreatePetOwner(user.Id);
                     }
-                    _logger.LogInformation("User created a new account with password.");
+                   
                     return RedirectToLocal(returnUrl);
                 }
                 AddErrors(result);
@@ -383,6 +399,15 @@ namespace petnb.Controllers
             var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
             if (result.Succeeded)
             {
+                var debug = _userManager.GetUserId(User);
+                var checkToken = HttpContext.Session.GetString("FirebaseToken");
+
+                if (checkToken == null)
+                {
+                    var customToken = await _firebaseService.GenerateCustomToken(_userManager.GetUserId(HttpContext.User));
+                    HttpContext.Session.SetString("FirebaseToken", customToken);
+                }
+                _logger.LogInformation("User created a new account with password.");
                 _logger.LogInformation("User logged in with {Name} provider.", info.LoginProvider);
                 return RedirectToLocal(returnUrl);
             }

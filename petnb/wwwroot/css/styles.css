@@ -300,6 +300,18 @@ div.login-modal {
   border-radius: 5px;
   border: 2px solid #65C2AD; }
 
+.form-control {
+  display: block;
+  width: 100%;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem; }
+
 .custom-login {
   width: 100%;
   color: white;
@@ -473,6 +485,18 @@ h4.main-heading {
     background-color: #65C2AD;
     opacity: .5; }
 
+.date-of-birth-box {
+  display: block;
+  width: 12rem;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem; }
+
 .register-grid {
   display: grid;
   grid-template-columns: 1.1fr 0.8fr 1.1fr;
@@ -639,7 +663,65 @@ h4.main-heading {
   .user-type-select-container input[type=radio] {
     display: none; }
 
+.btn-screen-change-next {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 600;
+  width: 5rem;
+  border-radius: 0.3rem;
+  border: none;
+  background: #65C2AD;
+  color: white;
+  padding: 0.5rem 0.8rem 0.5rem 0.8rem; }
+
+.rate {
+  float: left;
+  height: 46px;
+  padding: 0 10px; }
+
+.rate:not(:checked) > input {
+  position: absolute;
+  top: -9999px; }
+
+.rate:not(:checked) > label {
+  float: right;
+  width: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 30px;
+  color: #ccc; }
+
+.rate-1:not(:checked) > label:before {
+  content: '➊ '; }
+
+.rate-2:not(:checked) > label:before {
+  content: '➋ '; }
+
+.rate-3:not(:checked) > label:before {
+  content: '➌ '; }
+
+.rate-4:not(:checked) > label:before {
+  content: '➍ '; }
+
+.rate-5:not(:checked) > label:before {
+  content: '➎ '; }
+
+.rate > input:checked ~ label {
+  color: #65C2AD; }
+
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+  color: #65C2AD; }
+
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+  color: #65C2AD; }
+
 .grid-container-ad {
+  height: 35rem;
   display: grid;
   grid-template-columns: 0.5fr 1fr 0.5fr;
   grid-template-rows: 0.2fr 1fr;
@@ -782,6 +864,25 @@ h4.main-heading {
   cursor: pointer;
   margin-left: 0.4rem; }
 
+.personal-details-subheaders {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 600;
+  margin-bottom: 2rem; }
+
+.experience-details-subheaders {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 1rem; }
+
+.text-area-yourself {
+  width: 40rem;
+  height: 15rem;
+  border-radius: 0.5rem;
+  border: none;
+  border: solid 1px;
+  border-color: #ced4da; }
+
 .form-control2 {
   width: 10%;
   display: block;
@@ -817,6 +918,8 @@ h4.main-heading {
   margin-bottom: 1rem;
   background: #e0e0e0;
   cursor: pointer; }
+  .person-message.selected {
+    background: #65C2AD; }
 
 .messages-filter {
   grid-column-gap: 2em;
@@ -872,7 +975,8 @@ h4.main-heading {
     height: 3rem;
     width: 3rem;
     margin-left: 1rem;
-    margin-right: 1rem; }
+    margin-right: 1rem;
+    background-image: url("https://cdn.images.express.co.uk/img/dynamic/11/590x/KKSKS-717334.jpg"); }
   .messages-placeholder .message-input-field-text {
     width: 100%;
     line-height: 3rem;
@@ -929,50 +1033,3 @@ h4.main-heading {
     right: 2rem;
     height: 1.73rem;
     width: 1.625rem; }
-
-.rate {
-  float: left;
-  height: 46px;
-  padding: 0 10px; }
-
-.rate:not(:checked) > input {
-  position: absolute;
-  top: -9999px; }
-
-.rate:not(:checked) > label {
-  float: right;
-  width: 1em;
-  overflow: hidden;
-  white-space: nowrap;
-  cursor: pointer;
-  font-size: 30px;
-  color: #ccc; }
-
-.rate-1:not(:checked) > label:before {
-  content: '➊ '; }
-
-.rate-2:not(:checked) > label:before {
-  content: '➋ '; }
-
-.rate-3:not(:checked) > label:before {
-  content: '➌ '; }
-
-.rate-4:not(:checked) > label:before {
-  content: '➍ '; }
-
-.rate-5:not(:checked) > label:before {
-  content: '➎ '; }
-
-.rate > input:checked ~ label {
-  color: #65C2AD; }
-
-.rate:not(:checked) > label:hover,
-.rate:not(:checked) > label:hover ~ label {
-  color: #65C2AD; }
-
-.rate > input:checked + label:hover,
-.rate > input:checked + label:hover ~ label,
-.rate > input:checked ~ label:hover,
-.rate > input:checked ~ label:hover ~ label,
-.rate > label:hover ~ input:checked ~ label {
-  color: #65C2AD; }

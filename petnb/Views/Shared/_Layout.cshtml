@@ -38,8 +38,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - petnb</title>
 
+    <link rel="stylesheet" href="~/vendor.min.css"/>
     <link rel="stylesheet" href="~/css/styles.css">
-    <link rel="stylesheet" href="~/vendor.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
@@ -145,24 +145,34 @@
     @RenderBody()
 
     <script src="~/vendor.min.js"></script>
-    <script src="~/js/site.js"></script>
+<script src="~/js/site.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
     @RenderSection("Scripts", required: false)
 
     <script>
+    let allChats = [];
+    let recipientFullName = [];
+        let messages;
+        let firebaseCurrentUserFullName;
+        let firebaseCurrentUserPicture;
+        let firstTime = true;
 
-    const config = {
-        apiKey: "AIzaSyCoKatVz8xlteNJGwY5hg_tDWEQ36foOGI",
-        authDomain: "frontend-69cae.firebaseapp.com",
-        databaseURL: "https://frontend-69cae.firebaseio.com",
-        projectId: "frontend-69cae",
-        storageBucket: "frontend-69cae.appspot.com",
-        messagingSenderId: "574904259542"
+    var config = {
+        apiKey: "AIzaSyB0TsAqzapyK4WS4NpyrLW_fVjHElyt_nA",
+        authDomain: "petnb-16f28.firebaseapp.com",
+        databaseURL: "https://petnb-16f28.firebaseio.com",
+        projectId: "petnb-16f28",
+        storageBucket: "petnb-16f28.appspot.com",
+        messagingSenderId: "772154609232",
+        appId: "1:772154609232:web:7248207eeb71bd80"
     };
+    // Initialize Firebase
     firebase.initializeApp(config);
+
     var isSignedIn = @jsSigned;
     const userId = "@Html.Raw(userId)";
     const fullName = "@Html.Raw(fullName)";
-
+    //include image
 
 
     const token = "@Html.Raw(token)";
@@ -174,13 +184,13 @@
             signIn();
 
         }
-        initializeUser(userId, fullName);
+    
+        initializeUser(userId, fullName);//include image
 
     }
 
-
-
-
+    
+        //execute after login
     function initializeUser(userId, fullName) {
         const usersRef = firebase.database().ref('Users/');
 
@@ -192,7 +202,7 @@
                     usersRef.child(userId).set(userId);
                     usersRef.child(userId).set({
                         FullName: fullName
-
+                        //include image
                     });
 
                 }

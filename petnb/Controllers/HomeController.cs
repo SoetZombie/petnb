@@ -9,7 +9,7 @@ using FirebaseAdmin.Messaging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.UI.V3.Pages.Account.Internal;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
+using Newtonsoft.Json;/**//**/
 using petnb.Models;
 
 namespace petnb.Controllers
@@ -19,7 +19,7 @@ namespace petnb.Controllers
 
         public IActionResult Index()
         {
-           return View();
+           return View();/**/
         }
 
         public IActionResult About()

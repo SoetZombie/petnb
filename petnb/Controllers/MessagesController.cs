@@ -18,13 +18,7 @@ namespace petnb.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var checkToken = HttpContext.Session.GetString("FirebaseToken");
-
-            if (checkToken == null)
-            {
-                var customToken = await _firebaseService.GenerateCustomToken("test");
-                HttpContext.Session.SetString("FirebaseToken", customToken);
-            }
+            
 
             ViewBag.Conversations = GetDummyData();
 
