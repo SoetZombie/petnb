@@ -103,16 +103,32 @@
                 Select your availability 📅
             </div>
             <div class="form-group">
-                <label asp-for="StartOfSit" class="control-label"></label>
+                <span class="text-button">Start of sit</span>
                 <input asp-for="StartOfSit" class="form-control" type="date" value=@DateTime.Now.Date.ToString("yyyy/MM/dd") />
                 <span asp-validation-for="StartOfSit" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EndOfSit" class="control-label"></label>
+                <span class="text-button">End of sit</span>
                 <input asp-for="EndOfSit" class="form-control" value=@DateTime.Now.Date.ToString("yyyy/MM/dd") type="date" />
                 <span asp-validation-for="EndOfSit" class="text-danger"></span>
             </div>
 
+            <div class="header-petad">
+                The price per hour 🤑
+            </div>
+            <div class="amount-perh">
+                <input class="form-control2" value="Amount" />
+                <span class="text-button2">DKK/h</span>
+            </div>
+
+            <div class="header-petad">
+                Indications about your rates (optional)
+            </div>
+            <div class="form-group">
+                <textarea maxlength="600" data-maxlength="600" class="form-control" name="content"
+                          placeholder="Specify if your rates vary depending on the type of pet, the displacement or if you have a policy of cancellation."
+                          spellcheck="false"></textarea>
+            </div>
 
 
 
