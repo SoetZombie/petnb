@@ -145,10 +145,17 @@
     @RenderBody()
 
     <script src="~/vendor.min.js"></script>
-    <script src="~/js/site.js"></script>
+<script src="~/js/site.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
     @RenderSection("Scripts", required: false)
 
     <script>
+    let allChats = [];
+    let recipientFullName = [];
+        let messages;
+        let firebaseCurrentUserFullName;
+        let firebaseCurrentUserPicture;
+        let firstTime = true;
 
     const config = {
         apiKey: "AIzaSyCoKatVz8xlteNJGwY5hg_tDWEQ36foOGI",
@@ -158,11 +165,12 @@
         storageBucket: "frontend-69cae.appspot.com",
         messagingSenderId: "574904259542"
     };
-    firebase.initializeApp(config);
+        firebase.initializeApp(config);
+
     var isSignedIn = @jsSigned;
     const userId = "@Html.Raw(userId)";
     const fullName = "@Html.Raw(fullName)";
-
+    //include image
 
 
     const token = "@Html.Raw(token)";
@@ -174,13 +182,13 @@
             signIn();
 
         }
-        initializeUser(userId, fullName);
+    
+        initializeUser(userId, fullName);//include image
 
     }
 
-
-
-
+    
+        //execute after login
     function initializeUser(userId, fullName) {
         const usersRef = firebase.database().ref('Users/');
 
@@ -192,7 +200,7 @@
                     usersRef.child(userId).set(userId);
                     usersRef.child(userId).set({
                         FullName: fullName
-
+                        //include image
                     });
 
                 }
