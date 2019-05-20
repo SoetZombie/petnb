@@ -729,6 +729,8 @@ h4.main-heading {
   margin-bottom: 1rem;
   background: #e0e0e0;
   cursor: pointer; }
+  .person-message.selected {
+    background: #65C2AD; }
 
 .messages-filter {
   grid-column-gap: 2em;
@@ -784,7 +786,8 @@ h4.main-heading {
     height: 3rem;
     width: 3rem;
     margin-left: 1rem;
-    margin-right: 1rem; }
+    margin-right: 1rem;
+    background-image: url("https://cdn.images.express.co.uk/img/dynamic/11/590x/KKSKS-717334.jpg"); }
   .messages-placeholder .message-input-field-text {
     width: 100%;
     line-height: 3rem;

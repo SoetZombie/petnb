@@ -907,6 +907,10 @@ h4.main-heading {
     margin-bottom: 1rem;
     background: #e0e0e0;
     cursor: pointer;
+
+    &.selected{
+        background:$greenColor;
+    }
 }
 
 .messages-filter {
@@ -951,8 +955,7 @@ h4.main-heading {
     padding: 2rem;
     padding-bottom: 0;
     box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.5);
- //   grid-area: messages-placeholder;
-
+    //   grid-area: messages-placeholder;
     .messages-content {
         height: 85%;
         overflow-wrap: break-word;
@@ -974,7 +977,9 @@ h4.main-heading {
         width: 3rem;
         margin-left: 1rem;
         margin-right: 1rem;
+        background-image : url("https://cdn.images.express.co.uk/img/dynamic/11/590x/KKSKS-717334.jpg");
     }
+
 
     .message-input-field-text {
         width: 100%;
