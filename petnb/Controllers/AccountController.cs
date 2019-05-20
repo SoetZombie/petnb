@@ -107,14 +107,10 @@ namespace petnb.Controllers
 
                         if (result.Succeeded)
                         {
-                            var checkToken = HttpContext.Session.GetString("FirebaseToken");
-
-                            if (checkToken == null)
-                            {
-                                var user = await _userManager.FindByEmailAsync(email);
-                                var customToken = await _firebaseService.GenerateCustomToken(user.Id);
-                                HttpContext.Session.SetString("FirebaseToken", customToken);
-                            }
+                            var user = await _userManager.FindByEmailAsync(email);
+                            var customToken = await _firebaseService.GenerateCustomToken(user.Id);
+                            HttpContext.Session.SetString("FirebaseToken", customToken);
+                            
                             return new JsonResult("Success");
 
                         }
@@ -133,7 +129,7 @@ namespace petnb.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
+        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null, string email = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
@@ -157,13 +153,9 @@ namespace petnb.Controllers
 
                     //var customToken = await _firebaseService.GenerateCustomToken("/*test*/");
                     //HttpContext.Session.SetString("FirebaseToken",customToken);
-                    var checkToken = HttpContext.Session.GetString("FirebaseToken");
-
-                    if (checkToken == null)
-                    {
-                        var customToken = await _firebaseService.GenerateCustomToken(_userManager.GetUserId(HttpContext.User));
-                        HttpContext.Session.SetString("FirebaseToken", customToken);
-                    }
+                    var user = await _userManager.FindByEmailAsync(email);
+                    var customToken = await _firebaseService.GenerateCustomToken(user.Id);
+                    HttpContext.Session.SetString("FirebaseToken", customToken);
 
 
                     _logger.LogInformation("User logged in.");
@@ -350,7 +342,10 @@ namespace petnb.Controllers
                     {
                         _accountService.CreatePetOwner(user.Id);
                     }
-                   
+                    
+                    var customToken = await _firebaseService.GenerateCustomToken(user.Id);
+                    HttpContext.Session.SetString("FirebaseToken", customToken);
+
                     return RedirectToLocal(returnUrl);
                 }
                 AddErrors(result);
