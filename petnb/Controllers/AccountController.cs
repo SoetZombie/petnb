@@ -550,6 +550,17 @@ namespace petnb.Controllers
             return View();
         }
 
+        #region AccountCompletion
+
+        [HttpGet]
+        public IActionResult AccountCompletion()
+        {
+            return View();
+        }
+            
+
+        #endregion
+
         #region Helpers
 
         private void AddErrors(IdentityResult result)

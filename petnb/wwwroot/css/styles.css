@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .mssg::after {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
@@ -700,7 +701,8 @@ h4.main-heading {
 .header-petad {
   font-family: "Quicksand", sans-serif;
   font-weight: bold;
-  font-size: 30px; }
+  font-size: 30px;
+  margin-bottom: 1.2rem; }
 
 .pet-label {
   text-align: center;
@@ -708,6 +710,91 @@ h4.main-heading {
   font-weight: bold;
   font-size: 18px;
   color: black; }
+
+.info-petad {
+  padding: 30px 30px 30px 40px;
+  background-color: #65C2AD;
+  display: flex;
+  border-radius: 0 1rem 1rem;
+  margin-bottom: 2rem; }
+
+.info-petad-text {
+  font-family: "Quicksand", sans-serif;
+  font-size: 14px;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  padding-left: 1rem; }
+
+.info-image {
+  display: flex;
+  padding-bottom: 7rem; }
+
+.text-button {
+  font-family: "Quicksand", sans-serif;
+  color: black;
+  font-size: 14px;
+  font-weight: bold;
+  padding-left: 0.5rem;
+  padding-top: 0.1rem;
+  display: flex; }
+
+.text-button2 {
+  font-family: "Quicksand", sans-serif;
+  color: black;
+  font-size: 16px;
+  font-weight: bold;
+  padding-left: 0.5rem;
+  padding-top: 0.5rem;
+  display: flex; }
+
+.button-move1 {
+  background-color: #D9D9D9;
+  margin: 0.5rem;
+  padding: 0.6rem;
+  display: flex;
+  width: 50%; }
+
+.button-move2 {
+  background-color: #D9D9D9;
+  margin: 0.5rem;
+  padding: 0.6rem;
+  display: flex;
+  width: 50%; }
+
+.button-move3 {
+  background-color: #D9D9D9;
+  margin: 0.5rem;
+  padding: 0.6rem;
+  display: flex; }
+
+.button-wrapper {
+  display: flex; }
+
+.button-move-special {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  cursor: pointer;
+  margin-left: 0.4rem; }
+
+.form-control2 {
+  width: 10%;
+  display: block;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem; }
+
+.amount-perh {
+  display: flex; }
 
 .messages-grid-container {
   display: grid;
@@ -844,3 +931,50 @@ h4.main-heading {
     right: 2rem;
     height: 1.73rem;
     width: 1.625rem; }
+
+.rate {
+  float: left;
+  height: 46px;
+  padding: 0 10px; }
+
+.rate:not(:checked) > input {
+  position: absolute;
+  top: -9999px; }
+
+.rate:not(:checked) > label {
+  float: right;
+  width: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 30px;
+  color: #ccc; }
+
+.rate-1:not(:checked) > label:before {
+  content: '➊ '; }
+
+.rate-2:not(:checked) > label:before {
+  content: '➋ '; }
+
+.rate-3:not(:checked) > label:before {
+  content: '➌ '; }
+
+.rate-4:not(:checked) > label:before {
+  content: '➍ '; }
+
+.rate-5:not(:checked) > label:before {
+  content: '➎ '; }
+
+.rate > input:checked ~ label {
+  color: #65C2AD; }
+
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+  color: #65C2AD; }
+
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+  color: #65C2AD; }
