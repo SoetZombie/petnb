@@ -267,9 +267,9 @@
 
             </div>
 
-            <a id="btn-previous" class="btn-screen-change-previous">Previous</a>
+            <a id="btn-previous" style="display:none"class="btn-screen-change-previous">Previous</a>
             <a id="btn-next" class="btn-screen-change-next">Next</a>
-            <input type="submit" value="Create" class="btn-screen-change-next" id="btn-create">
+            <input type="submit" value="Create" class="btn-screen-change-next" style="display: none" id="btn-create">
         </form>
         </div>
     </div>
@@ -277,69 +277,119 @@
 
 
 <script>
-    var completionLevelToHide = 0;
-    var completionLevelToDisplay = 1;
-    buttonToHide();
-    buttonToDisplay();
 
-        function ChangeView(completionLevelToHide, completionLevelToDisplay) {
-            var completionIdToHide = "completion-" + completionLevelToHide;
-            var completionIdToDisplay = "completion-" + completionLevelToDisplay;
-            document.getElementById(completionIdToHide).style.display = "none";
-            document.getElementById(completionIdToDisplay).style.display = "block";
-            document.getElementById("process-bar").style.width = completionLevelToDisplay * (100/6) + "%";
-            document.getElementById("process-bar-text").innerText = Math.round (completionLevelToDisplay * Math.round(100/6 *100)/100 )+ "%";
+    //var completionLevelToHide = 0;
+    //var completionLevelToDisplay = 1;
+    //buttonToHide();
+    //buttonToDisplay();
+
+    //    function ChangeView(completionLevelToHide, completionLevelToDisplay) {
+    //        var completionIdToHide = "completion-" + completionLevelToHide;
+    //        var completionIdToDisplay = "completion-" + completionLevelToDisplay;
+    //        document.getElementById(completionIdToHide).style.display = "none";
+    //        document.getElementById(completionIdToDisplay).style.display = "block";
+    //        document.getElementById("process-bar").style.width = completionLevelToDisplay * (100/6) + "%";
+    //        document.getElementById("process-bar-text").innerText = Math.round (completionLevelToDisplay * Math.round(100/6 *100)/100 )+ "%";
 
 
+    //}
+    //var btn = document.getElementById("btn-next");
+    //btn.addEventListener("click", function(e){
+    //e.preventDefault;
+    //ChangeView(completionLevelToHide,completionLevelToDisplay);
+    //console.log(completionLevelToDisplay)
+    //completionLevelToDisplay++;
+    //completionLevelToHide++;
+    //console.log(completionLevelToDisplay)
+    // buttonToHide();
+    //        buttonToDisplay();
+    //})
+    // var btn2 = document.getElementById("btn-previous");
+    //btn2.addEventListener("click", function(e){
+    //e.preventDefault;
+    //completionLevelToDisplay -=2;
+    //completionLevelToHide -=2;
+    //console.log(completionLevelToDisplay)
+    //ChangeView(completionLevelToHide,completionLevelToDisplay);
+    //completionLevelToDisplay +=2;
+    //completionLevelToHide+=2;
+    //    console.log(completionLevelToDisplay)
+
+    // buttonToHide();
+    //        buttonToDisplay();
+    //})
+
+    //function buttonToHide(){
+    //    if (completionLevelToHide === 0) {
+    //        document.getElementById("btn-previous").style.display ="none"
+    //}
+    //    else { document.getElementById("btn-previous").style.display = "block" }
+    //}
+    //function buttonToDisplay(){
+    //    if (completionLevelToDisplay === 7) {
+
+    //        document.getElementById("btn-next").style.display ="none"
+    //        document.getElementById("btn-create").style.display =""}
+    //    else {
+
+    //        document.getElementById("btn-create").style.display = "none"
+    //        }
+    //}
+
+    //    function PopulateOverview() {
+
+    //    }
+    //variables
+    const allViews = document.getElementsByClassName('fill-ad');
+    let currentStage = 0;
+    const btnNext = document.getElementById('btn-next');
+    const btnPrev = document.getElementById('btn-previous');
+    const btnCreate = document.getElementById('btn-create');
+    //events
+    btnNext.addEventListener('click', nextView);
+    btnPrev.addEventListener('click', previousView);
+    //calls
+
+
+function nextView() {
+    allViews[currentStage].style.display = 'none';
+    currentStage++;
+    allViews[currentStage].style.display = 'block';
+    hideBtns();
+
+    //checkHiding();
+
+}
+
+    function previousView() {
+        allViews[currentStage].style.display = 'none';
+        currentStage--;
+        allViews[currentStage].style.display = 'block';
+        hideBtns();
     }
-    var btn = document.getElementById("btn-next");
-    btn.addEventListener("click", function(e){
-    e.preventDefault;
-    ChangeView(completionLevelToHide,completionLevelToDisplay);
-    console.log(completionLevelToDisplay)
-    completionLevelToDisplay++;
-    completionLevelToHide++;
-    console.log(completionLevelToDisplay)
-     buttonToHide();
-            buttonToDisplay();
-    })
-     var btn2 = document.getElementById("btn-previous");
-    btn2.addEventListener("click", function(e){
-    e.preventDefault;
-    completionLevelToDisplay -=2;
-    completionLevelToHide -=2;
-    console.log(completionLevelToDisplay)
-    ChangeView(completionLevelToHide,completionLevelToDisplay);
-    completionLevelToDisplay +=2;
-    completionLevelToHide+=2;
-        console.log(completionLevelToDisplay)
 
-     buttonToHide();
-            buttonToDisplay();
-    })
+    function hideBtns() {
+        if (currentStage === 0) {
+            btnPrev.style.display = 'none';
+        } else {
+            btnPrev.style.display = '';
+        }
+        if (currentStage === 6) {
+            btnNext.style.display = 'none';
+            btnCreate.style.display = 'block';
 
-    function buttonToHide(){
-        if (completionLevelToHide === 0) {
-            document.getElementById("btn-previous").style.display ="none"
-    }
-        else { document.getElementById("btn-previous").style.display = "block" }
-    }
-    function buttonToDisplay(){
-        if (completionLevelToDisplay === 7) {
 
-            document.getElementById("btn-next").style.display ="none"
-            document.getElementById("btn-create").style.display =""}
-        else {
 
-            document.getElementById("btn-create").style.display = "none"
-            }
-    }
+        } else {
+            btnNext.style.display = '';
+            btnCreate.style.display = 'none';
 
-        function PopulateOverview() {
 
         }
-</script>
+    }
 
+
+</script>
 
 
 
