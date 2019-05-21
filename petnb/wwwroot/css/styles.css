@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 .mssg::after {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
@@ -907,6 +907,28 @@ h4.main-heading {
   background-color: #eee;
   cursor: pointer;
   margin-left: 0.4rem; }
+
+.personal-details-subheaders {
+    font-family: "Quicksand", sans-serif;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+.experience-details-subheaders {
+    font-family: "Quicksand", sans-serif;
+    font-weight: 600;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.text-area-yourself {
+    width: 40rem;
+    height: 15rem;
+    border-radius: 0.5rem;
+    border: none;
+    border: solid 1px;
+    border-color: #ced4da;
+}
 
 .form-control2 {
   width: 10%;
