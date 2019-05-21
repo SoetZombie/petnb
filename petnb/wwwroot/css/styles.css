@@ -405,18 +405,22 @@ h4.main-heading {
 .clip-circle {
   clip-path: ellipse(100px 100px at center);
   float: left;
-  margin: 1rem; }
+  margin: 1rem 0; }
 
 .usr-description {
   display: flex;
-  flex-direction: column; }
+  flex-direction: row;
+  width: -webkit-fill-available;
+  justify-content: space-between;
+  align-content: center;
+  height: 14rem; }
 
 .name-heading {
   font-family: "Quicksand", sans-serif;
   font-size: 30px;
   font-weight: bold;
   margin-top: 1rem;
-  padding: 20px 0px 0px 0px; }
+  padding: 0px 0px 0px 0px; }
 
 .location {
   font-family: "Quicksand", sans-serif;
@@ -435,7 +439,8 @@ h4.main-heading {
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 1rem;
-  box-shadow: 0px 6px 11px 0px rgba(0, 0, 0, 0.4); }
+  box-shadow: 0px 6px 11px 0px rgba(0, 0, 0, 0.4);
+  height: 15rem; }
 
 .grid2 {
   display: flex;
@@ -821,6 +826,14 @@ h4.main-heading {
   border-radius: 0 1rem 1rem;
   margin-bottom: 2rem; }
 
+.info-petad2 {
+  padding: 10px 0px 20px 40px;
+  background-color: #65C2AD;
+  display: flex;
+  border-radius: 0 1rem 1rem;
+  margin-bottom: 2rem;
+  height: 5rem; }
+
 .info-petad-text {
   font-family: "Quicksand", sans-serif;
   font-size: 14px;
@@ -829,9 +842,20 @@ h4.main-heading {
   display: flex;
   padding-left: 1rem; }
 
+.info-petad-text2 {
+  font-family: "Quicksand", sans-serif;
+  font-size: 14px;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  padding: 1rem; }
+
 .info-image {
   display: flex;
   padding-bottom: 7rem; }
+
+.info-image2 {
+  display: flex; }
 
 .text-button {
   font-family: "Quicksand", sans-serif;
@@ -898,6 +922,26 @@ h4.main-heading {
 
 .amount-perh {
   display: flex; }
+
+.salary-container {
+  font-family: "Quicksand", sans-serif;
+  font-weight: bold;
+  display: flex;
+  flex-flow: wrap;
+  align-items: center;
+  margin-right: 1rem; }
+
+.dkk-h {
+  font-family: "Quicksand", sans-serif;
+  font-weight: bold; }
+
+.expected-salary {
+  text-align: right;
+  position: relative;
+  background-color: #65C2AD;
+  border-radius: 50px;
+  width: 4rem;
+  height: 4rem; }
 
 .experience-details-subheaders {
   font-family: "Quicksand", sans-serif;
