@@ -20,6 +20,7 @@ namespace petnb.DTL.Data
         public DbSet<Pet> Pets { get; set; }
         public DbSet<PetSitterOffer> PetSitterOffers { get; set; }
         public DbSet<PetSitter> PetSitters { get; set; }
+        public DbSet<Experience> Experiences { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -56,6 +57,11 @@ namespace petnb.DTL.Data
                 .HasOne(k => k.PetSitterOffer)
                 .WithMany(u => u.PetSitterOfferPetTypeModels)
                 .HasForeignKey(k => k.PetSitterOfferId);
+
+            builder.Entity<Experience>()
+                .HasOne(p => p.PetSitter)
+                .WithOne(o => o.Experience)
+                .HasForeignKey<Experience>(u => u.PetSitterId);
 
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.

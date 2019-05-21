@@ -1,4 +1,4 @@
-﻿@charset "UTF-8";
+@charset "UTF-8";
 .mssg::after {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
@@ -101,7 +101,7 @@ form {
 /* Other styles for the page not related to the animated dropdown */
 body {
   background: #F2F2F2;
-  background: linear-gradient(to left, #F2F2F2, #65C2AD); }
+  background: white; }
 
 /*Landing page styles*/
 .landing-page-grid-container {
@@ -676,7 +676,7 @@ h4.main-heading {
   color: white;
   padding: 0.5rem 0.8rem 0.5rem 0.8rem;
   right: 0rem;
-  bottom: 0rem;
+  bottom: 2rem;
   position: absolute; }
 
 .btn-screen-change-previous {
@@ -689,7 +689,7 @@ h4.main-heading {
   color: white;
   padding: 0.5rem 0.8rem 0.5rem 0.5rem;
   left: 0rem;
-  bottom: 0rem;
+  bottom: 2rem;
   position: absolute; }
 
 .rate {
@@ -745,25 +745,25 @@ h4.main-heading {
   grid-template-columns: 0.5fr 1fr 0.5fr;
   grid-template-rows: 0.2fr 1fr;
   grid-template-areas: "progress-bar-left progress-bar-center progress-bar-right" ". fill-ad .";
-  background-color: white; }
+  background-color: #f7f7f7; }
 
 .progress-bar-center {
   grid-area: progress-bar-center;
-  border-bottom: solid 1px #f7f7f7;
+  border-bottom: solid 1px #c4c4c4;
   height: 65px;
-  background-color: white; }
+  background-color: #f7f7f7; }
 
 .progress-bar-left {
   grid-area: progress-bar-left;
-  border-bottom: solid 1px #f7f7f7;
+  border-bottom: solid 1px #c4c4c4;
   height: 65px;
-  background-color: white; }
+  background-color: #f7f7f7; }
 
 .progress-bar-right {
   grid-area: progress-bar-right;
-  border-bottom: solid 1px #f7f7f7;
+  border-bottom: solid 1px #c4c4c4;
   height: 65px;
-  background-color: white; }
+  background-color: #f7f7f7; }
 
 .progress-logo {
   margin-top: .65rem; }
@@ -787,7 +787,7 @@ h4.main-heading {
   -webkit-border-radius: 5px;
   border-radius: 5px;
   height: 6px;
-  background-color: #f7f7f7;
+  background-color: #c4c4c4;
   vertical-align: middle;
   margin-top: 1.8rem; }
 
@@ -884,28 +884,6 @@ h4.main-heading {
   cursor: pointer;
   margin-left: 0.4rem; }
 
-.personal-details-subheaders {
-    font-family: "Quicksand", sans-serif;
-    font-weight: 600;
-    margin-bottom: 2rem;
-}
-
-.experience-details-subheaders {
-    font-family: "Quicksand", sans-serif;
-    font-weight: 600;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-}
-
-.text-area-yourself {
-    width: 40rem;
-    height: 15rem;
-    border-radius: 0.5rem;
-    border: none;
-    border: solid 1px;
-    border-color: #ced4da;
-}
-
 .form-control2 {
   width: 10%;
   display: block;
@@ -924,11 +902,11 @@ h4.main-heading {
 .experience-details-subheaders {
   font-family: "Quicksand", sans-serif;
   font-weight: 600;
-  margin-top: 3rem;
+  margin-top: 1rem;
   margin-bottom: 1rem; }
 
 .text-area-yourself {
-  width: 40rem;
+  width: 38rem;
   height: 15rem;
   border-radius: 0.5rem;
   border: none;

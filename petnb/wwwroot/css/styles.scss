@@ -140,7 +140,7 @@ form {
 body {
     background: #F2F2F2;
     //background: linear-gradient(to right, #F2F2F2, #65C2AD);
-    background: linear-gradient(to left, #F2F2F2, #65C2AD);
+    background: white;
 }
 /*Landing page styles*/
 .landing-page-grid-container {
@@ -845,7 +845,7 @@ div.login-modal {
         color: white;
         padding: 0.5rem 0.8rem 0.5rem 0.8rem;
         right:0rem;
-        bottom:0rem;
+        bottom:2rem;
         position:absolute;
     }
 
@@ -859,7 +859,7 @@ div.login-modal {
     color: white;
     padding: 0.5rem 0.8rem 0.5rem 0.5rem;
     left: 0rem;
-    bottom: 0rem;
+    bottom: 2rem;
     position: absolute;
 }
 
@@ -921,35 +921,35 @@ div.login-modal {
         color: $greenColor;
     }
 
-    .grid-container-ad {
-        height: 40rem;
-        display: grid;
-        grid-template-columns: 0.5fr 1fr 0.5fr;
-        grid-template-rows: 0.2fr 1fr;
-        grid-template-areas: "progress-bar-left progress-bar-center progress-bar-right" ". fill-ad .";
-        background-color: white;
-    }
+.grid-container-ad {
+    height: 40rem;
+    display: grid;
+    grid-template-columns: 0.5fr 1fr 0.5fr;
+    grid-template-rows: 0.2fr 1fr;
+    grid-template-areas: "progress-bar-left progress-bar-center progress-bar-right" ". fill-ad .";
+    background-color: #f7f7f7;
+}
 
-    .progress-bar-center {
-        grid-area: progress-bar-center;
-        border-bottom: solid 1px #f7f7f7;
-        height: 65px;
-        background-color: white;
-    }
+.progress-bar-center {
+    grid-area: progress-bar-center;
+    border-bottom: solid 1px #c4c4c4;
+    height: 65px;
+    background-color: #f7f7f7 ;
+}
 
-    .progress-bar-left {
-        grid-area: progress-bar-left;
-        border-bottom: solid 1px #f7f7f7;
-        height: 65px;
-        background-color: white;
-    }
+.progress-bar-left {
+    grid-area: progress-bar-left;
+    border-bottom: solid 1px #c4c4c4;
+    height: 65px;
+    background-color: #f7f7f7;
+}
 
-    .progress-bar-right {
-        grid-area: progress-bar-right;
-        border-bottom: solid 1px #f7f7f7;
-        height: 65px;
-        background-color: white;
-    }
+.progress-bar-right {
+    grid-area: progress-bar-right;
+    border-bottom: solid 1px #c4c4c4;
+    height: 65px;
+    background-color: #f7f7f7;
+}
 
     .progress-logo {
         margin-top: .65rem;
@@ -976,7 +976,7 @@ div.login-modal {
         -webkit-border-radius: 5px;
         border-radius: 5px;
         height: 6px;
-        background-color: #f7f7f7;
+        background-color: #c4c4c4;
         vertical-align: middle;
         margin-top: 1.8rem;
     }
@@ -1104,7 +1104,7 @@ div.login-modal {
 }
 
 .text-area-yourself {
-    width: 40rem;
+    width: 38rem;
     height: 15rem;
     border-radius: 0.5rem;
     border: none;

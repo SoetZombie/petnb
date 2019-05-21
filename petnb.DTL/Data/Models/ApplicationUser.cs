@@ -16,10 +16,12 @@ namespace petnb.DTL.Models
         public string FullName { get; set; }
         public byte[] ProfilePicture { get; set; }
         public List<Review> Reviews { get; set; } = new List<Review>();
-
+        public string Bio { get; set; }
         public PetSitter PetSitter { get; set; }
         public double? Rating { get; set; }
         public string Address { get; set; }
+        public int? Zipcode { get; set; }
+        public DateTime BirthDate { get; set; }
         //public bool Email { get; set; } ?
         public int? Age { get; set; }
         
