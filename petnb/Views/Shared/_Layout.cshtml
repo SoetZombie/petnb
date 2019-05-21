@@ -3,6 +3,7 @@
 
 @using System.Linq
 @using Microsoft.AspNetCore.Http.Authentication
+@using Newtonsoft.Json
 
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 
@@ -146,11 +147,13 @@ else{
 
     @RenderBody()
 
+@section Scripts{ 
     <script src="~/vendor.min.js"></script>
-<script src="~/js/site.js"></script>
+    <script src="~/js/site.js"></script>
+}
 <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
     @RenderSection("Scripts", required: false)
-
+ 
     <script>
     let allChats = [];
     let recipientFullName = [];

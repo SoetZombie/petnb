@@ -16,7 +16,7 @@
             <img class="progress-logo" src="~/images/P.svg">
             <div class="percent" id="process-bar-text">0%</div>
             <div class="progress-bar-bar">
-                <div class="bar" id="process-bar" style="width: 0%"></div>
+                <div class="bar" id="process-bar" style="width: 0.01%"></div>
             </div>
         </div>
     </div>
@@ -105,9 +105,9 @@
                 </div>
 
                 <!--
-    <a id="btn-previous" class="btn-screen-change-previous">Previous</a>
-    <a id="btn-next" class="btn-screen-change-next">Next</a>
-    <a class="btn-screen-change-next btn-next" onclick="ChangeView(1, 2)">Next</a>-->
+                <a id="btn-previous" class="btn-screen-change-previous">Previous</a>
+                <a id="btn-next" class="btn-screen-change-next">Next</a>
+                <a class="btn-screen-change-next btn-next" onclick="ChangeView(1, 2)">Next</a>-->
 
 
             </div>
@@ -135,9 +135,9 @@
                 </div>
 
                 <!-- <input type="submit" value="back" class="authentication-btn login-btn" onclick="ChangeView(1, 0)">
-            <input type="submit" value="next" class="authentication-btn register-btn" onclick="ChangeView(1, 2)">
-                <a class="btn-screen-change-previous" onclick="ChangeView(2, 1)">Previous</a>
-                <a class="btn-screen-change-next" onclick="ChangeView(2, 3)">Next</a>-->
+                <input type="submit" value="next" class="authentication-btn register-btn" onclick="ChangeView(1, 2)">
+                    <a class="btn-screen-change-previous" onclick="ChangeView(2, 1)">Previous</a>
+                    <a class="btn-screen-change-next" onclick="ChangeView(2, 3)">Next</a>-->
 
             </div>
 
@@ -267,180 +267,224 @@
 
             </div>
 
-            <a id="btn-previous" style="display:none"class="btn-screen-change-previous">Previous</a>
+            <a id="btn-previous" style="display:none" class="btn-screen-change-previous">Previous</a>
             <a id="btn-next" class="btn-screen-change-next">Next</a>
             <input type="submit" value="Create" class="btn-screen-change-next" style="display: none" id="btn-create">
         </form>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/vendor.min.js"></script>
+    <script src="~/js/site.js"></script>
+
+
+    <script>
+
+        //var completionLevelToHide = 0;
+        //var completionLevelToDisplay = 1;
+        //buttonToHide();
+        //buttonToDisplay();
+
+        //    function ChangeView(completionLevelToHide, completionLevelToDisplay) {
+        //        var completionIdToHide = "completion-" + completionLevelToHide;
+        //        var completionIdToDisplay = "completion-" + completionLevelToDisplay;
+        //        document.getElementById(completionIdToHide).style.display = "none";
+        //        document.getElementById(completionIdToDisplay).style.display = "block";
+        //        document.getElementById("process-bar").style.width = completionLevelToDisplay * (100/6) + "%";
+        //        document.getElementById("process-bar-text").innerText = Math.round (completionLevelToDisplay * Math.round(100/6 *100)/100 )+ "%";
+
+
+        //}
+        //var btn = document.getElementById("btn-next");
+        //btn.addEventListener("click", function(e){
+        //e.preventDefault;
+        //ChangeView(completionLevelToHide,completionLevelToDisplay);
+        //console.log(completionLevelToDisplay)
+        //completionLevelToDisplay++;
+        //completionLevelToHide++;
+        //console.log(completionLevelToDisplay)
+        // buttonToHide();
+        //        buttonToDisplay();
+        //})
+        // var btn2 = document.getElementById("btn-previous");
+        //btn2.addEventListener("click", function(e){
+        //e.preventDefault;
+        //completionLevelToDisplay -=2;
+        //completionLevelToHide -=2;
+        //console.log(completionLevelToDisplay)
+        //ChangeView(completionLevelToHide,completionLevelToDisplay);
+        //completionLevelToDisplay +=2;
+        //completionLevelToHide+=2;
+        //    console.log(completionLevelToDisplay)
+
+        // buttonToHide();
+        //        buttonToDisplay();
+        //})
+
+        //function buttonToHide(){
+        //    if (completionLevelToHide === 0) {
+        //        document.getElementById("btn-previous").style.display ="none"
+        //}
+        //    else { document.getElementById("btn-previous").style.display = "block" }
+        //}
+        //function buttonToDisplay(){
+        //    if (completionLevelToDisplay === 7) {
+
+        //        document.getElementById("btn-next").style.display ="none"
+        //        document.getElementById("btn-create").style.display =""}
+        //    else {
+
+        //        document.getElementById("btn-create").style.display = "none"
+        //        }
+        //}
+
+        //    function PopulateOverview() {
+
+        //    }
+        //variables
+        const allViews = document.getElementsByClassName('fill-ad');
+        let currentStage = 0;
+        const btnNext = document.getElementById('btn-next');
+        const btnPrev = document.getElementById('btn-previous');
+        const btnCreate = document.getElementById('btn-create');
+        // const progressBar = document.getElementById("process-bar");
+
+        const progressPercent = document.getElementById("process-bar-text");
+
+        //events
+        btnNext.addEventListener('click', nextView);
+        btnPrev.addEventListener('click', previousView);
+        //calls
+
+
+        function nextView() {
+            allViews[currentStage].style.display = 'none';
+            currentStage++;
+            allViews[currentStage].style.display = 'block';
+            hideBtns();
+
+            //progressBar.style.width = currentStage * (100 / 6) + "%";
+           // progressPercent.innerText = Math.round(currentStage * Math.round(100 / 6 * 100) / 100) + "%";
+
+            //checkHiding();
+
+        }
+
+        function previousView() {
+            allViews[currentStage].style.display = 'none';
+            currentStage--;
+            allViews[currentStage].style.display = 'block';
+            hideBtns();
+
+            // progressBar.style.width = currentStage * (100 / 6) + "%";
+            //progressPercent.innerText = Math.round(currentStage * Math.round(100 / 6 * 100) / 100) + "%";
+        }
+
+        function hideBtns() {
+            if (currentStage === 0) {
+                btnPrev.style.display = 'none';
+            } else {
+                btnPrev.style.display = '';
+            }
+            if (currentStage === 6) {
+                btnNext.style.display = 'none';
+                btnCreate.style.display = 'block';
+
+
+            } else {
+                btnNext.style.display = '';
+                btnCreate.style.display = 'none';
+
+
+            }
+        }
+
+        var animations;
+
+        function animateProgress(currentStage) {
+            return [(currentStage - 1) * 100 / 6 + '%', currentStage * 100 / 6 + '%'];
+        }
+        function createAndPlayAnimation() {
+            animations = null;
+            animations = anime({
+                targets: '#process-bar',
+                width: [`${(currentStage - 1) * 100 / 6}%`, `${currentStage * 100 / 6}%`],
+                easing: 'easeInOutQuad',
+                autoplay: false
+
+            });
+            animations.play();
+
+        }
+        
+        animations =
+            anime({
+                targets: '#process-bar',
+                width: function(currentStage) { return [`${(currentStage - 1) * 100 / 6}%`, `${currentStage * 100 / 6}%`] },
+            easing: 'easeInOutQuad',
+                update: function(anim) {
+                    
+                    $('#process-bar-text').html(Math.round(anim.progress * currentStage));
+                    ;
+                }
+
+            });
+
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+@*<div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Heading" class="control-label"></label>
+                    <input asp-for="Heading" class="form-control" value="test" />
+                    <span asp-validation-for="Heading" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Content" class="control-label"></label>
+                    <input asp-for="Content" class="form-control" value="test" />
+                    <span asp-validation-for="Content" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Location" class="control-label"></label>
+                    <input asp-for="Location" class="form-control" value="test" />
+                    <span asp-validation-for="Location" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="StartOfSit" class="control-label"></label>
+                    <input asp-for="StartOfSit" class="form-control" type="date" value=@DateTime.Now.Date.ToString("yyyy/MM/dd") />
+                    <span asp-validation-for="StartOfSit" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EndOfSit" class="control-label"></label>
+                    <input asp-for="EndOfSit" class="form-control" value=@DateTime.Now.Date.ToString("yyyy/MM/dd") type="date" />
+                    <span asp-validation-for="EndOfSit" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ExpectedSalary" class="control-label"></label>
+                    <input asp-for="ExpectedSalary" class="form-control" value="test" />
+                    <span asp-validation-for="ExpectedSalary" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </form>
         </div>
     </div>
 
-
-
-<script>
-
-    //var completionLevelToHide = 0;
-    //var completionLevelToDisplay = 1;
-    //buttonToHide();
-    //buttonToDisplay();
-
-    //    function ChangeView(completionLevelToHide, completionLevelToDisplay) {
-    //        var completionIdToHide = "completion-" + completionLevelToHide;
-    //        var completionIdToDisplay = "completion-" + completionLevelToDisplay;
-    //        document.getElementById(completionIdToHide).style.display = "none";
-    //        document.getElementById(completionIdToDisplay).style.display = "block";
-    //        document.getElementById("process-bar").style.width = completionLevelToDisplay * (100/6) + "%";
-    //        document.getElementById("process-bar-text").innerText = Math.round (completionLevelToDisplay * Math.round(100/6 *100)/100 )+ "%";
-
-
-    //}
-    //var btn = document.getElementById("btn-next");
-    //btn.addEventListener("click", function(e){
-    //e.preventDefault;
-    //ChangeView(completionLevelToHide,completionLevelToDisplay);
-    //console.log(completionLevelToDisplay)
-    //completionLevelToDisplay++;
-    //completionLevelToHide++;
-    //console.log(completionLevelToDisplay)
-    // buttonToHide();
-    //        buttonToDisplay();
-    //})
-    // var btn2 = document.getElementById("btn-previous");
-    //btn2.addEventListener("click", function(e){
-    //e.preventDefault;
-    //completionLevelToDisplay -=2;
-    //completionLevelToHide -=2;
-    //console.log(completionLevelToDisplay)
-    //ChangeView(completionLevelToHide,completionLevelToDisplay);
-    //completionLevelToDisplay +=2;
-    //completionLevelToHide+=2;
-    //    console.log(completionLevelToDisplay)
-
-    // buttonToHide();
-    //        buttonToDisplay();
-    //})
-
-    //function buttonToHide(){
-    //    if (completionLevelToHide === 0) {
-    //        document.getElementById("btn-previous").style.display ="none"
-    //}
-    //    else { document.getElementById("btn-previous").style.display = "block" }
-    //}
-    //function buttonToDisplay(){
-    //    if (completionLevelToDisplay === 7) {
-
-    //        document.getElementById("btn-next").style.display ="none"
-    //        document.getElementById("btn-create").style.display =""}
-    //    else {
-
-    //        document.getElementById("btn-create").style.display = "none"
-    //        }
-    //}
-
-    //    function PopulateOverview() {
-
-    //    }
-    //variables
-    const allViews = document.getElementsByClassName('fill-ad');
-    let currentStage = 0;
-    const btnNext = document.getElementById('btn-next');
-    const btnPrev = document.getElementById('btn-previous');
-    const btnCreate = document.getElementById('btn-create');
-    //events
-    btnNext.addEventListener('click', nextView);
-    btnPrev.addEventListener('click', previousView);
-    //calls
-
-
-function nextView() {
-    allViews[currentStage].style.display = 'none';
-    currentStage++;
-    allViews[currentStage].style.display = 'block';
-    hideBtns();
-
-    //checkHiding();
-
-}
-
-    function previousView() {
-        allViews[currentStage].style.display = 'none';
-        currentStage--;
-        allViews[currentStage].style.display = 'block';
-        hideBtns();
-    }
-
-    function hideBtns() {
-        if (currentStage === 0) {
-            btnPrev.style.display = 'none';
-        } else {
-            btnPrev.style.display = '';
-        }
-        if (currentStage === 6) {
-            btnNext.style.display = 'none';
-            btnCreate.style.display = 'block';
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
 
 
 
-        } else {
-            btnNext.style.display = '';
-            btnCreate.style.display = 'none';
 
-
-        }
-    }
-
-
-</script>
-
-
-
-      @*<div class="row">
-          <div class="col-md-4">
-              <form asp-action="Create">
-                  <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                  <div class="form-group">
-                      <label asp-for="Heading" class="control-label"></label>
-                      <input asp-for="Heading" class="form-control" value="test" />
-                      <span asp-validation-for="Heading" class="text-danger"></span>
-                  </div>
-                  <div class="form-group">
-                      <label asp-for="Content" class="control-label"></label>
-                      <input asp-for="Content" class="form-control" value="test" />
-                      <span asp-validation-for="Content" class="text-danger"></span>
-                  </div>
-                  <div class="form-group">
-                      <label asp-for="Location" class="control-label"></label>
-                      <input asp-for="Location" class="form-control" value="test" />
-                      <span asp-validation-for="Location" class="text-danger"></span>
-                  </div>
-                  <div class="form-group">
-                      <label asp-for="StartOfSit" class="control-label"></label>
-                      <input asp-for="StartOfSit" class="form-control" type="date" value=@DateTime.Now.Date.ToString("yyyy/MM/dd") />
-                      <span asp-validation-for="StartOfSit" class="text-danger"></span>
-                  </div>
-                  <div class="form-group">
-                      <label asp-for="EndOfSit" class="control-label"></label>
-                      <input asp-for="EndOfSit" class="form-control" value=@DateTime.Now.Date.ToString("yyyy/MM/dd") type="date" />
-                      <span asp-validation-for="EndOfSit" class="text-danger"></span>
-                  </div>
-                  <div class="form-group">
-                      <label asp-for="ExpectedSalary" class="control-label"></label>
-                      <input asp-for="ExpectedSalary" class="form-control" value="test" />
-                      <span asp-validation-for="ExpectedSalary" class="text-danger"></span>
-                  </div>
-
-                  <div class="form-group">
-                      <input type="submit" value="Create" class="btn btn-default" />
-                  </div>
-              </form>
-          </div>
-      </div>
-
-      <div>
-          <a asp-action="Index">Back to List</a>
-      </div>*@
-
-      @section Scripts {
-          @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-      }
-
-    
