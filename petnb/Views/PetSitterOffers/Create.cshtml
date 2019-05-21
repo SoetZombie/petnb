@@ -364,6 +364,7 @@
             allViews[currentStage].style.display = 'block';
             hideBtns();
 
+
             //progressBar.style.width = currentStage * (100 / 6) + "%";
            // progressPercent.innerText = Math.round(currentStage * Math.round(100 / 6 * 100) / 100) + "%";
 
@@ -406,7 +407,6 @@
             return [(currentStage - 1) * 100 / 6 + '%', currentStage * 100 / 6 + '%'];
         }
         function createAndPlayAnimation() {
-            animations = null;
             animations = anime({
                 targets: '#process-bar',
                 width: [`${(currentStage - 1) * 100 / 6}%`, `${currentStage * 100 / 6}%`],
@@ -414,7 +414,7 @@
                 autoplay: false
 
             });
-            animations.play();
+            animations.restart();
 
         }
         
