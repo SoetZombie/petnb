@@ -830,6 +830,11 @@ div.login-modal {
     }
     // Create Profile Completion :D
 
+.account-completion-wrapper {
+    height: 25rem;
+}
+
+
     .btn-screen-change-next {
         font-family: $quicksand;
         font-weight: 600;
@@ -839,7 +844,24 @@ div.login-modal {
         background: $greenColor;
         color: white;
         padding: 0.5rem 0.8rem 0.5rem 0.8rem;
+        right:0rem;
+        bottom:0rem;
+        position:absolute;
     }
+
+.btn-screen-change-previous {
+    font-family: $quicksand;
+    font-weight: 600;
+    width: 5rem;
+    border-radius: 0.3rem;
+    border: none;
+    background: $greenColor;
+    color: white;
+    padding: 0.5rem 0.8rem 0.5rem 0.5rem;
+    left: 0rem;
+    bottom: 0rem;
+    position: absolute;
+}
 
     .rate {
         float: left;
@@ -900,7 +922,7 @@ div.login-modal {
     }
 
     .grid-container-ad {
-        height: 35rem;
+        height: 40rem;
         display: grid;
         grid-template-columns: 0.5fr 1fr 0.5fr;
         grid-template-rows: 0.2fr 1fr;
@@ -965,16 +987,18 @@ div.login-modal {
         background-color: $greenColor;
     }
 
-    .fill-ad {
-        grid-area: fill-ad;
-    }
+.fill-ad {
+    grid-area: fill-ad;
+    height: 34rem;
+}
 
-    .header-petad {
-        font-family: $quicksand;
-        font-weight: bold;
-        font-size: 30px;
-        margin-bottom: 1.2rem;
-    }
+.header-petad {
+    font-family: $quicksand;
+    font-weight: bold;
+    font-size: 30px;
+    margin-top: 3rem;
+    margin-bottom: 1.2rem;
+}
 
     .pet-label {
         text-align: center;
@@ -1086,6 +1110,7 @@ div.login-modal {
     border: none;
     border: solid 1px;
     border-color: #ced4da;
+    text-align: left;
 }
 
     //MESSAGING STYLING
@@ -1262,7 +1287,38 @@ div.login-modal {
     }
 }
 
+
+
 //Profile completion styling
+
+.address-input-styling {
+    padding-left: 1rem;
+}
+
+.remove-padding-left {
+    padding-left: 0;
+}
+
+
+.personal-details-subheaders {
+    font-family: $quicksand;
+    font-weight: 600;
+    margin-top: 1.5rem;
+}
+
+.form-control-account {
+    display: block;
+    width: 12rem;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+
 .rate {
     float: left;
     height: 46px;

@@ -86,28 +86,28 @@
             var recipientNames = [];
            
             const allChatsRef =  firebase.database().ref(`Users/${userId}/Messages`);
-            allChatsRef.once('value').then(function (snapshot) {
+            allChatsRef.once('value').then(function(snapshot) {
                 //could have just called populateFilter() from here;
-                snapshot.forEach(function(childSnap) {
-                    chats.push(childSnap.key);
-                   
-                    //var snap = childSnap.val();
-                    //var recipientKey = Object.keys(snap)[0];
-                    //Remember these lines. I spent 1 hour doing them realizing that key is not child.child of massages ;]
-                    //recipientFullName = childSnap.val()[recipientKey].RecipientFullName;
-                    recipientNames.push(childSnap.val().RecipientFullName);
-                    
-                });
-                allChats = chats;
-                recipientFullName = recipientNames;
+                //snapshot.forEach(function(childSnap) {
+                //    chats.push(childSnap.key);
+
+                //    //var snap = childSnap.val();
+                //    //var recipientKey = Object.keys(snap)[0];
+                //    //Remember these lines. I spent 1 hour doing them realizing that key is not child.child of massages ;]
+                //    //recipientFullName = childSnap.val()[recipientKey].RecipientFullName;
+                //    recipientNames.push(childSnap.val().RecipientFullName);
+
+                //});
+                //allChats = chats;
+                //recipientFullName = recipientNames;
+                console.log(snapshot.val());
                 messages = snapshot.val();
-                if (chats.length == 0) {
-                    reject(new Error ('user not initialized or without chats'));
-                }
-                else {
+                if (messages == null) {
+                    reject(new Error('user not initialized or without chats'));
+                } else {
                     resolve(chats, recipientFullName);
                 }
-            })
+            });
             setTimeout(function() {
                 reject(new Error('request timed out'));
             }, 5000);
@@ -116,41 +116,75 @@
         })
     }
 
+    function createNewChat(recipientId) {
+        receiverRef = firebase.database().ref(`Users/${recipientId}/Messages/`);
+        senderRef = firebase.database().ref(`Users/${userId}/Messages/`);
+
+        
+
+                firebase.database().ref(`Users/${userId}`).once('value').then(function(snapshot) {
+
+                    receiverRef.child(`${returnThread(userId, recipientId)}`).set({
+                        RecipientFullName: snapshot.val().FullName,
+                        // RecipientProfilePicture: snapshot.val().ProfilePicture
+                    });
+                });
+                firebase.database().ref(`Users/${recipientId}`).once('value').then(function (snapshot) {
+
+                    senderRef.child(`${returnThread(userId, recipientId)}`).set({
+                        RecipientFullName: snapshot.val().FullName,
+                        // RecipientProfilePicture: snapshot.val().ProfilePicture
+                    }).then(function() {
+                        populateFilter();
+
+                    })
+                });
+  
+
+        firstTime = true;
+        subscribeToChat();
+    }
+
     //modify to accept senderId and receiverId as id1 id2
     function switchChat(recipientId) {
         receiverRef = firebase.database().ref(`Users/${recipientId}/Messages/${returnThread(userId, recipientId)}`);
         senderRef = firebase.database().ref(`Users/${userId}/Messages/${returnThread(userId, recipientId)}`);
 
-        senderRef.once('value').then(function (snapshot) {
-            //same goes for creating user picture
-            if (!snapshot.child('RecipientFullName').exists() || !snapshot.child('RecipientProfilePicture').exists()) {
+      
 
-                firebase.database().ref(`Users/${recipientId}`).once('value').then(function(snapshot) {
+        //receiverRef.once('value').then(function(snapshot) {
+        //    var jada2 = snapshot.child('RecipientFullName').exists();
 
-                    senderRef.set({
-                        RecipientFullName: snapshot.val().FullName,
-                        RecipientProfilePicture: snapshot.val().ProfilePicture
-                    });
-                });
-            };
-        });
+        //    if (!snapshot.child('RecipientFullName').exists() || !snapshot.child('RecipientProfilePicture').exists()) {
+        //        console.log("here23")
+        //        firebase.database().ref(`Users/${userId}`).once('value').then(function(snapshot) {
 
-        receiverRef.once('value').then(function(snapshot) {
-            if (!snapshot.child('RecipientFullName').exists() || !snapshot.child('RecipientProfilePicture').exists()) {
+        //            receiverRef.set({
+        //                RecipientFullName: snapshot.val().FullName,
+        //               // RecipientProfilePicture: snapshot.val().ProfilePicture
+        //            });
+        //        });
+        //    };
+        //});
 
-                firebase.database().ref(`Users/${userId}`).once('value').then(function(snapshot) {
+        //senderRef.once('value').then(function (snapshot) {
+        //    //same goes for creating user picture
+        //    var jada = snapshot.child('RecipientFullName').exists();
+        //    if (!snapshot.child('RecipientFullName').exists() || !snapshot.child('RecipientProfilePicture').exists()) {
+        //        console.log('here')
 
-                    receiverRef.set({
-                        RecipientFullName: snapshot.val().FullName,
-                        RecipientProfilePicture: snapshot.val().ProfilePicture
-                    });
-                });
-            };
-        });
+        //        firebase.database().ref(`Users/${recipientId}`).once('value').then(function(snapshot) {
+
+        //            senderRef.set({
+        //                RecipientFullName: snapshot.val().FullName,
+        //                // RecipientProfilePicture: snapshot.val().ProfilePicture
+        //            });
+        //        });
+        //    };
+        //});
 
         document.getElementById('messages-content').innerHTML = "";
         populateChat(recipientId);
-        document.getElementById('sendMsg').removeEventListener('click', sendMsg);
         document.getElementById('sendMsg').addEventListener('click', sendMsg);
         firstTime = true;
         subscribeToChat();
@@ -196,11 +230,12 @@
         });
     }
 
-
+    var smth;
     async function populateFilter() {
         await getAllChats().then(response => {
-
             const filterNode = document.getElementById('messages-filter');
+            filterNode.innerHTML = "";
+            smth = messages;
             Object.keys(messages).forEach(function(item) {
 
                 const personMessage = createNode('div');
@@ -297,17 +332,23 @@
                 const message = createNode('span')
                 //check who is who depends on db 
                 if (chat[i].sender == userId) {
-                    messageSender.classList.add('message-sender')
-                    //
-                } else {
                     messageSender.classList.add('message-receiver')
+                    //
+                    appendElement(messageSender, picture);
+
+                } else {
+                    messageSender.classList.add('message-sender')
                     appendElement(messageSender, picture);
                     console.log(picture);
                 }
+                if (messageSender.classList.contains('message-sender')) {
 
+                    appendElement(messageSender, message);
+                } else {
+                    messageSender.insertBefore(message, messageSender.firstChild);
+                }
                 message.innerHTML = chat[i].message;
                 message.classList.add('message');
-                messageSender.insertBefore(message, messageSender.firstChild);
                 appendElement(messageWrap, messageSender);
                 appendElement(messagesNode, messageWrap); 
 
@@ -325,11 +366,12 @@
                 function (snapshot) {
                     if (!firstTime) {
                         var data = snapshot.val();
+                        console.log(transpiled);
                         var transpiled = Object.values(data);
-                        if (transpiled.length != 2) {
+                        if (transpiled.length != 1) {
 
                         
-                        var messageToAdd = transpiled[transpiled.length - 3];
+                        var messageToAdd = transpiled[transpiled.length - 2];
 
 
                         const messageWrap = createNode('div');
@@ -337,14 +379,14 @@
                         const message = createNode('span')
                         if (messageToAdd.sender === userId) {
                             //TODO: redo to include actuall user picture;
-                            messageSender.classList.add('message-sender')
+                            messageSender.classList.add('message-receiver')
                             const picture = createNode('div');
                             picture.classList.add('message-picture');
                             picture.innerHTML = firebaseCurrentUserPicture;
                             appendElement(messageSender, picture);
 
                         } else {
-                            messageSender.classList.add('message-receiver')
+                            messageSender.classList.add('message-sender')
                             const picture = createNode('div');
                             picture.classList.add('message-picture');
                             picture.innerHTML = firebaseCurrentUserPicture;
