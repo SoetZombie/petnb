@@ -1,10 +1,7 @@
 ﻿@using System.Globalization
 @using petnb.DTL.Data.Models.Enums
-@model petnb.DTL.Data.Models.PetSitterOffer
+@model petnb.Models.AccountViewModels.AccountCompletionViewModel
 
-@{
-    ViewData["Title"] = "Create";
-}
 
 <div class="grid-container-ad">
     <div class="progress-bar-left"></div>
@@ -29,48 +26,45 @@
             <!--Name-->
             <div class="personal-details-subheaders">
                 <label>Your full name:</label>
-                <form action="">
-                    <input type="text" class="form-control-account" name="firstname" value="">
-                </form>
+                    <input asp-for="Fullname" type="text" class="form-control-account" name="firstname" value="">
             </div>
 
             <!--Date of birth-->
             <div class="personal-details-subheaders">
                 <label>Your date of birth:</label>
-                <form action="">
-                    <input type="date" class="date-of-birth-box" name="birth-date">
-                </form>
+                     <input  asp-for="Birthdate" type="date" class="date-of-birth-box" name="birth-date">
             </div>
 
-            <!--Adress-->
+            <!--Address-->
             <div class="personal-details-subheaders">
-                <form class="col-12 remove-padding-left">
+                <div class="col-12 remove-padding-left">
                     <div class="form-row">
                         <label class="col-sm-2 col-form-label">Street</label>
-                        <input type="text" class="form-control-account col-sm-4" />
+                        <input asp-for="Street" type="text" class="form-control-account col-sm-4" />
 
                         <label class="remove-padding-left col-sm-2 col-form-label">Zip code</label>
-                        <input type="text" class="form-control-account col-sm-4" />
+                        <input asp-for="Zipcode" type="text" class="form-control-account col-sm-4" />
                     </div>
-                </form>
+                </div>
             </div>
 
             <!--Upload picture-->
             <div class="personal-details-subheaders">
-                <form>
+
                     <label class="header">Upload profile picture:</label>
-                    <input id="image" class="form-control-account" type="file" name="profile_photo" placeholder="Photo" required="" capture>
-                </form>
+                    <input asp-for="ProfileImage" id="image" class="form-control-account" type="file" name="profile_photo" placeholder="Photo" required="" capture>
+
             </div>
             
             <button class="btn-screen-change-next" onclick="ChangeView(0, 1)">Next</button>
         </div>
     </div>
 
-    <!--SECOND SCREEN: Select the pet you would like to sit -->
+    @*<!--SECOND SCREEN: Select the pet you would like to sit -->
     <div class="fill-ad" id="completion-1" style="display: none">
         <div class="header-petad">Select the pets that you would like to sit 😻</div>
         <div class="account-completion-wrapper form-group col-12 remove-padding-left">
+
             <!--Animal checkboxes-->
             <div class="user-type-select-container">
 
@@ -105,57 +99,58 @@
                     <label class="pet-label">Reptiles</label>
                 </div>
             </div>
-            
+
+            <!--JavaScript Screen change-->
             <button class="btn-screen-change-previous" onclick="ChangeView(1, 0)">Previous</button>
             <button class="btn-screen-change-next" onclick="ChangeView(1, 2)">Next</button>
         </div>
-        <!--JavaScript Screen change-->
     </div>
-
+        *@
     <!--Third screen : Experience-->
-    <div class="fill-ad" id="completion-2" style="display: none">
+    <div class="fill-ad" id="completion-1" style="display: none">
         <div class="header-petad"> Experience 💡 </div>
         <div class="account-completion-wrapper form-group col-12 remove-padding-left">
             <div class="experience-details-subheaders"> Have you been a pet sitter before? </div>
             <form>
-                <input type="radio" name="experience" value="experienced"> Yes <br>
-                <input type="radio" name="experience" value="notexperienced"> No <br>
+                <input asp-for="WasPetSitter" type="radio" name="experience" value="true"> Yes <br>
+                <input asp-for="WasPetSitter" type="radio" name="experience" value="false"> No <br>
             </form>
+
             <div class="experience-details-subheaders"> How would you rate your pet sitting experience?</div>
             <div class="rate">
-                <input type="radio" id="star5" name="rate" value="5" />
+                <input asp-for="PetSitterExperienceEnum" type="radio" id="star5" name="rate" value="5" />
                 <label class="rate-5" for="star5" title="text">➎ </label>
-                <input type="radio" id="star4" name="rate" value="4" />
+                <input asp-for="PetSitterExperienceEnum" type="radio" id="star4" name="rate" value="4" />
                 <label class="rate-4" for="star4" title="text">➍ </label>
-                <input type="radio" id="star3" name="rate" value="3" />
+                <input asp-for="PetSitterExperienceEnum" type="radio" id="star3" name="rate" value="3" />
                 <label class="rate-3" for="star3" title="text">➌ </label>
-                <input type="radio" id="star2" name="rate" value="2" />
+                <input asp-for="PetSitterExperienceEnum" type="radio" id="star2" name="rate" value="2" />
                 <label class="rate-2" for="star2" title="text">➋ </label>
-                <input type="radio" id="star1" name="rate" value="1" />
+                <input asp-for="PetSitterExperienceEnum" type="radio" id="star1" name="rate" value="1" />
                 <label class="rate-1" for="star1" title="text">➊ </label>
             </div>
-            <button class="btn-screen-change-previous" onclick="ChangeView(2,1)">Previous</button>
-            <button class="btn-screen-change-next" onclick="ChangeView(2,3)">Next</button>
+            <button class="btn-screen-change-previous" onclick="ChangeView(1,0)">Previous</button>
+            <button class="btn-screen-change-next" onclick="ChangeView(1,2)">Next</button>
         </div>
     </div>
 
 
     <!--Fourth screen : Tell us more about yourself!-->
-    <div class="fill-ad" id="completion-3" style="display: none">
+    <div class="fill-ad" id="completion-2" style="display: none">
         <div class="header-petad"> Tell us more about yourself! ✍️ </div>
         <div class="account-completion-wrapper form-group col-12 remove-padding-left">
-            <form action="">
-                <textarea class="text-area-yourself" placeholder="Type here.." type="text-area" value=""></textarea>
-            </form>
-            <button class="btn-screen-change-previous" onclick="ChangeView(3,2)">Previous</button>
-            <button class="btn-screen-change-next" onclick="ChangeView(3,4)">Next</button>
+  
+                <textarea asp-for="Bio" class="text-area-yourself" placeholder="Type here.." type="text-area" value=""></textarea>
+
+            <button class="btn-screen-change-previous" onclick="ChangeView(2,1)">Previous</button>
+            <button class="btn-screen-change-next" onclick="ChangeView(2,3)">Next</button>
         </div>
     </div>
 
-    <div class="fill-ad" id="completion-4" style="display: none">
-        <div class="header-petad"> Wow, your profile looks pawesome! 🐾 </div>
+    <div class="fill-ad" id="completion-3" style="display: none">
+        <div class="header-petad"> Pawsome 🐾 Your profile is ready! </div>
         <div class="account-completion-wrapper form-group col-12 remove-padding-left">
-            <button class="btn-screen-change-previous" onclick="ChangeView(4,3)">Previous</button>
+            <button class="btn-screen-change-previous" onclick="ChangeView(3,2)">Previous</button>
             <button class="btn-screen-change-next" onclick="">Done</button>
         </div>
     </div>
@@ -168,7 +163,7 @@
         var completionIdToDisplay = "completion-" + completionLevelToDisplay;
         document.getElementById(completionIdToHide).style.display = "none";
         document.getElementById(completionIdToDisplay).style.display = "";
-        document.getElementById("process-bar").style.width = completionLevelToDisplay * 25 + "%";
-        document.getElementById("process-bar-text").innerText = completionLevelToDisplay * 25 + "%";
+        document.getElementById("process-bar").style.width = completionLevelToDisplay * (100 / 3) + "%";
+        document.getElementById("process-bar-text").innerText = Math.round(completionLevelToDisplay * Math.round(100 / 3 * 100) / 100) + "%";
     }
 </script>

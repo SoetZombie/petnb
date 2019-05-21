@@ -573,7 +573,7 @@ namespace petnb.Controllers
         #region AccountCompletion
 
         [HttpGet]
-        public IActionResult AccountCompletion()
+        public async Task<IActionResult> AccountCompletion()
         {
             return View();
         }

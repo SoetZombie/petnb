@@ -140,7 +140,7 @@ form {
 body {
     background: #F2F2F2;
     //background: linear-gradient(to right, #F2F2F2, #65C2AD);
-    background: linear-gradient(to left, #F2F2F2, #65C2AD);
+    background: white;
 }
 /*Landing page styles*/
 .landing-page-grid-container {
@@ -416,17 +416,18 @@ div.login-modal {
         background: #F2F2F2;
     }
 
-    .filter {
-        margin-left: 15%;
-        margin-right: 8%;
-        margin-top: 15%;
-        grid-area: filter;
-        grid-column-gap: 2em;
-        background: white;
-        border-radius: 1rem;
-        padding: 5% 5% 5% 5%;
-        box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.50);
-    }
+.filter {
+    margin-left: 15%;
+    margin-right: 8%;
+    margin-top: 15%;
+    grid-area: filter;
+    grid-column-gap: 2em;
+    background: white;
+    border-radius: 1rem;
+    padding: 5% 5% 5% 5%;
+    box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.50);
+    height: 41rem;
+}
 
     .cards {
         margin-right: 3rem;
@@ -456,7 +457,7 @@ div.login-modal {
     .btn-special {
         text-align: right;
         margin-right: 1rem;
-        margin-top: 8rem;
+        margin-top: 1rem;
     }
 
     .btn-special2 {
@@ -465,15 +466,16 @@ div.login-modal {
         padding: 10rem 2rem 1rem 1rem;
     }
 
-    .form-search {
-        color: black;
-        font-family: $quicksand;
-        padding-bottom: 5%;
-        width: 100%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        box-sizing: border-box;
-    }
+.form-search {
+    color: black;
+    font-family: $quicksand;
+    font-weight: 600;
+    padding-bottom: 5%;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
 
     .filter-heading {
         font-family: $quicksand;
@@ -507,12 +509,12 @@ div.login-modal {
     }
 
     .usr-description {
-        display: flex;
         flex-direction: row;
         width: -webkit-fill-available;
         justify-content: space-between;
         align-content: center;
         height: 14rem;
+        overflow:hidden;
     }
 
     .name-heading {
@@ -520,23 +522,25 @@ div.login-modal {
         font-size: 30px;
         font-weight: bold;
         margin-top: 1rem;
+        margin-bottom: 0;
         padding: 0px 0px 0px 0px;
     }
 
-    .location {
-        font-family: $quicksand;
-        font-size: 15px;
-        font-weight: normal;
-        margin-left: .2rem;
-    }
+.location {
+    font-family: $quicksand;
+    font-size: 15px;
+    font-weight: normal;
+    margin-left: .2rem;
+    color: #596064;
+}
 
-    .description {
-        font-family: $quicksand;
-        font-size: 15px;
-        font-weight: normal;
-        padding: 2rem 1rem 0 .2rem;
-        //width: 40rem;
-    }
+.description {
+    font-family: $quicksand;
+    font-size: 15px;
+    font-weight: normal;
+    color: #596064;
+    //width: 40rem;
+}
 
     .grid {
         margin-bottom: 1.5rem;
@@ -850,7 +854,7 @@ div.login-modal {
         color: white;
         padding: 0.5rem 0.8rem 0.5rem 0.8rem;
         right:0rem;
-        bottom:0rem;
+        bottom:2rem;
         position:absolute;
     }
 
@@ -864,7 +868,7 @@ div.login-modal {
     color: white;
     padding: 0.5rem 0.8rem 0.5rem 0.5rem;
     left: 0rem;
-    bottom: 0rem;
+    bottom: 2rem;
     position: absolute;
 }
 
@@ -926,35 +930,35 @@ div.login-modal {
         color: $greenColor;
     }
 
-    .grid-container-ad {
-        height: 40rem;
-        display: grid;
-        grid-template-columns: 0.5fr 1fr 0.5fr;
-        grid-template-rows: 0.2fr 1fr;
-        grid-template-areas: "progress-bar-left progress-bar-center progress-bar-right" ". fill-ad .";
-        background-color: white;
-    }
+.grid-container-ad {
+    height: 40rem;
+    display: grid;
+    grid-template-columns: 0.5fr 1fr 0.5fr;
+    grid-template-rows: 0.2fr 1fr;
+    grid-template-areas: "progress-bar-left progress-bar-center progress-bar-right" ". fill-ad .";
+    background-color: #f7f7f7;
+}
 
-    .progress-bar-center {
-        grid-area: progress-bar-center;
-        border-bottom: solid 1px #f7f7f7;
-        height: 65px;
-        background-color: white;
-    }
+.progress-bar-center {
+    grid-area: progress-bar-center;
+    border-bottom: solid 1px #c4c4c4;
+    height: 65px;
+    background-color: #f7f7f7 ;
+}
 
-    .progress-bar-left {
-        grid-area: progress-bar-left;
-        border-bottom: solid 1px #f7f7f7;
-        height: 65px;
-        background-color: white;
-    }
+.progress-bar-left {
+    grid-area: progress-bar-left;
+    border-bottom: solid 1px #c4c4c4;
+    height: 65px;
+    background-color: #f7f7f7;
+}
 
-    .progress-bar-right {
-        grid-area: progress-bar-right;
-        border-bottom: solid 1px #f7f7f7;
-        height: 65px;
-        background-color: white;
-    }
+.progress-bar-right {
+    grid-area: progress-bar-right;
+    border-bottom: solid 1px #c4c4c4;
+    height: 65px;
+    background-color: #f7f7f7;
+}
 
     .progress-logo {
         margin-top: .65rem;
@@ -981,7 +985,7 @@ div.login-modal {
         -webkit-border-radius: 5px;
         border-radius: 5px;
         height: 6px;
-        background-color: #f7f7f7;
+        background-color: #c4c4c4;
         vertical-align: middle;
         margin-top: 1.8rem;
     }
@@ -1155,7 +1159,7 @@ div.login-modal {
 }
 
 .text-area-yourself {
-    width: 40rem;
+    width: 38rem;
     height: 15rem;
     border-radius: 0.5rem;
     border: none;
@@ -1422,7 +1426,14 @@ div.login-modal {
 .rate > label:hover ~ input:checked ~ label {
     color: $greenColor;
 }
+ //Google Maps styling
 
+#map {
+    height: 18.5rem;
+    width: 15rem;
+    margin-top: 2rem;
+    margin-left: 1.1rem;
+}
 
 
 

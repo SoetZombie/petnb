@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using petnb.DTL.Models;
 
 namespace petnb.DTL.Data.Models
@@ -12,6 +10,6 @@ namespace petnb.DTL.Data.Models
         public double? Rating { get; set; }
         public string UserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
-
-    }
+        public Experience Experience { get; set; }
+}
 }
