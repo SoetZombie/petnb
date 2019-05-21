@@ -344,7 +344,8 @@ h4.main-heading {
   background: white;
   border-radius: 1rem;
   padding: 5% 5% 5% 5%;
-  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.5); }
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.5);
+  height: 41rem; }
 
 .cards {
   margin-right: 3rem;
@@ -368,7 +369,7 @@ h4.main-heading {
 .btn-special {
   text-align: right;
   margin-right: 1rem;
-  margin-top: 8rem; }
+  margin-top: 1rem; }
 
 .btn-special2 {
   text-align: right;
@@ -377,6 +378,7 @@ h4.main-heading {
 .form-search {
   color: black;
   font-family: "Quicksand", sans-serif;
+  font-weight: 600;
   padding-bottom: 5%;
   width: 100%;
   padding: 12px 20px;
@@ -408,31 +410,33 @@ h4.main-heading {
   margin: 1rem 0; }
 
 .usr-description {
-  display: flex;
   flex-direction: row;
   width: -webkit-fill-available;
   justify-content: space-between;
   align-content: center;
-  height: 14rem; }
+  height: 14rem;
+  overflow: hidden; }
 
 .name-heading {
   font-family: "Quicksand", sans-serif;
   font-size: 30px;
   font-weight: bold;
   margin-top: 1rem;
+  margin-bottom: 0;
   padding: 0px 0px 0px 0px; }
 
 .location {
   font-family: "Quicksand", sans-serif;
   font-size: 15px;
   font-weight: normal;
-  margin-left: .2rem; }
+  margin-left: .2rem;
+  color: #596064; }
 
 .description {
   font-family: "Quicksand", sans-serif;
   font-size: 15px;
   font-weight: normal;
-  padding: 2rem 1rem 0 .2rem; }
+  color: #596064; }
 
 .grid {
   margin-bottom: 1.5rem;
@@ -1163,3 +1167,9 @@ h4.main-heading {
 .rate > input:checked ~ label:hover ~ label,
 .rate > label:hover ~ input:checked ~ label {
   color: #65C2AD; }
+
+#map {
+  height: 18.5rem;
+  width: 15rem;
+  margin-top: 2rem;
+  margin-left: 1.1rem; }

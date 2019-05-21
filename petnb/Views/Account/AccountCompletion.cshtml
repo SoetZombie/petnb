@@ -35,14 +35,14 @@
                      <input  asp-for="Birthdate" type="date" class="date-of-birth-box" name="birth-date">
             </div>
 
-            <!--Adress-->
+            <!--Address-->
             <div class="personal-details-subheaders">
                 <div class="col-12 remove-padding-left">
                     <div class="form-row">
-                        <label class="col-sm-1 col-form-label">Street</label>
+                        <label class="col-sm-2 col-form-label">Street</label>
                         <input asp-for="Street" type="text" class="form-control-account col-sm-4" />
 
-                        <label class="remove-padding-left col-sm-1 col-form-label">Zip code</label>
+                        <label class="remove-padding-left col-sm-2 col-form-label">Zip code</label>
                         <input asp-for="Zipcode" type="text" class="form-control-account col-sm-4" />
                     </div>
                 </div>
@@ -60,10 +60,11 @@
         </div>
     </div>
 
-    <!--SECOND SCREEN: Select the pet you would like to sit -->
+    @*<!--SECOND SCREEN: Select the pet you would like to sit -->
     <div class="fill-ad" id="completion-1" style="display: none">
         <div class="header-petad">Select the pets that you would like to sit 😻</div>
         <div class="account-completion-wrapper form-group col-12 remove-padding-left">
+
             <!--Animal checkboxes-->
             <div class="user-type-select-container">
 
@@ -98,15 +99,15 @@
                     <label class="pet-label">Reptiles</label>
                 </div>
             </div>
-            
+
+            <!--JavaScript Screen change-->
             <button class="btn-screen-change-previous" onclick="ChangeView(1, 0)">Previous</button>
             <button class="btn-screen-change-next" onclick="ChangeView(1, 2)">Next</button>
         </div>
-        <!--JavaScript Screen change-->
     </div>
-
+        *@
     <!--Third screen : Experience-->
-    <div class="fill-ad" id="completion-2" style="display: none">
+    <div class="fill-ad" id="completion-1" style="display: none">
         <div class="header-petad"> Experience 💡 </div>
         <div class="account-completion-wrapper form-group col-12 remove-padding-left">
             <div class="experience-details-subheaders"> Have you been a pet sitter before? </div>
@@ -128,28 +129,28 @@
                 <input asp-for="PetSitterExperienceEnum" type="radio" id="star1" name="rate" value="1" />
                 <label class="rate-1" for="star1" title="text">➊ </label>
             </div>
-            <button class="btn-screen-change-previous" onclick="ChangeView(2,1)">Previous</button>
-            <button class="btn-screen-change-next" onclick="ChangeView(2,3)">Next</button>
+            <button class="btn-screen-change-previous" onclick="ChangeView(1,0)">Previous</button>
+            <button class="btn-screen-change-next" onclick="ChangeView(1,2)">Next</button>
         </div>
     </div>
 
 
     <!--Fourth screen : Tell us more about yourself!-->
-    <div class="fill-ad" id="completion-3" style="display: none">
+    <div class="fill-ad" id="completion-2" style="display: none">
         <div class="header-petad"> Tell us more about yourself! ✍️ </div>
         <div class="account-completion-wrapper form-group col-12 remove-padding-left">
   
                 <textarea asp-for="Bio" class="text-area-yourself" placeholder="Type here.." type="text-area" value=""></textarea>
 
-            <button class="btn-screen-change-previous" onclick="ChangeView(3,2)">Previous</button>
-            <button class="btn-screen-change-next" onclick="ChangeView(3,4)">Next</button>
+            <button class="btn-screen-change-previous" onclick="ChangeView(2,1)">Previous</button>
+            <button class="btn-screen-change-next" onclick="ChangeView(2,3)">Next</button>
         </div>
     </div>
 
-    <div class="fill-ad" id="completion-4" style="display: none">
+    <div class="fill-ad" id="completion-3" style="display: none">
         <div class="header-petad"> Pawsome 🐾 Your profile is ready! </div>
         <div class="account-completion-wrapper form-group col-12 remove-padding-left">
-            <button class="btn-screen-change-previous" onclick="ChangeView(4,3)">Previous</button>
+            <button class="btn-screen-change-previous" onclick="ChangeView(3,2)">Previous</button>
             <button class="btn-screen-change-next" onclick="">Done</button>
         </div>
     </div>
@@ -162,7 +163,7 @@
         var completionIdToDisplay = "completion-" + completionLevelToDisplay;
         document.getElementById(completionIdToHide).style.display = "none";
         document.getElementById(completionIdToDisplay).style.display = "";
-        document.getElementById("process-bar").style.width = completionLevelToDisplay * 25 + "%";
-        document.getElementById("process-bar-text").innerText = completionLevelToDisplay * 25 + "%";
+        document.getElementById("process-bar").style.width = completionLevelToDisplay * (100 / 3) + "%";
+        document.getElementById("process-bar-text").innerText = Math.round(completionLevelToDisplay * Math.round(100 / 3 * 100) / 100) + "%";
     }
 </script>
