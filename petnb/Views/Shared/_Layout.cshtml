@@ -30,7 +30,9 @@
     userId = user.Id;
     jsSigned = "true";
 }
-
+else{ 
+    jsSigned = "false";
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -168,8 +170,10 @@
     };
     // Initialize Firebase
     firebase.initializeApp(config);
+      
 
     var isSignedIn = @jsSigned;
+       
     const userId = "@Html.Raw(userId)";
     const fullName = "@Html.Raw(fullName)";
     //include image
