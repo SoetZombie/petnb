@@ -240,6 +240,10 @@ else{
         </script>
 
 
+        
+
+    }
+    @RenderSection("Scripts", required: false)
         <script>
 
         const login = document.getElementById("login-btn-ajax");
@@ -381,9 +385,6 @@ else{
             return new Promise(resolve => setTimeout(resolve, ms));
         }
         </script>
-
-    }
-    @RenderSection("Scripts", required: false)
 @RenderBody()
 
 
