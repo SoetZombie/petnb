@@ -16,7 +16,8 @@
 
 <div class="grid-container">
     <div class="filter">
-
+        
+        
         <form>
 
             <div class="form-search">
@@ -66,7 +67,8 @@
             @foreach (var item in Model)
             {
 
-                <div class="grid">
+            
+                <a class="grid" asp-action="Details" asp-route-id="@item.PetSitterOfferId">
                     <img src="~/images/image_1.jpg" alt="Title" style="width: 250px" class="clip-circle" />
                     <div class="grid2">
                         <div class="usr-description">
@@ -81,13 +83,14 @@
                             <input class="authentication-btn register-btn" type="submit" value="contact">
                         </div>
                     </div>
-                </div>
+                </a>
             }
         </div>
 
     </div>
 
 </div>
+
 
 
 

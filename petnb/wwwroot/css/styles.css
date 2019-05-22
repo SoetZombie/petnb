@@ -1184,3 +1184,102 @@ h4.main-heading {
   width: 15rem;
   margin-top: 2rem;
   margin-left: 1.1rem; }
+
+#map-details {
+  height: 100%;
+  width: 100%;
+  margin-top: 2rem;
+  margin-left: 1.1rem; }
+
+.grid-container-details {
+  display: grid;
+  grid-template-columns: 0.2fr 1.2fr 0.2fr;
+  grid-template-rows: 0.2fr 1fr;
+  grid-template-areas: ". . ." ". details-wrapper .";
+  height: 100vh;
+  background-size: 100%;
+  margin-top: -6em;
+  z-index: -1;
+  width: 100%; }
+
+.details-wrapper {
+  display: grid;
+  grid-template-columns: 0.9fr 0.6fr;
+  grid-template-rows: 0.8fr 1.2fr;
+  grid-template-areas: "details-foto-wrapper details-start-xat" "details-description details-similar-profile";
+  grid-area: details-wrapper; }
+
+.details-foto-wrapper {
+  grid-area: details-foto-wrapper;
+  margin: 2rem 0 0 2rem;
+  display: flex; }
+
+.stay-details {
+  font-family: "Quicksand", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 1rem; }
+
+.stay-details2 {
+  font-family: "Quicksand", sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  padding-right: 1.3rem;
+  padding-left: 1rem; }
+
+.salary-container-details {
+  font-family: "Quicksand", sans-serif;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+  flex-direction: column;
+  position: relative;
+  right: 11rem;
+  top: 12rem; }
+
+.dkk-h-details {
+  font-family: "Quicksand", sans-serif;
+  font-weight: bold;
+  margin-top: 1rem; }
+
+.expected-salary-details {
+  background-color: #65C2AD;
+  border-radius: 50px;
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  align-items: center; }
+
+.details-start-xat {
+  grid-area: details-start-xat;
+  background-color: #65C2AD;
+  border-radius: 1rem;
+  margin: 3rem 10rem 5rem 5rem; }
+
+.text-connect {
+  font-family: "Quicksand", sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+  margin: 1rem 2rem 0 2.7rem; }
+
+.btn-connect {
+  background-color: white;
+  color: #65C2AD;
+  padding: 0.5rem 0.8rem 0.5rem 0.8rem;
+  width: 15rem;
+  margin: 0.5rem 0 0 2.6rem; }
+
+.btn-connect:hover {
+  background-color: lightgray;
+  color: #65C2AD;
+  cursor: pointer; }
+
+.details-description {
+  grid-area: details-description; }
+
+.details-similar-profile {
+  grid-area: details-similar-profile; }

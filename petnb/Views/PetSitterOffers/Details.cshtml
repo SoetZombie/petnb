@@ -4,57 +4,126 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>PetSitterOffer</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Heading)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Heading)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Content)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Content)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Location)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.StartOfSit)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.StartOfSit)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.EndOfSit)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.EndOfSit)
-        </dd>
-        @*<dt>
-            @Html.DisplayNameFor(model => model.User)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.User.Id)
-        </dd>*@
-        <dt>
-            @Html.DisplayNameFor(model => model.ExpectedSalary)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ExpectedSalary)
-        </dd>
+
+
+<div class="grid-container-details">
+    <div class="details-wrapper">
+        <div class="details-foto-wrapper">
+            <div class="img-details">
+                <img src="/images/image_1.jpg" alt="Title" style="width: 250px" class="clip-circle">
+                <div class="salary-container-details">
+                    <div class="expected-salary-details">
+                        <div class="stay-details2">@Html.DisplayFor(model => model.ExpectedSalary)</div>
+                        <div class="dkk-h-details">DKK/h</div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            <div class="usr-description">
+                <h2 class="name-heading">@Html.DisplayFor(model => model.Heading)</h2>
+                <p class="location"><i class="fa fa-map-marker-alt" style="color: #ea9078;"></i> @Html.DisplayFor(model => model.Location)</p>
+                <div class="stay-details">
+                    Periode of sit: @Html.DisplayFor(model => model.StartOfSit) -
+                    @Html.DisplayFor(model => model.EndOfSit)
+                </div>
+                
+                <p class="description">@Html.DisplayFor(model => model.Content)</p>
+
+                @*class="location" class="description*@
+
+            </div>
+            
+            
+        </div>
+        <div class="details-start-xat">
+            <div class="text-connect">
+                Want to connect with NAME ?
+            </div>
+            <button class="authentication-btn btn-connect" >Connect</button>
+
+        </div>
+        <div class="details-description">
+            <div id="map-details"></div>
+            <script>
+                var map;
+                function initMap() {
+                    map = new google.maps.Map(document.getElementById('map-details'), {
+                        center: { lat: 56.1629, lng: 10.2039 },
+                        zoom: 8
+                    });
+                }
+            </script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5rltgfTIREXIhA7S39x-F--eDJMY3fiI&callback=initMap"
+                    async defer></script>
+
+        </div>
+        <div class="details-similar-profile">
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@*
+
+
+    <h2>Details</h2>
+
+    <div>
+        <h4>PetSitterOffer</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Heading)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Heading)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Content)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Content)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Location)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Location)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.StartOfSit)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.StartOfSit)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.EndOfSit)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.EndOfSit)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.User)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.User.Id)
+            </dd>
+<dt>
+    @Html.DisplayNameFor(model => model.ExpectedSalary)
+</dt>
+<dd>
+    @Html.DisplayFor(model => model.ExpectedSalary)
+</dd>
     </dl>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.PetSitterOfferId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+*@
