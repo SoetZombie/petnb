@@ -416,8 +416,10 @@ namespace petnb.Controllers
                 ViewData["ReturnUrl"] = returnUrl;
                 ViewData["LoginProvider"] = info.LoginProvider;
                 var email = info.Principal.FindFirstValue(ClaimTypes.Email);
+                var fullName = info.Principal.FindFirstValue(ClaimTypes.GivenName) + " " +info.Principal.FindFirstValue(
+                    ClaimTypes.Surname);
 
-                var user = new ApplicationUser { UserName = email, Email = email };
+                var user = new ApplicationUser { UserName = email, Email = email, FullName = fullName};
                 var outcome = await _userManager.CreateAsync(user);
                 if (outcome.Succeeded)
                 {
@@ -580,10 +582,19 @@ namespace petnb.Controllers
         }
         [HttpPost]
         public async Task<IActionResult> AccountCompletion(AccountCompletionViewModel model)
-        {
+            {
             var user = await _userManager.GetUserAsync(HttpContext.User);
+
             _accountService.FillProfile(
-                user.Id, model.Fullname, model.Birthdate, model.Street, model.Zipcode, model.ProfileImage, model.WasPetSitter, model.PetSitterExperienceEnum, model.PetSitterExperience, model.Bio);
+                user.Id, model.FullName,
+                model.Birthdate, model.Street,
+                model.Zipcode,
+                model.ProfileImage,
+                model.WasPetSitter,
+                model.PetSitterExperienceEnum,
+                model.PetSitterExperience,
+                model.Bio
+                );
 
             return View();
         }

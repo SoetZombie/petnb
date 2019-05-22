@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Compile Remove="Migrations\20190521082509_ExperienceMigration.cs" />
+    <Compile Remove="Migrations\20190522161840_AccountCompletionFullNameMigration.cs" />
   </ItemGroup>
 
   <ItemGroup>
