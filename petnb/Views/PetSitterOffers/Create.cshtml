@@ -22,256 +22,257 @@
     </div>
     <div class="progress-bar-right"></div>
 
-    <div class="account-completion-wrapper form-group col-12 remove-padding-left" style="grid-area: fill-ad">
-        <form asp-action="Create" style="grid-area: fill-ad">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    
+    <form asp-action="Create" style="grid-area: fill-ad">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="fill-ad" id="completion-0">
-                <div class="header-petad">Select the pets that you would like to sit 😻</div>
+        <div class="fill-ad" id="completion-0">
+            <div class="header-petad">Select the pets that you would like to sit 😻</div>
 
-                <!--Animal checkboxes-->
-                <div class="user-type-select-container">
+            <!--Animal checkboxes-->
+            <div class="user-type-select-container">
 
-                    <div class=" d-flex flex-column">
-                        <input asp-for="p" type="checkbox" value="dog" name="dog" id="dog" class="dog" style="display:none" />
-                        <label class="dog-label" for="dog"></label>
-                        <label class="pet-label">Dog</label>
-                    </div>
-                    <div class=" d-flex flex-column">
-                        <input type="checkbox" value="reptile" name="cat" id="cat" class="cat" style="display:none" />
-                        <label class="cat-label" for="cat"></label>
-                        <label class="pet-label">Cat</label>
-                    </div>
-                    <div class=" d-flex flex-column">
-                        <input type="checkbox" value="reptile" name="fish" id="fish" class="fish" style="display:none" />
-                        <label class="fish-label" for="fish"></label>
-                        <label class="pet-label">Fish</label>
-                    </div>
-                    <div class=" d-flex flex-column">
-                        <input type="checkbox" value="reptile" name="bird" id="bird" class="bird" style="display:none" />
-                        <label class="bird-label" for="bird"></label>
-                        <label class="pet-label">Bird</label>
-                    </div>
-                    <div class=" d-flex flex-column">
-                        <input type="checkbox" value="reptile" name="hamster" id="hamster" class="hamster" style="display:none" />
-                        <label class="hamster-label" for="hamster"></label>
-                        <label class="pet-label">Rodents</label>
-                    </div>
-                    <div class=" d-flex flex-column">
-                        <input type="checkbox" value="reptile" name="reptile" id="reptile" class="reptile" style="display:none" />
-                        <label class="reptile-label" for="reptile"></label>
-                        <label class="pet-label">Reptiles</label>
-                    </div>
+                <div class=" d-flex flex-column">
+                    <input type="checkbox" value="dog" name="dog" id="dog" class="dog" style="display:none" />
+                    <label class="dog-label" for="dog"></label>
+                    <label class="pet-label">Dog</label>
                 </div>
-
+                <div class=" d-flex flex-column">
+                    <input type="checkbox" value="reptile" name="cat" id="cat" class="cat" style="display:none" />
+                    <label class="cat-label" for="cat"></label>
+                    <label class="pet-label">Cat</label>
+                </div>
+                <div class=" d-flex flex-column">
+                    <input type="checkbox" value="reptile" name="fish" id="fish" class="fish" style="display:none" />
+                    <label class="fish-label" for="fish"></label>
+                    <label class="pet-label">Fish</label>
+                </div>
+                <div class=" d-flex flex-column">
+                    <input type="checkbox" value="reptile" name="bird" id="bird" class="bird" style="display:none" />
+                    <label class="bird-label" for="bird"></label>
+                    <label class="pet-label">Bird</label>
+                </div>
+                <div class=" d-flex flex-column">
+                    <input type="checkbox" value="reptile" name="hamster" id="hamster" class="hamster" style="display:none" />
+                    <label class="hamster-label" for="hamster"></label>
+                    <label class="pet-label">Rodents</label>
+                </div>
+                <div class=" d-flex flex-column">
+                    <input type="checkbox" value="reptile" name="reptile" id="reptile" class="reptile" style="display:none" />
+                    <label class="reptile-label" for="reptile"></label>
+                    <label class="pet-label">Reptiles</label>
+                </div>
             </div>
 
+        </div>
 
 
 
 
-            <!--First screen - Header-->
-            <div class="fill-ad" id="completion-1" style="display:none">
+
+        <!--First screen - Header-->
+        <div class="fill-ad" id="completion-1" style="display:none">
 
 
-                <div class="header-petad">
-                    Let's find
-                    a nice and original title for your ad 💎
-                </div>
-
-                <div class="petad-form">
-                    <div class="form-group">
-                        <textarea asp-for="Heading" maxlength="250" data-maxlength="250" class="form-control" name="heading"
-                                  placeholder="eg: Full-time pet sitter/dog walker. Offering loving care in their own comfortable and familiar environment"
-                                  spellcheck="false"></textarea>
-                    </div>
-
-                    <div class="info-petad">
-                        <img src="~/images/i.svg" class="info-image" />
-                        <div class="info-petad-text">
-                            A perfect title is the key to a good ad. Think about it, you must have a hook and have at least 12 words, like:
-                            <br />
-                            <br />
-                            • Mention the pets you want to sit
-                            <br />
-                            • The city where you will pet sit or your area of activity
-                            <br />
-                            • Something to highlight (experienced with ...)
-                            <br />
-                            <br />
-                            eg: "Full-time pet sitter/dog walker. Offering loving care in their own comfortable and familiar environment".
-                        </div>
-                    </div>
-                </div>
-
-                <!--
-                <a id="btn-previous" class="btn-screen-change-previous">Previous</a>
-                <a id="btn-next" class="btn-screen-change-next">Next</a>
-                <a class="btn-screen-change-next btn-next" onclick="ChangeView(1, 2)">Next</a>-->
-
-
+            <div class="header-petad">
+                Let's find
+                a nice and original title for your ad 💎
             </div>
 
-            <!--Second screen - Content-->
-            <div class="fill-ad" id="completion-2" style="display:none">
-                <div class="header-petad">
-                    Tell us what is your experience in pet sitting ✍️
-                </div>
-
+            <div class="petad-form">
                 <div class="form-group">
-                    <textarea asp-for="Content" maxlength="600" data-maxlength="600" class="form-control" name="content"
-                              placeholder="Type here"
+                    <textarea asp-for="Heading" maxlength="250" data-maxlength="250" class="form-control" name="heading"
+                              placeholder="eg: Full-time pet sitter/dog walker. Offering loving care in their own comfortable and familiar environment"
                               spellcheck="false"></textarea>
-                    <span asp-validation-for="Content" class="text-danger"></span>
                 </div>
+
                 <div class="info-petad">
                     <img src="~/images/i.svg" class="info-image" />
                     <div class="info-petad-text">
-                        Show your professionalism and inspire confidence in the owner of the pet. It is the first thing they will see about you, do not forget to take care of the spelling and the shape of your texts so that they are as attractive as possible.
+                        A perfect title is the key to a good ad. Think about it, you must have a hook and have at least 12 words, like:
                         <br />
                         <br />
-                        Do not forget that your last names, contact information, logo or URLs should not appear in your texts ; )
+                        • Mention the pets you want to sit
+                        <br />
+                        • The city where you will pet sit or your area of activity
+                        <br />
+                        • Something to highlight (experienced with ...)
+                        <br />
+                        <br />
+                        eg: "Full-time pet sitter/dog walker. Offering loving care in their own comfortable and familiar environment".
                     </div>
                 </div>
-
-                <!-- <input type="submit" value="back" class="authentication-btn login-btn" onclick="ChangeView(1, 0)">
-                <input type="submit" value="next" class="authentication-btn register-btn" onclick="ChangeView(1, 2)">
-                    <a class="btn-screen-change-previous" onclick="ChangeView(2, 1)">Previous</a>
-                    <a class="btn-screen-change-next" onclick="ChangeView(2, 3)">Next</a>-->
-
             </div>
 
-            <!--Third screen - Location-->
-            <div class="fill-ad" id="completion-3" style="display:none">
-                <div class="header-petad">
-                    Your postal address 🏠
-                </div>
+            <!--
+        <a id="btn-previous" class="btn-screen-change-previous">Previous</a>
+        <a id="btn-next" class="btn-screen-change-next">Next</a>
+        <a class="btn-screen-change-next btn-next" onclick="ChangeView(1, 2)">Next</a>-->
 
-                <div class="form-group">
-                    <input asp-for="Location" class="form-control" value="Location" />
-                    <span asp-validation-for="Location" class="text-danger"></span>
-                </div>
-                <div class="info-petad2">
-                    <img src="~/images/i.svg" class="info-image2" />
-                    <div class="info-petad-text2">
-                        This address will never appear on the web page. It will be shared only with those users that you have selected.
-                    </div>
-                </div>
-                <div class="button-wrapper">
-                    <div class="button-move1">
-                        <input type="radio" name="move" value="yes" class="button-move-special">
-                        <span class="text-button">Yes, I can make the trip</span>
-                    </div>
-                    <div class="button-move2">
-                        <input type="radio" name="move" value="no" class="button-move-special">
-                        <span class="text-button">No, the owner has to bring him</span>
-                    </div>
-                </div>
-                <div class="button-move3">
-                    <input type="radio" name="move" value="depends" class="button-move-special">
-                    <span class="text-button">Maybe, I need to discuss it with the owner</span>
-                </div>
 
-                <!-- <a class="btn-screen-change-previous" onclick="ChangeView(3, 2)">Previous</a>
-                <a class="btn-screen-change-next" onclick="ChangeView(3, 4)">Next</a>-->
+        </div>
 
+        <!--Second screen - Content-->
+        <div class="fill-ad" id="completion-2" style="display:none">
+            <div class="header-petad">
+                Tell us what is your experience in pet sitting ✍️
             </div>
 
-            <!-- Fourth screen - Availability-->
-            <div class="fill-ad" id="completion-4" style="display: none">
-                <div class="header-petad">
-                    Select your availability 📅
+            <div class="form-group">
+                <textarea asp-for="Content" maxlength="600" data-maxlength="600" class="form-control" name="content"
+                          placeholder="Type here"
+                          spellcheck="false"></textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+            <div class="info-petad">
+                <img src="~/images/i.svg" class="info-image" />
+                <div class="info-petad-text">
+                    Show your professionalism and inspire confidence in the owner of the pet. It is the first thing they will see about you, do not forget to take care of the spelling and the shape of your texts so that they are as attractive as possible.
+                    <br />
+                    <br />
+                    Do not forget that your last names, contact information, logo or URLs should not appear in your texts ; )
                 </div>
-
-                <div class="form-group">
-                    <span class="text-button">Start of sit</span>
-                    <input asp-for="StartOfSit" class="form-control" type="date" value=@DateTime.Now.Date.ToString("yyyy/MM/dd") />
-                    <span asp-validation-for="StartOfSit" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <span class="text-button">End of sit</span>
-                    <input asp-for="EndOfSit" class="form-control" value=@DateTime.Now.Date.ToString("yyyy/MM/dd") type="date" />
-                    <span asp-validation-for="EndOfSit" class="text-danger"></span>
-                </div>
-
-                <!-- <a class="btn-screen-change-previous" onclick="ChangeView(4, 3)">Previous</a>
-                <a class="btn-screen-change-next" onclick="ChangeView(4, 5)">Next</a>-->
-
             </div>
 
+            <!-- <input type="submit" value="back" class="authentication-btn login-btn" onclick="ChangeView(1, 0)">
+        <input type="submit" value="next" class="authentication-btn register-btn" onclick="ChangeView(1, 2)">
+            <a class="btn-screen-change-previous" onclick="ChangeView(2, 1)">Previous</a>
+            <a class="btn-screen-change-next" onclick="ChangeView(2, 3)">Next</a>-->
 
-            <!-- Fifth section - Price per h-->
-            <div class="fill-ad" id="completion-5" style="display:none">
-                <div class="header-petad">
-                    The price per hour 🤑
-                </div>
+        </div>
 
-                <div class="amount-perh">
-                    <input asp-for="ExpectedSalary" class="form-control2" value="Amount" />
-                    <span class="text-button2">DKK/h</span>
-                </div>
-
-                <div class="header-petad">
-                    Indications about your rates (optional)
-                </div>
-                <div class="form-group">
-                    <textarea maxlength="600" data-maxlength="600" class="form-control" name="indications"
-                              placeholder="Specify if your rates vary depending on the type of pet, the displacement or if you have a policy of cancellation."
-                              spellcheck="false"></textarea>
-                </div>
-
-                <!-- <a class="btn-screen-change-previous" onclick="ChangeView(5, 4)">Previous</a>
-                 <a class="btn-screen-change-next" onclick="ChangeView(5, 6)">Next</a>-->
-
-
+        <!--Third screen - Location-->
+        <div class="fill-ad" id="completion-3" style="display:none">
+            <div class="header-petad">
+                Your postal address 🏠
             </div>
 
-
-
-            <!-- Last section - Display AD-->
-            <div class="fill-ad" id="completion-6" style="display:none">
-                <div class="header-petad">
-                    Bravo! Your ad is complete 🎉
+            <div class="form-group">
+                <input asp-for="Location" class="form-control" value="Location" />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+            <div class="info-petad2">
+                <img src="~/images/i.svg" class="info-image2" />
+                <div class="info-petad-text2">
+                    This address will never appear on the web page. It will be shared only with those users that you have selected.
                 </div>
-
-                <div class="form-group">
-                    <span class="text-button">Last thing: improve your ad with recommendations from friends, colleagues, new users ... The more you have, the more attractive it will be and the better positioned it will be ✌️</span>
+            </div>
+            <div class="button-wrapper">
+                <div class="button-move1">
+                    <input type="radio" name="move" value="yes" class="button-move-special">
+                    <span class="text-button">Yes, I can make the trip</span>
                 </div>
+                <div class="button-move2">
+                    <input type="radio" name="move" value="no" class="button-move-special">
+                    <span class="text-button">No, the owner has to bring him</span>
+                </div>
+            </div>
+            <div class="button-move3">
+                <input type="radio" name="move" value="depends" class="button-move-special">
+                <span class="text-button">Maybe, I need to discuss it with the owner</span>
+            </div>
 
-                <div class="grid">
-                    <img src="~/images/image_1.jpg" alt="Title" style="width: 250px" class="clip-circle" />
-                    <div class="grid2">
-                        <div class="usr-description">
-                            <div class="description-wrapper">
-                                <div class="name-heading"> @Html.DisplayNameFor(model => model.Heading)</div>
-                                <div class="location">@Html.DisplayNameFor(model => model.Location) @Html.DisplayNameFor(model => model.StartOfSit) - @Html.DisplayNameFor(model => model.EndOfSit)</div>
+            <!-- <a class="btn-screen-change-previous" onclick="ChangeView(3, 2)">Previous</a>
+        <a class="btn-screen-change-next" onclick="ChangeView(3, 4)">Next</a>-->
 
-                                <div class="content">@Html.DisplayNameFor(model => model.Content)</div>
-                            </div>
+        </div>
 
-                            <div class="salary-container">
-                                <div class="expected-salary">@Html.DisplayNameFor(model => model.ExpectedSalary)</div>
-                                <div class="dkk-h">DKK/h</div>
-                            </div>
+        <!-- Fourth screen - Availability-->
+        <div class="fill-ad" id="completion-4" style="display: none">
+            <div class="header-petad">
+                Select your availability 📅
+            </div>
+
+            <div class="form-group">
+                <span class="text-button">Start of sit</span>
+                <input asp-for="StartOfSit" class="form-control" type="date" value=@DateTime.Now.Date.ToString("yyyy/MM/dd") />
+                <span asp-validation-for="StartOfSit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span class="text-button">End of sit</span>
+                <input asp-for="EndOfSit" class="form-control" value=@DateTime.Now.Date.ToString("yyyy/MM/dd") type="date" />
+                <span asp-validation-for="EndOfSit" class="text-danger"></span>
+            </div>
+
+            <!-- <a class="btn-screen-change-previous" onclick="ChangeView(4, 3)">Previous</a>
+        <a class="btn-screen-change-next" onclick="ChangeView(4, 5)">Next</a>-->
+
+        </div>
 
 
+        <!-- Fifth section - Price per h-->
+        <div class="fill-ad" id="completion-5" style="display:none">
+            <div class="header-petad">
+                The price per hour 🤑
+            </div>
+
+            <div class="amount-perh">
+                <input asp-for="ExpectedSalary" class="form-control2" value="Amount" />
+                <span class="text-button2">DKK/h</span>
+            </div>
+
+            <div class="header-petad">
+                Indications about your rates (optional)
+            </div>
+            <div class="form-group">
+                <textarea maxlength="600" data-maxlength="600" class="form-control" name="indications"
+                          placeholder="Specify if your rates vary depending on the type of pet, the displacement or if you have a policy of cancellation."
+                          spellcheck="false"></textarea>
+            </div>
+
+            <!-- <a class="btn-screen-change-previous" onclick="ChangeView(5, 4)">Previous</a>
+         <a class="btn-screen-change-next" onclick="ChangeView(5, 6)">Next</a>-->
+
+
+        </div>
+
+
+
+        <!-- Last section - Display AD-->
+        <div class="fill-ad" id="completion-6" style="display:none">
+            <div class="header-petad">
+                Bravo! Your ad is complete 🎉
+            </div>
+
+            <div class="form-group">
+                <span class="text-button">Last thing: improve your ad with recommendations from friends, colleagues, new users ... The more you have, the more attractive it will be and the better positioned it will be ✌️</span>
+            </div>
+
+            <div class="grid">
+                <img src="~/images/image_1.jpg" alt="Title" style="width: 250px" class="clip-circle" />
+                <div class="grid2">
+                    <div class="usr-description">
+                        <div class="description-wrapper">
+                            <div class="name-heading"> @Html.DisplayNameFor(model => model.Heading)</div>
+                            <div class="location">@Html.DisplayNameFor(model => model.Location) @Html.DisplayNameFor(model => model.StartOfSit) - @Html.DisplayNameFor(model => model.EndOfSit)</div>
+
+                            <div class="content">@Html.DisplayNameFor(model => model.Content)</div>
                         </div>
 
+
+
+
+                    </div>
+                    <div class="salary-container">
+                        <div class="expected-salary">@Html.DisplayNameFor(model => model.ExpectedSalary)</div>
+                        <div class="dkk-h">DKK/h</div>
                     </div>
                 </div>
-
-
-
-
-                <!--<button class="authentication-btn register-btn" onclick="ChangeView(3, 4)">Finish</button>-->
-
             </div>
 
+
+
+
+            <!--<button class="authentication-btn register-btn" onclick="ChangeView(3, 4)">Finish</button>-->
+
+        </div>
+        <div class="col-12 remove-padding-left" style="grid-area: fill-ad">
             <a id="btn-previous" style="display:none" class="btn-screen-change-previous">Previous</a>
             <a id="btn-next" class="btn-screen-change-next">Next</a>
             <input type="submit" value="Create" class="btn-screen-change-next" style="display: none" id="btn-create">
-        </form>
-    </div>
+        </div>
+    </form>
+    
 </div>
 
 
