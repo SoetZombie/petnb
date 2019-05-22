@@ -1112,8 +1112,7 @@ h4.main-heading {
   padding-left: 1rem; }
 
 .remove-padding-left {
-  padding-left: 0;
-  color: white; }
+  padding-left: 0; }
 
 .personal-details-subheaders {
   font-family: "Quicksand", sans-serif;
@@ -1184,3 +1183,26 @@ h4.main-heading {
   width: 15rem;
   margin-top: 2rem;
   margin-left: 1.1rem; }
+
+.profile-details-placeholder {
+  margin-left: 20rem;
+  margin-right: 20rem;
+  padding-top: 3rem; }
+
+.profile-details-header {
+  font-family: "Quicksand", sans-serif;
+  position: absolute;
+  right: 42%;
+  left: 41%; }
+
+.profile-details-table {
+  margin-top: 6rem;
+  font-family: "Quicksand", sans-serif;
+  color: #4F4F4F; }
+
+.profile-details-table, th, td {
+  padding: 0.5rem; }
+
+.profile-details-background {
+  background: #F2F2F2;
+  height: 34rem; }
