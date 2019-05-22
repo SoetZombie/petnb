@@ -12,10 +12,22 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;/**//**/
 using petnb.Models;
 
+using Microsoft.AspNetCore.Identity;
+using petnb.DTL.Models;
+
 namespace petnb.Controllers
 {
     public class HomeController : Controller
     {
+
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public HomeController(UserManager<ApplicationUser> userManager)
+        {
+            _userManager = userManager;
+        }
+
+
 
         public IActionResult Index()
         {
@@ -34,6 +46,16 @@ namespace petnb.Controllers
             ViewData["Message"] = "Your contact page.";
 
             return View();
+        }
+
+        public IActionResult BecomePetSitter()
+        {
+            var authenticated = _userManager.GetUserId(HttpContext.User);
+            if (authenticated != null)
+            {
+                return RedirectToAction("AccountCompletion", "Account");
+            }
+            return RedirectToAction("Register", "Account");
         }
 
         public IActionResult Error()

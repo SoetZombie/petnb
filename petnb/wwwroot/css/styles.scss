@@ -1364,7 +1364,6 @@ div.login-modal {
 
 .remove-padding-left {
     padding-left: 0;
-    color: white;
 }
 
 
@@ -1452,6 +1451,36 @@ div.login-modal {
     width: 100%;
     margin-top: 2rem;
     margin-left: 1.1rem;
+}
+
+//Profile details, please DON'T use for other styling
+
+.profile-details-placeholder {
+    margin-left: 20rem;
+    margin-right: 20rem;
+    padding-top: 3rem;
+}
+
+.profile-details-header {
+    font-family: $quicksand;
+    position: absolute;
+    right: 42%;
+    left: 41%;
+}
+
+.profile-details-table {
+    margin-top: 6rem;
+    font-family: $quicksand;
+    color: $basicTextColor;
+}
+
+.profile-details-table, th, td {
+    padding: 0.5rem;
+}
+
+.profile-details-background {
+    background: #F2F2F2;
+    height: 34rem;
 }
 
 

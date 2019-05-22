@@ -3,7 +3,7 @@
 if (isSignedIn) {
 
     var user = firebase.auth().currentUser;
-    if (user == null) {
+    if (user === null) {
         signIn();
 
     }
