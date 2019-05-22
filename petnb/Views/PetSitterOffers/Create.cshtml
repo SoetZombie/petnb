@@ -274,11 +274,13 @@
     </div>
 </div>
 
+
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 @section Scripts{
-    <script src="~/vendor.min.js"></script>
-    <script src="~/js/site.js"></script>
 
 
+
+}
     <script>
 
         //var completionLevelToHide = 0;
@@ -409,23 +411,23 @@
         function animateProgressBar(back) {
             progressBar.animate({
                 width: `${currentStage * 16.66666666666667}%`,
-                duration:500
+                duration: 500
             });
 
             var percent = Math.ceil((currentStage - 1) * 16.66666666666667);
             if (back === true) {
                 var percent = Math.ceil((currentStage) * 16.66666666666667)
             }
-            progressText.text((Math.ceil(currentStage * 16.66666666666667))+'%');
-            progressText.prop( 'Counter', percent).animate({
+            progressText.text((Math.ceil(currentStage * 16.66666666666667)) + '%');
+            progressText.prop('Counter', percent).animate({
                 Counter: progressText.text()
             }, {
-                duration: 500,
-                easing: 'swing',
-                step: function() {
-                    progressText.text(Math.ceil(this.Counter)+'%');
-                }
-            });
+                    duration: 500,
+                    easing: 'swing',
+                    step: function () {
+                        progressText.text(Math.ceil(this.Counter) + '%');
+                    }
+                });
 
         }
 
@@ -434,9 +436,6 @@
             return new Promise(resolve => setTimeout(resolve, ms));
         }
     </script>
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
-
 @*<div class="row">
         <div class="col-md-4">
             <form asp-action="Create">

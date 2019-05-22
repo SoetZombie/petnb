@@ -1,4 +1,5 @@
-﻿@using Microsoft.AspNetCore.Http
+﻿@using System.Collections.Specialized
+@using Microsoft.AspNetCore.Http
 @using petnb.DTL.Models
 
 @using System.Linq
@@ -145,16 +146,13 @@ else{
     </div>
 
 
-    @RenderBody()
-    @RenderSection("Scripts", required: false)
-
 
         <script src="~/vendor.min.js"></script>
+    @section Scripts{
+
         <script src="~/js/site.js"></script>
         <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
-
-
-
+       
         <script>
         let allChats = [];
         let recipientFullName = [];
@@ -384,6 +382,13 @@ else{
         }
         </script>
 
-    
+    }
+    @RenderSection("Scripts", required: false)
+@RenderBody()
+
+
+
+
+
 </body>
 </html>

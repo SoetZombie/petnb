@@ -423,6 +423,7 @@ namespace petnb.Controllers
                 {
                     outcome = await _userManager.AddLoginAsync(user, info);
                     await _signInManager.SignInAsync(user, isPersistent: false);
+                    _accountService.CreatePetSitter(user.Id);
                     _logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);      
                 }
                 AddErrors(outcome);
