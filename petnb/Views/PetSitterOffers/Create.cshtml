@@ -16,7 +16,7 @@
             <img class="progress-logo" src="~/images/P.svg">
             <div class="percent" id="process-bar-text">0%</div>
             <div class="progress-bar-bar">
-                <div class="bar" id="process-bar" style="width: 0.01%"></div>
+                <div class="bar" id="process-bar" style="width: 0.000000000000001%;"></div>
             </div>
         </div>
     </div>
@@ -348,6 +348,8 @@
         const btnNext = document.getElementById('btn-next');
         const btnPrev = document.getElementById('btn-previous');
         const btnCreate = document.getElementById('btn-create');
+        const progressBar = $('#process-bar');
+        const progressText = $('#process-bar-text');
         // const progressBar = document.getElementById("process-bar");
 
         const progressPercent = document.getElementById("process-bar-text");
@@ -363,10 +365,11 @@
             currentStage++;
             allViews[currentStage].style.display = 'block';
             hideBtns();
+            animateProgressBar()
 
 
             //progressBar.style.width = currentStage * (100 / 6) + "%";
-           // progressPercent.innerText = Math.round(currentStage * Math.round(100 / 6 * 100) / 100) + "%";
+            // progressPercent.innerText = Math.round(currentStage * Math.round(100 / 6 * 100) / 100) + "%";
 
             //checkHiding();
 
@@ -375,6 +378,7 @@
         function previousView() {
             allViews[currentStage].style.display = 'none';
             currentStage--;
+            animateProgressBar(true);
             allViews[currentStage].style.display = 'block';
             hideBtns();
 
@@ -401,35 +405,29 @@
             }
         }
 
-        var animations;
 
-        function animateProgress(currentStage) {
-            return [(currentStage - 1) * 100 / 6 + '%', currentStage * 100 / 6 + '%'];
-        }
-        function createAndPlayAnimation() {
-            animations = anime({
-                targets: '#process-bar',
-                width: [`${(currentStage - 1) * 100 / 6}%`, `${currentStage * 100 / 6}%`],
-                easing: 'easeInOutQuad',
-                autoplay: false
-
+        function animateProgressBar(back) {
+            progressBar.animate({
+                width: `${currentStage * 16.66666666666667}%`,
+                duration:500
             });
-            animations.restart();
 
-        }
-        
-        animations =
-            anime({
-                targets: '#process-bar',
-                width: function(currentStage) { return [`${(currentStage - 1) * 100 / 6}%`, `${currentStage * 100 / 6}%`] },
-            easing: 'easeInOutQuad',
-                update: function(anim) {
-                    
-                    $('#process-bar-text').html(Math.round(anim.progress * currentStage));
-                    ;
+            var percent = Math.ceil((currentStage - 1) * 16.66666666666667);
+            if (back === true) {
+                var percent = Math.ceil((currentStage) * 16.66666666666667)
+            }
+            progressText.text((Math.ceil(currentStage * 16.66666666666667))+'%');
+            progressText.prop( 'Counter', percent).animate({
+                Counter: progressText.text()
+            }, {
+                duration: 500,
+                easing: 'swing',
+                step: function() {
+                    progressText.text(Math.ceil(this.Counter)+'%');
                 }
-
             });
+
+        }
 
 
         function sleep(ms) {

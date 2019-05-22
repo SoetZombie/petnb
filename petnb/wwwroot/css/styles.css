@@ -785,7 +785,8 @@ h4.main-heading {
   flex-direction: column;
   font-family: "Quicksand", sans-serif;
   font-weight: bold;
-  margin: 1.2rem .65rem 0 .7rem; }
+  margin: 1.2rem .65rem 0 .7rem;
+  width: 2em; }
 
 .progress-bar-bar {
   display: flex;

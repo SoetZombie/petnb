@@ -394,14 +394,14 @@ namespace petnb.Controllers
             var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
             if (result.Succeeded)
             {
+                
                 var debug = _userManager.GetUserId(User);
                 var checkToken = HttpContext.Session.GetString("FirebaseToken");
 
-                if (checkToken == null)
-                {
-                    var customToken = await _firebaseService.GenerateCustomToken(_userManager.GetUserId(HttpContext.User));
-                    HttpContext.Session.SetString("FirebaseToken", customToken);
-                }
+                var user = await _userManager.FindByEmailAsync(info.Principal.FindFirstValue(ClaimTypes.Email));
+                var customToken = await _firebaseService.GenerateCustomToken(user.Id);
+                HttpContext.Session.SetString("FirebaseToken", customToken);
+
                 _logger.LogInformation("User created a new account with password.");
                 _logger.LogInformation("User logged in with {Name} provider.", info.LoginProvider);
                 return RedirectToLocal(returnUrl);
