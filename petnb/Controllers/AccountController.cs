@@ -574,10 +574,22 @@ namespace petnb.Controllers
         #region AccountCompletion
 
         [HttpGet]
-        public async Task<IActionResult> AccountCompletion()
+        public IActionResult AccountCompletion()
         {
             return View();
         }
+        [HttpPost]
+        public async Task<IActionResult> AccountCompletion(AccountCompletionViewModel model)
+        {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            _accountService.FillProfile(
+                user.Id, model.Fullname, model.Birthdate, model.Street, model.Zipcode, model.ProfileImage, model.WasPetSitter, model.PetSitterExperienceEnum, model.PetSitterExperience, model.Bio);
+
+            return View();
+        }
+
+
+
             
 
         #endregion
