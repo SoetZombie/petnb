@@ -227,7 +227,7 @@ nav .petnb-logo {
     float: right;
     color: $basicTextColor;
     text-align: center;
-    margin-right: 1.4rem;
+    margin-right: 2.4rem;
     padding: 1px;
     text-decoration: none;
     font-size: 1.5rem;
@@ -1017,7 +1017,7 @@ div.login-modal {
     font-family: $quicksand;
     font-weight: bold;
     font-size: 30px;
-    margin-top: 3rem;
+    margin-top: 2rem;
     margin-bottom: 1.2rem;
 }
 
@@ -1693,3 +1693,17 @@ div.login-modal {
             transform: translateY(0px) rotateY(360deg);
         }
     }
+
+
+    // warning styling
+.notify-profile {
+    background-color: $greenColor;
+}
+
+.alert-warning {
+    font-size: 0.95rem;
+    color: white;
+    font-family: $quicksand;
+    border: solid;
+    border-color: $greenColor
+}

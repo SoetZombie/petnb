@@ -7,6 +7,7 @@
 
 
 <div class="grid-container-ad">
+
     <div class="progress-bar-left"></div>
     <div class="progress-bar-center">
         <div class="wrapper-bar">
@@ -20,7 +21,18 @@
     </div>
     <div class="progress-bar-right"></div>
     <form asp-action="AccountCompletion" method="post" style="grid-area: fill-ad" enctype="multipart/form-data">
-
+        @{
+            var user = await UserManager.GetUserAsync(User);
+            if (!user.FilledProfile)
+            {
+                <div class="alert alert-warning alert-dismissible fade show notify-profile" role="alert">
+                    <strong>Warning!</strong> Please complete your profile to be able to make pet sitter offers.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
+        }
         <!--FIRST SCREEN: Personal details-->
 
         <div class="fill-ad" id="completion-0">
@@ -66,50 +78,50 @@
 
 
         @*<!--SECOND SCREEN: Select the pet you would like to sit -->
-            <div class="fill-ad" id="completion-1" style="display: none">
-                <div class="header-petad">Select the pets that you would like to sit 😻</div>
-                <div class="account-completion-wrapper form-group col-12 remove-padding-left">
+        <div class="fill-ad" id="completion-1" style="display: none">
+            <div class="header-petad">Select the pets that you would like to sit 😻</div>
+            <div class="account-completion-wrapper form-group col-12 remove-padding-left">
 
-                    <!--Animal checkboxes-->
-                    <div class="user-type-select-container">
+                <!--Animal checkboxes-->
+                <div class="user-type-select-container">
 
-                        <div class=" d-flex flex-column">
-                            <input type="checkbox" value="dog" name="dog" id="dog" class="dog" />
-                            <label class="dog-label" for="dog"></label>
-                            <label class="pet-label">Dog</label>
-                        </div>
-                        <div class=" d-flex flex-column">
-                            <input type="checkbox" value="reptile" name="cat" id="cat" class="cat" />
-                            <label class="cat-label" for="cat"></label>
-                            <label class="pet-label">Cat</label>
-                        </div>
-                        <div class=" d-flex flex-column">
-                            <input type="checkbox" value="reptile" name="fish" id="fish" class="fish" />
-                            <label class="fish-label" for="fish"></label>
-                            <label class="pet-label">Fish</label>
-                        </div>
-                        <div class=" d-flex flex-column">
-                            <input type="checkbox" value="reptile" name="bird" id="bird" class="bird" />
-                            <label class="bird-label" for="bird"></label>
-                            <label class="pet-label">Bird</label>
-                        </div>
-                        <div class=" d-flex flex-column">
-                            <input type="checkbox" value="reptile" name="hamster" id="hamster" class="hamster" />
-                            <label class="hamster-label" for="hamster"></label>
-                            <label class="pet-label">Rodents</label>
-                        </div>
-                        <div class=" d-flex flex-column">
-                            <input type="checkbox" value="reptile" name="reptile" id="reptile" class="reptile" />
-                            <label class="reptile-label" for="reptile"></label>
-                            <label class="pet-label">Reptiles</label>
-                        </div>
+                    <div class=" d-flex flex-column">
+                        <input type="checkbox" value="dog" name="dog" id="dog" class="dog" />
+                        <label class="dog-label" for="dog"></label>
+                        <label class="pet-label">Dog</label>
                     </div>
-
-                    <!--JavaScript Screen change-->
-                    <button class="btn-screen-change-previous" onclick="ChangeView(1, 0)">Previous</button>
-                    <button class="btn-screen-change-next" onclick="ChangeView(1, 2)">Next</button>
+                    <div class=" d-flex flex-column">
+                        <input type="checkbox" value="reptile" name="cat" id="cat" class="cat" />
+                        <label class="cat-label" for="cat"></label>
+                        <label class="pet-label">Cat</label>
+                    </div>
+                    <div class=" d-flex flex-column">
+                        <input type="checkbox" value="reptile" name="fish" id="fish" class="fish" />
+                        <label class="fish-label" for="fish"></label>
+                        <label class="pet-label">Fish</label>
+                    </div>
+                    <div class=" d-flex flex-column">
+                        <input type="checkbox" value="reptile" name="bird" id="bird" class="bird" />
+                        <label class="bird-label" for="bird"></label>
+                        <label class="pet-label">Bird</label>
+                    </div>
+                    <div class=" d-flex flex-column">
+                        <input type="checkbox" value="reptile" name="hamster" id="hamster" class="hamster" />
+                        <label class="hamster-label" for="hamster"></label>
+                        <label class="pet-label">Rodents</label>
+                    </div>
+                    <div class=" d-flex flex-column">
+                        <input type="checkbox" value="reptile" name="reptile" id="reptile" class="reptile" />
+                        <label class="reptile-label" for="reptile"></label>
+                        <label class="pet-label">Reptiles</label>
+                    </div>
                 </div>
+
+                <!--JavaScript Screen change-->
+                <button class="btn-screen-change-previous" onclick="ChangeView(1, 0)">Previous</button>
+                <button class="btn-screen-change-next" onclick="ChangeView(1, 2)">Next</button>
             </div>
+        </div>
         *@
         <!--Third screen : Experience-->
         <div class="fill-ad" id="completion-1" style="display: none">
@@ -161,14 +173,7 @@
             <input type="submit" value="Create" class="btn-screen-change-next" style="display: none" id="btn-create">
         </div>
     </form>
-    @{
-        var user = await UserManager.GetUserAsync(User);
-        if (!user.FilledProfile)
-        {
-            <div class="notify-profile">Please complete your profile to be able to make pet sitter offers</div>
 
-        }
-    }
 </div>
 
 

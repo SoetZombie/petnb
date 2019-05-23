@@ -178,7 +178,7 @@ nav .petnb-logo {
   float: right;
   color: #4F4F4F;
   text-align: center;
-  margin-right: 1.4rem;
+  margin-right: 2.4rem;
   padding: 1px;
   text-decoration: none;
   font-size: 1.5rem;
@@ -825,7 +825,7 @@ h4.main-heading {
   font-family: "Quicksand", sans-serif;
   font-weight: bold;
   font-size: 30px;
-  margin-top: 3rem;
+  margin-top: 2rem;
   margin-bottom: 1.2rem; }
 
 .pet-label {
@@ -1372,3 +1372,13 @@ h4.main-heading {
     transform: translateY(-30px) rotateY(270deg); }
   100% {
     transform: translateY(0px) rotateY(360deg); } }
+
+.notify-profile {
+  background-color: #65C2AD; }
+
+.alert-warning {
+  font-size: 0.95rem;
+  color: white;
+  font-family: "Quicksand", sans-serif;
+  border: solid;
+  border-color: #65C2AD; }
