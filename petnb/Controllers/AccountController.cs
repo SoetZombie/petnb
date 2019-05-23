@@ -573,6 +573,12 @@ namespace petnb.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult ProfileDetails()
+        {
+            return View();
+        }
+
         #region AccountCompletion
 
         [HttpGet]
