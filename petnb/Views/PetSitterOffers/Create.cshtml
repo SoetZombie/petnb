@@ -248,7 +248,13 @@
                     <div class="usr-description">
                         <div class="description-wrapper">
                             <div class="name-heading" id="sumHeading"></div>
-                            <div class="location" id="sumPeriod"></div>
+                            Location:
+                            <span class="location">
+                                <i class="fa fa-map-marker-alt" style="color: #ea9078;"></i>
+                                <span class="location" id="sumZipCode"></span>
+                            </span><br />
+                            Period of sit: <span class="location" id="sumPeriod"></span>
+
 
                             <div class="content" id="sumContent"></div>
                         </div>
@@ -258,7 +264,9 @@
 
                     </div>
                     <div class="salary-container">
-                        <div class="expected-salary" id="sumSalary"></div>
+                        <div class="expected-salary-details">
+                            <div class="stay-details2" id="sumSalary"></div>
+                        </div>
                         <div class="dkk-h">DKK/h</div>
                     </div>
                 </div>
@@ -310,6 +318,7 @@
         const sumPeriod = $('#sumPeriod');
         const sumContent = $('#sumContent');
         const sumSalary = $('#sumSalary');
+        const sumZipCode = $('#sumZipCode');
 
 
         // const progressBar = document.getElementById("process-bar");
@@ -326,6 +335,7 @@
             sumPeriod.text(`${adStart.val()} - ${adEnd.val()}`);
             sumContent.text(adContent.val());
             sumSalary.text(adSalary.val());
+            sumZipCode.text(adZipCode.val());
         }
 
         function nextView() {
