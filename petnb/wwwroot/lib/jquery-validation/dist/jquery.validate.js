@@ -6,11 +6,17 @@
  * Copyright (c) 2015 Jörn Zaefferer
  * Released under the MIT license
  */
+var customValid;
+
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery"], factory );
-	} else {
-		factory( jQuery );
+        define(["jquery"], factory);
+        customValid = factory;
+    } else {
+        factory(jQuery);
+        customValid = factory;
+
+
 	}
 }(function( $ ) {
 

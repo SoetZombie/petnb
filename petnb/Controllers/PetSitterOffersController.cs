@@ -10,6 +10,8 @@ using Microsoft.EntityFrameworkCore;
 using petnb.DTL.Data;
 using petnb.DTL.Data.Models;
 using petnb.DTL.Models;
+using petnb.Models.PetSitterOfferViewModels;
+using petnb.Services;
 
 namespace petnb.Controllers
 {
@@ -18,12 +20,14 @@ namespace petnb.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IPetSitterOffersService _petSitterOffersService;
 
        
-        public PetSitterOffersController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+        public PetSitterOffersController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IPetSitterOffersService petSitterOffersService)
         {
             _context = context;
             _userManager = userManager;
+            _petSitterOffersService = petSitterOffersService;
         }
         // GET: PetSitterOffers
         [AllowAnonymous]
@@ -65,32 +69,17 @@ namespace petnb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(PetSitterOffer model)
+        public async Task<IActionResult> Create(PetSitterOfferViewModel model)
         {
-            var user = _context.Users
-                .Include(p => p.PetSitter)
-                .ThenInclude(o => o.PetSitterOffers)
-                .FirstOrDefault(i => i.Id == _userManager.GetUserId(HttpContext.User));
+            var userId = _userManager.GetUserId(HttpContext.User);
 
             if (ModelState.IsValid)
             {
-                var offer = new PetSitterOffer
-                {
-                    Heading = model.Heading,
-                    Content = model.Content,
-                    Location = model.Location,
-                    StartOfSit = model.StartOfSit,
-                    EndOfSit = model.EndOfSit,
-                    ExpectedSalary = model.ExpectedSalary,
-                    PetSitterId = user.PetSitter.PetSitterId
-                };
-                
-                _context.Add(offer);
-                _context.Update(user);
-                await _context.SaveChangesAsync();
+                _petSitterOffersService.Create(model.Heading, model.Content, model.StartOfSit, model.EndOfSit, model.ExpectedSalary, model.SalaryExplanation,model.ZipCode, model.Dog, model.Cat, model.Bird,model.Fish,model.Reptile,model.Hamster, model.AvailableToDrive, userId);
+
                 return RedirectToAction(nameof(Index));
             }
-            return View("Index");
+            return View();
         }
 
         // GET: PetSitterOffers/Edit/5
