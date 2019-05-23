@@ -27,10 +27,6 @@
 
   <ItemGroup>
     <None Include="Views\PetSitterOffers\Create.cshtml" />
-    <None Include="Views\PetSitterOffers\Delete.cshtml" />
-    <None Include="Views\PetSitterOffers\Details.cshtml" />
-    <None Include="Views\PetSitterOffers\Edit.cshtml" />
-    <None Include="Views\PetSitterOffers\Index.cshtml" />
     <None Include="wwwroot\js\chat.js" />
   </ItemGroup>
 

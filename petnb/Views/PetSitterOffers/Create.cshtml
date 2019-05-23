@@ -1,6 +1,6 @@
 ﻿@using System.Globalization
 @using petnb.DTL.Data.Models.Enums
-@model petnb.DTL.Data.Models.PetSitterOffer
+@model petnb.Models.PetSitterOfferViewModels.PetSitterOfferViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -23,8 +23,8 @@
     <div class="progress-bar-right"></div>
 
     
-    <form asp-action="Create" style="grid-area: fill-ad">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <form asp-action="Create" style="grid-area: fill-ad" id="petSitterOfferForm">
+        <div asp-validation-summary="None" class="text-danger"></div>
 
         <div class="fill-ad" id="completion-0">
             <div class="header-petad">Select the pets that you would like to sit 😻</div>
@@ -33,34 +33,34 @@
             <div class="user-type-select-container">
 
                 <div class=" d-flex flex-column">
-                    <input type="checkbox" value="dog" name="dog" id="dog" class="dog" style="display:none" />
+                    <input type="checkbox" asp-for="Dog" value="true" checked="" name="Dog" id="dog" class="dog" style="display:none" />
                     <label class="dog-label" for="dog"></label>
                     <label class="pet-label">Dog</label>
                 </div>
                 <div class=" d-flex flex-column">
-                    <input type="checkbox" value="reptile" name="cat" id="cat" class="cat" style="display:none" />
+                    <input type="checkbox" asp-for="Cat" value="true" name="Cat" id="cat" class="cat" style="display:none" />
                     <label class="cat-label" for="cat"></label>
                     <label class="pet-label">Cat</label>
                 </div>
                 <div class=" d-flex flex-column">
-                    <input type="checkbox" value="reptile" name="fish" id="fish" class="fish" style="display:none" />
-                    <label class="fish-label" for="fish"></label>
-                    <label class="pet-label">Fish</label>
-                </div>
-                <div class=" d-flex flex-column">
-                    <input type="checkbox" value="reptile" name="bird" id="bird" class="bird" style="display:none" />
+                    <input type="checkbox" asp-for="Bird" value="3" name="Bird" id="bird" class="bird" style="display:none" />
                     <label class="bird-label" for="bird"></label>
                     <label class="pet-label">Bird</label>
                 </div>
                 <div class=" d-flex flex-column">
-                    <input type="checkbox" value="reptile" name="hamster" id="hamster" class="hamster" style="display:none" />
-                    <label class="hamster-label" for="hamster"></label>
-                    <label class="pet-label">Rodents</label>
+                    <input type="checkbox" asp-for="Fish" value="4" name="Fish" id="fish" class="fish" style="display:none" />
+                    <label class="fish-label" for="fish"></label>
+                    <label class="pet-label">Fish</label>
                 </div>
                 <div class=" d-flex flex-column">
-                    <input type="checkbox" value="reptile" name="reptile" id="reptile" class="reptile" style="display:none" />
+                    <input type="checkbox" asp-for="Reptile" value="5" name="Reptile" id="reptile"class="reptile" style="display:none" />
                     <label class="reptile-label" for="reptile"></label>
                     <label class="pet-label">Reptiles</label>
+                </div>
+                <div class=" d-flex flex-column">
+                    <input type="checkbox" asp-for="Hamster" value="6" name="Hamster" id="hamster" class="hamster" style="display:none" />
+                    <label class="hamster-label" for="hamster"></label>
+                    <label class="pet-label">Rodents</label>
                 </div>
             </div>
 
@@ -81,9 +81,10 @@
 
             <div class="petad-form">
                 <div class="form-group">
-                    <textarea asp-for="Heading" maxlength="250" data-maxlength="250" class="form-control" name="heading"
+                    <textarea asp-for="Heading" maxlength="250" data-maxlength="250" class="form-control" name="Heading" id="adHeading"
                               placeholder="eg: Full-time pet sitter/dog walker. Offering loving care in their own comfortable and familiar environment"
                               spellcheck="false"></textarea>
+                    <span asp-validation-for="Heading" class="text text-danger"></span>
                 </div>
 
                 <div class="info-petad">
@@ -119,8 +120,8 @@
             </div>
 
             <div class="form-group">
-                <textarea asp-for="Content" maxlength="600" data-maxlength="600" class="form-control" name="content"
-                          placeholder="Type here"
+                <textarea asp-for="Content" maxlength="600" data-maxlength="600" class="form-control" name="Content"
+                          placeholder="Type here" id="adDescription"
                           spellcheck="false"></textarea>
                 <span asp-validation-for="Content" class="text-danger"></span>
             </div>
@@ -148,8 +149,8 @@
             </div>
 
             <div class="form-group">
-                <input asp-for="Location" class="form-control" value="Location" />
-                <span asp-validation-for="Location" class="text-danger"></span>
+                <input asp-for="ZipCode" id="adZipCode"class="form-control"  />
+                <span asp-validation-for="ZipCode" class="text-danger"></span>
             </div>
             <div class="info-petad2">
                 <img src="~/images/i.svg" class="info-image2" />
@@ -159,16 +160,16 @@
             </div>
             <div class="button-wrapper">
                 <div class="button-move1">
-                    <input type="radio" name="move" value="yes" class="button-move-special">
+                    <input type="radio" asp-for="AvailableToDrive" checked="" value="1" class="button-move-special" id="AvailableToDrive1">
                     <span class="text-button">Yes, I can make the trip</span>
                 </div>
                 <div class="button-move2">
-                    <input type="radio" name="move" value="no" class="button-move-special">
+                    <input type="radio" asp-for="AvailableToDrive" value="0" class="button-move-special" id="AvailableToDrive0">
                     <span class="text-button">No, the owner has to bring him</span>
                 </div>
             </div>
             <div class="button-move3">
-                <input type="radio" name="move" value="depends" class="button-move-special">
+                <input type="radio" asp-for="AvailableToDrive" value="2" class="button-move-special id="AvailableToDrive"2">
                 <span class="text-button">Maybe, I need to discuss it with the owner</span>
             </div>
 
@@ -185,12 +186,12 @@
 
             <div class="form-group">
                 <span class="text-button">Start of sit</span>
-                <input asp-for="StartOfSit" class="form-control" type="date" value=@DateTime.Now.Date.ToString("yyyy/MM/dd") />
+                <input asp-for="StartOfSit" id="adStart" class="form-control" type="date"  />
                 <span asp-validation-for="StartOfSit" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <span class="text-button">End of sit</span>
-                <input asp-for="EndOfSit" class="form-control" value=@DateTime.Now.Date.ToString("yyyy/MM/dd") type="date" />
+                <input asp-for="EndOfSit" id="adEnd"class="form-control"  type="date" />
                 <span asp-validation-for="EndOfSit" class="text-danger"></span>
             </div>
 
@@ -207,17 +208,20 @@
             </div>
 
             <div class="amount-perh">
-                <input asp-for="ExpectedSalary" class="form-control2" value="Amount" />
+                <input asp-for="ExpectedSalary" id="adSalary" class="form-control2" />
                 <span class="text-button2">DKK/h</span>
             </div>
+                <span asp-validation-for="ExpectedSalary" class="text text-danger"></span>
 
             <div class="header-petad">
                 Indications about your rates (optional)
             </div>
             <div class="form-group">
-                <textarea maxlength="600" data-maxlength="600" class="form-control" name="indications"
+                <textarea asp-for="SalaryExplanation" maxlength="600" data-maxlength="600" class="form-control" name="SalaryExplanation"
                           placeholder="Specify if your rates vary depending on the type of pet, the displacement or if you have a policy of cancellation."
                           spellcheck="false"></textarea>
+                <span asp-validation-for="SalaryExplanation" class="text text-danger"></span>
+
             </div>
 
             <!-- <a class="btn-screen-change-previous" onclick="ChangeView(5, 4)">Previous</a>
@@ -243,10 +247,10 @@
                 <div class="grid2">
                     <div class="usr-description">
                         <div class="description-wrapper">
-                            <div class="name-heading"> @Html.DisplayFor(model => model.Heading)</div>
-                            <div class="location">@Html.DisplayFor(model => model.Location) @Html.DisplayFor(model => model.StartOfSit) - @Html.DisplayFor(model => model.EndOfSit)</div>
+                            <div class="name-heading" id="sumHeading"></div>
+                            <div class="location" id="sumPeriod"></div>
 
-                            <div class="content">@Html.DisplayFor(model => model.Content)</div>
+                            <div class="content" id="sumContent"></div>
                         </div>
 
 
@@ -254,7 +258,7 @@
 
                     </div>
                     <div class="salary-container">
-                        <div class="expected-salary">@Html.DisplayFor(model => model.ExpectedSalary)</div>
+                        <div class="expected-salary" id="sumSalary"></div>
                         <div class="dkk-h">DKK/h</div>
                     </div>
                 </div>
@@ -284,67 +288,7 @@
 }
     <script>
 
-        //var completionLevelToHide = 0;
-        //var completionLevelToDisplay = 1;
-        //buttonToHide();
-        //buttonToDisplay();
 
-        //    function ChangeView(completionLevelToHide, completionLevelToDisplay) {
-        //        var completionIdToHide = "completion-" + completionLevelToHide;
-        //        var completionIdToDisplay = "completion-" + completionLevelToDisplay;
-        //        document.getElementById(completionIdToHide).style.display = "none";
-        //        document.getElementById(completionIdToDisplay).style.display = "block";
-        //        document.getElementById("process-bar").style.width = completionLevelToDisplay * (100/6) + "%";
-        //        document.getElementById("process-bar-text").innerText = Math.round (completionLevelToDisplay * Math.round(100/6 *100)/100 )+ "%";
-
-
-        //}
-        //var btn = document.getElementById("btn-next");
-        //btn.addEventListener("click", function(e){
-        //e.preventDefault;
-        //ChangeView(completionLevelToHide,completionLevelToDisplay);
-        //console.log(completionLevelToDisplay)
-        //completionLevelToDisplay++;
-        //completionLevelToHide++;
-        //console.log(completionLevelToDisplay)
-        // buttonToHide();
-        //        buttonToDisplay();
-        //})
-        // var btn2 = document.getElementById("btn-previous");
-        //btn2.addEventListener("click", function(e){
-        //e.preventDefault;
-        //completionLevelToDisplay -=2;
-        //completionLevelToHide -=2;
-        //console.log(completionLevelToDisplay)
-        //ChangeView(completionLevelToHide,completionLevelToDisplay);
-        //completionLevelToDisplay +=2;
-        //completionLevelToHide+=2;
-        //    console.log(completionLevelToDisplay)
-
-        // buttonToHide();
-        //        buttonToDisplay();
-        //})
-
-        //function buttonToHide(){
-        //    if (completionLevelToHide === 0) {
-        //        document.getElementById("btn-previous").style.display ="none"
-        //}
-        //    else { document.getElementById("btn-previous").style.display = "block" }
-        //}
-        //function buttonToDisplay(){
-        //    if (completionLevelToDisplay === 7) {
-
-        //        document.getElementById("btn-next").style.display ="none"
-        //        document.getElementById("btn-create").style.display =""}
-        //    else {
-
-        //        document.getElementById("btn-create").style.display = "none"
-        //        }
-        //}
-
-        //    function PopulateOverview() {
-
-        //    }
         //variables
         const allViews = document.getElementsByClassName('fill-ad');
         let currentStage = 0;
@@ -353,6 +297,21 @@
         const btnCreate = document.getElementById('btn-create');
         const progressBar = $('#process-bar');
         const progressText = $('#process-bar-text');
+
+        //jQueryVariables
+        const adHeading = $('#adHeading');
+        const adContent = $('#adDescription');
+        const adZipCode = $('#adZipCode');
+        const adStart = $('#adStart');
+        const adEnd = $('#adEnd');
+        const adSalary = $('#adSalary');
+
+        const sumHeading = $('#sumHeading');
+        const sumPeriod = $('#sumPeriod');
+        const sumContent = $('#sumContent');
+        const sumSalary = $('#sumSalary');
+
+
         // const progressBar = document.getElementById("process-bar");
 
         const progressPercent = document.getElementById("process-bar-text");
@@ -362,13 +321,21 @@
         btnPrev.addEventListener('click', previousView);
         //calls
 
+        function populateSummary() {
+            sumHeading.text(adHeading.val());
+            sumPeriod.text(`${adStart.val()} - ${adEnd.val()}`);
+            sumContent.text(adContent.val());
+            sumSalary.text(adSalary.val());
+        }
 
         function nextView() {
-            allViews[currentStage].style.display = 'none';
-            currentStage++;
-            allViews[currentStage].style.display = 'block';
-            hideBtns();
-            animateProgressBar()
+            if ($('#petSitterOfferForm').valid()) {
+                allViews[currentStage].style.display = 'none';
+                currentStage++;
+                allViews[currentStage].style.display = 'block';
+                hideBtns();
+                animateProgressBar();
+            }
 
 
             //progressBar.style.width = currentStage * (100 / 6) + "%";
@@ -398,6 +365,7 @@
             if (currentStage === 6) {
                 btnNext.style.display = 'none';
                 btnCreate.style.display = 'block';
+                populateSummary();
 
 
             } else {
