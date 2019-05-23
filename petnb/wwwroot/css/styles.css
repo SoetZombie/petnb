@@ -423,7 +423,8 @@ h4.main-heading {
   font-weight: bold;
   margin-top: 1rem;
   margin-bottom: 0;
-  padding: 0px 0px 0px 0px; }
+  padding: 0px 0px 0px 0px;
+  color: black; }
 
 .location {
   font-family: "Quicksand", sans-serif;
@@ -1305,3 +1306,12 @@ h4.main-heading {
 
 .details-similar-profile {
   grid-area: details-similar-profile; }
+
+#btn-next {
+  color: white; }
+
+#btn-previous {
+  color: white; }
+
+#login-btn-ajax {
+  color: #65C2AD; }

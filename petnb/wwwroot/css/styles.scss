@@ -282,7 +282,6 @@ nav .petnb-logo {
     font-family: $quicksand;
     font-weight: bold;
     letter-spacing: 1px;
-   
 }
 
 /*Removing default hover effects on a tag*/
@@ -524,6 +523,7 @@ div.login-modal {
         margin-top: 1rem;
         margin-bottom: 0;
         padding: 0px 0px 0px 0px;
+        color: black;
     }
 
 .location {
@@ -1595,4 +1595,14 @@ div.login-modal {
     grid-area: details-similar-profile;
 }
 
+#btn-next {
+    color: white;
+}
 
+#btn-previous {
+    color: white;
+}
+
+#login-btn-ajax {
+    color: $greenColor;
+}
