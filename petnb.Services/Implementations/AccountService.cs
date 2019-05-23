@@ -54,6 +54,7 @@ namespace petnb.Services.Implementations
             user.Bio = bio;
             user.ProfilePicture = imageBytes;
             user.FullName = fullName;
+            user.FilledProfile = true;
 
             var experience = new Experience { WasPetsitter = wasPetSitter, PetsitterExperience = petSitterExperience, PetSitterExperienceEnum = petSitterExperienceEnum };
 

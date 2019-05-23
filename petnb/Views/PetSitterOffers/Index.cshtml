@@ -68,7 +68,7 @@
             {
 
             
-                <a class="grid" asp-action="Details" asp-route-id="@item.PetSitterOfferId">
+                <div class="grid" >
                     <img src="~/images/image_1.jpg" alt="Title" style="width: 250px" class="clip-circle" />
                     <div class="grid2">
                         <div class="usr-description">
@@ -80,11 +80,18 @@
 
                         </div>
                         <div class="btn-special2">
-                            
-                            <span class="authentication-btn register-btn" asp-controller="Messages" asp-action="Index">Connect</span>
+                            @{
+                                var msgLink = new Dictionary<string,string>()
+                                {
+                                    {"userId", item.PetSitter.UserId}
+                                };
+                            }
+                            <a class="authentication-btn register-btn " asp-all-route-data="@msgLink"  asp-controller="Messages" asp-action="Index">Connect</a>
+
+                            <a class="authentication-btn register-btn" asp-route-id="@item.PetSitterOfferId" asp-action="Details" >Details</a>
                         </div>
                     </div>
-                </a>
+                </div>
             }
         </div>
 

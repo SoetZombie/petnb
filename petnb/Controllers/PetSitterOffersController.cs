@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using petnb.DTL.Data;
 using petnb.DTL.Data.Models;
 using petnb.DTL.Models;
+using petnb.Models.AccountViewModels;
 using petnb.Models.PetSitterOfferViewModels;
 using petnb.Services;
 
@@ -60,7 +61,13 @@ namespace petnb.Controllers
         
         public IActionResult Create()
         {
-            
+            var user = _context.Users.FirstOrDefault(u => u.Id == _userManager.GetUserId(HttpContext.User));
+            if (!user.FilledProfile)
+            {
+                TempData["CompleteProfile"] = "Please complete your profile to be able to make pet sitter offers";
+                TempData.Keep("CompleteProfile");
+                return RedirectToAction("AccountCompletion", "Account");
+            }   
             return View();
         }
 

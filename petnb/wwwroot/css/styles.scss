@@ -140,7 +140,6 @@ form {
 body {
     background: #F2F2F2;
     //background: linear-gradient(to right, #F2F2F2, #65C2AD);
-    background: white;
 }
 /*Landing page styles*/
 .landing-page-grid-container {
@@ -1192,6 +1191,7 @@ div.login-modal {
         margin-left: auto;
         margin-right: auto;
         max-width: 1300px;
+        transition: all 0.4s ease-in-out;
     }
 
 
@@ -1606,3 +1606,90 @@ div.login-modal {
 #login-btn-ajax {
     color: $greenColor;
 }
+// loading spinner
+@import url("https://fonts.googleapis.com/css?family=Indie+Flower");
+
+
+
+#loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: linear-gradient(to right, #08979d, #055b5c);
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0.8;
+
+
+    .loader-wrapper {
+        width: 200px;
+        height: 200px;
+        background-color: #eee;
+        box-shadow: 0px 18px 2px -10px rgba(51, 51, 51, 0.5);
+    }
+
+    .loader-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .loader-text {
+        font-family: "Indie Flower", cursive;
+        font-size: 20px;
+    }
+
+    .dot {
+        perspective: 1000px;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border-radius: 100%;
+        background-color: green;
+        animation-name: bounce;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-fill-mode: linear;
+    }
+
+    .dot:nth-child(1) {
+        animation-delay: 300ms;
+    }
+
+    .dot:nth-child(2) {
+        animation-delay: 600ms;
+    }
+
+    .dot:nth-child(3) {
+        animation-delay: 900ms;
+    }
+
+    .dot:nth-child(4) {
+        animation-delay: 1200ms;
+    }
+}
+    @keyframes bounce {
+        0% {
+            transform: translateY(0px) rotateY(0deg);
+        }
+
+        25% {
+            transform: translateY(-30px) rotateY(90deg);
+        }
+
+        50% {
+            transform: translateY(0px) rotateY(180deg);
+        }
+
+        75% {
+            transform: translateY(-30px) rotateY(270deg);
+        }
+
+        100% {
+            transform: translateY(0px) rotateY(360deg);
+        }
+    }

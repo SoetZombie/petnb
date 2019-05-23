@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
@@ -24,7 +25,8 @@ namespace petnb.DTL.Models
         public DateTime BirthDate { get; set; }
         //public bool Email { get; set; } ?
         public int? Age { get; set; }
-        
+        public bool FilledProfile { get; set; }
+
     }
     //
 }

@@ -66,7 +66,7 @@ else{
                     <a class="menu-underline nav-item-underline" asp-controller="PetSitterOffers" asp-action="Index">Find petsitter</a>
                 </li>
                 <li class="nav-item">
-                    <a class="menu-underline nav-item-underline" asp-controller="Home" asp-action="BecomePetSitter">Become petsitter</a>
+                    <a class="menu-underline nav-item-underline" asp-controller="Home" asp-action="BecomePetSitter">Post a pet sitter offer</a>
                 </li>
 
                 @*//Button to petsitter offer, should apear when personal details is filled out
@@ -156,11 +156,8 @@ else{
 
 
 <script src="~/vendor.min.js"></script>
-
-    @section Scripts{
-
-        <script src="~/js/site.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
+<script src="~/js/site.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
        
         <script>
         let allChats = [];
@@ -249,10 +246,6 @@ else{
         </script>
 
 
-        
-
-    }
-    @RenderSection("Scripts", required: false)
         <script>
 
         const login = document.getElementById("login-btn-ajax");
