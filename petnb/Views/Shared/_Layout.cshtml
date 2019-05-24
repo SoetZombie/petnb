@@ -70,9 +70,9 @@ else{
                 </li>
 
                 @*//Button to petsitter offer, should apear when personal details is filled out
-                    <li class="nav-item">
-            <a class="menu-underline nav-item-underline" asp-controller="PetSitterOffers" asp-action="Create">Create offer</a>
-        </li>*@
+                                <li class="nav-item">
+                        <a class="menu-underline nav-item-underline" asp-controller="PetSitterOffers" asp-action="Create">Create offer</a>
+                    </li>*@
                 <li class="nav-item">
                     @* TODO: Create About view *@
                     <a class="menu-underline nav-item-underline" href="#">About</a>
@@ -83,6 +83,7 @@ else{
 
     </nav>
 
+    
 
     <div class="col-md-12 login-modal hidden" id="login-overlay">
         <div class="login-form col-md-4 mx-auto">
@@ -128,9 +129,9 @@ else{
                     <p>
                         @foreach (var provider in loginProviders)
                         {
-                        <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
-                            <img alt="Google" height="23" src="https://www.google.nl/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" width="70">
-                        </button>
+                            <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
+                                <img alt="Google" height="23" src="https://www.google.nl/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" width="70">
+                            </button>
                         }
                     </p>
                 </div>
@@ -155,11 +156,11 @@ else{
 
 
 
-<script src="~/vendor.min.js"></script>
-<script src="~/js/site.js"></script>
-<script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
-       
-        <script>
+    <script src="~/vendor.min.js"></script>
+    <script src="~/js/site.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
+
+    <script>
         let allChats = [];
         let recipientFullName = [];
         let messages;
@@ -243,10 +244,10 @@ else{
                 });
         }
 
-        </script>
+    </script>
 
 
-        <script>
+    <script>
 
         const login = document.getElementById("login-btn-ajax");
         const close = document.getElementById("close-btn");
@@ -386,9 +387,9 @@ else{
         function sleep(ms) {
             return new Promise(resolve => setTimeout(resolve, ms));
         }
-        </script>
-@RenderBody()
-
+    </script>
+    @RenderBody()
+    @RenderSection("Scripts", required: false)
 
 
 

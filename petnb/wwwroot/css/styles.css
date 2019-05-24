@@ -232,7 +232,7 @@ nav .petnb-logo {
   margin-right: 20px;
   background: transparent;
   color: #65C2AD;
-  padding: 0.5rem 1rem 0.5rem 1rem;
+  padding: 0.5rem 1.4rem 0.5rem 1.4rem;
   cursor: pointer;
   letter-spacing: 1px; }
 
@@ -334,6 +334,19 @@ h4.main-heading {
   grid-template-areas: "filter cards";
   grid-column-gap: 2em;
   background: #F2F2F2; }
+
+.grid a:hover {
+  text-decoration: none; }
+
+.connect-btn-index {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 2rem;
+  margin-right: 2rem; }
+
+.create-btn-positioning {
+  position: relative; }
 
 .filter {
   margin-left: 15%;
@@ -679,6 +692,7 @@ h4.main-heading {
   .user-type-select-container input[type=radio] {
     display: none; }
 
+Profile Completion :D
 .account-completion-wrapper {
   height: 25rem; }
 
@@ -692,7 +706,7 @@ h4.main-heading {
   color: white;
   padding: 0.5rem 0.8rem 0.5rem 0.8rem;
   right: 0rem;
-  bottom: 2rem;
+  bottom: 7rem;
   position: absolute;
   cursor: pointer;
   display: flex;
@@ -708,7 +722,7 @@ h4.main-heading {
   color: white;
   padding: 0.5rem 0.8rem 0.5rem 0.5rem;
   left: 0rem;
-  bottom: 2rem;
+  bottom: 7rem;
   position: absolute;
   cursor: pointer; }
 
