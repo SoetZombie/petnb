@@ -42,6 +42,9 @@
         </form>
         <div id="map"></div>
         <script>
+
+        function initMap() {
+
             var markers = [];
             var zipcodes = ['8620'];
 
@@ -62,33 +65,22 @@
                 });
             };
 
+            var infoWindow = new google.maps.InfoWindow();
 
-        function initMap() {
-                //var myLatLng = { lat: 56.1629, lng: 10.2039 };
+            var aarhus = { lat: 56.1629, lng: 10.2039 };
 
             var map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: 56.1629, lng: 10.2039 },
+                center: aarhus,
                 zoom: 8,
             }); 
 
-           
-
-            for (i = 0; i < markers.length; i++) {
-                var data = markers[i]
-                var myLatLng = new google.maps.LatLng(data.lat, data.lng);
-                var marker = new google.maps.Marker({
-                    position: myLatLng,
+            markers.forEach(markerOnMap)
+            function markerOnMap(value) {
+                new google.maps.Marker({
+                    position: value,
                     map: map
                 });
-            };
-
-         /* for (i = 0; i < markers.length; i++) {
-                var mapOptions = {
-                    center: new google.maps.LatLng(markers[0]),
-                    zoom: 8
-                };
-            };*/
-            var infoWindow = new google.maps.InfoWindow();
+            }
 
         }
 
