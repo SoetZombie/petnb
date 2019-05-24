@@ -15,6 +15,7 @@ using petnb.Models;
 using Microsoft.AspNetCore.Identity;
 using petnb.DTL.Data.Models;
 using petnb.DTL.Models;
+using petnb.Models.ManageViewModels;
 
 namespace petnb.Controllers
 {
@@ -35,6 +36,12 @@ namespace petnb.Controllers
            return View();/**/
         }
 
+        [HttpPost]
+        public IActionResult Index(IndexViewModel model)
+        {
+            return RedirectToAction("Index", "PetSitterOffers", new {id = model.ZipCode});
+        }
+
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
@@ -51,12 +58,8 @@ namespace petnb.Controllers
 
         public IActionResult BecomePetSitter()
         {
-            var authenticated = _userManager.GetUserId(HttpContext.User);
-            if (authenticated != null)
-            {
-                return RedirectToAction("AccountCompletion", "Account");
-            }
-            return RedirectToAction("Register", "Account");
+
+            return RedirectToAction("Create", "PetSitterOffers");
         }
 
         public IActionResult Error()

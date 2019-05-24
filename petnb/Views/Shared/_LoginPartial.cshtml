@@ -10,13 +10,17 @@
 @{
 
     var signedIn = SignInManager.IsSignedIn(User);
-    var user = await UserManager.GetUserAsync(User);
+    ApplicationUser user;
     var image = "";
-    if (user.ProfilePicture != null)
-
+    if (signedIn)
     {
-        image = Convert.ToBase64String(user.ProfilePicture);
+        user = await UserManager.GetUserAsync(User);
+        if (user.ProfilePicture != null)
 
+        {
+            image = Convert.ToBase64String(user.ProfilePicture);
+
+        }
     }
     if (image == null || image == "")
     {

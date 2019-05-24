@@ -63,7 +63,7 @@ namespace petnb.Services.Implementations
             petSitter.Experience = experience;
             _context.Update(user);
 
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
 
 
                 
