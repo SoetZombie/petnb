@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using petnb.DTL.Data;
+using petnb.DTL.Data.Models;
 using petnb.DTL.Models;
 using petnb.Models;
 using petnb.Services;

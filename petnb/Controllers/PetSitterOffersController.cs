@@ -31,11 +31,34 @@ namespace petnb.Controllers
             _petSitterOffersService = petSitterOffersService;
         }
         // GET: PetSitterOffers
+
+        //[ActionName("MyOverloadedName")]
+        //public async Task<IActionResult> Index()
+        //{
+        //    var applicationDbContext = _context.PetSitterOffers.Include(p => p.PetSitter);
+        //    return View(await applicationDbContext.ToListAsync());
+        //}.
         [AllowAnonymous]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? zipcode)
         {
-            var applicationDbContext = _context.PetSitterOffers.Include(p => p.PetSitter);
-            return View(await applicationDbContext.ToListAsync());
+            if (zipcode == null)
+            {
+                var applicationDbContext = _context.Users.Include(o => o.PetSitter).ThenInclude(o => o.PetSitterOffers).ToList();
+
+                return View(applicationDbContext);
+            }
+
+            var allOffers = _context.Users.Include(o => o.PetSitter).ThenInclude(o => o.PetSitterOffers).Where(o => o.Zipcode == zipcode).ToList();
+            if (allOffers.Count == 0)
+            {
+                var searchZip = new decimal((int) zipcode);
+                searchZip =  Math.Round((searchZip / 1000) * 1000);
+                allOffers = _context.Users.Include(o => o.PetSitter).ThenInclude(o => o.PetSitterOffers).Where(o=> o.Zipcode >= searchZip && zipcode <= searchZip+1000).ToList();
+             
+            }
+
+            return View(allOffers);
+
         }
 
         // GET: PetSitterOffers/Details/5

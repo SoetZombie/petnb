@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using petnb.DTL.Data;
+using petnb.DTL.Data.Models;
 using petnb.DTL.Data.Models.Enums;
 using petnb.DTL.Models;
 

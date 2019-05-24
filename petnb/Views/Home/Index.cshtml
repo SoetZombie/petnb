@@ -1,9 +1,15 @@
 ﻿@using Microsoft.AspNetCore.Http
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@model IndexViewModel
 
 
 <div class="landing-page-grid-container">
-    <div class="SearchPet"></div>
+    <div class="SearchPet">
+        <form asp-action="Index">
+            <input asp-for="ZipCode" />
+            <button type="submit" class="register-btn"></button>
+        </form>
+    </div>
     <div class="Slogan"></div>
 
 </div>
