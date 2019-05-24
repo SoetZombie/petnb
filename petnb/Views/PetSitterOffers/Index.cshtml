@@ -64,40 +64,38 @@
 
 
         <div class="card-grid">
-            @foreach (var item in Model)
-            {
+        @foreach (var item in Model)
+        {
+                
+                    var msgLink = new Dictionary<string, string>()
+                    {
+                        {"userId", item.PetSitter.UserId}
+                    };
+                
 
             
-                <div class="grid" >
-                    <img src="~/images/image_1.jpg" alt="Title" style="width: 250px" class="clip-circle" />
-                    <div class="grid2">
-                        <div class="usr-description">
-                            <h2 class="name-heading">@Html.DisplayFor(modelItem => item.Heading)</h2>
-                            <p class="location"><i class="fa fa-map-marker-alt" style="color: #ea9078;"></i> @Html.DisplayFor(modelItem => item.ZipCode)</p>
-                            <p class="description">@Html.DisplayFor(modelItem => item.Content)</p>
+            <div class="grid create-btn-positioning">
+                <a class="authentication-btn register-btn connect-btn-index" asp-all-route-data="@msgLink" asp-controller="Messages" asp-action="Index">Connect</a>
+                <img src="~/images/image_1.jpg" alt="Title" style="width: 250px" class="clip-circle" />
+                <div class="grid2">
+                    <a class="usr-description" asp-route-id="@item.PetSitterOfferId" asp-action="Details">
+                        <h2 class="name-heading">@Html.DisplayFor(modelItem => item.Heading)</h2>
+                        <p class="location"><i class="fa fa-map-marker-alt" style="color: #ea9078;"></i> @Html.DisplayFor(modelItem => item.ZipCode)</p>
+                        <p class="description">@Html.DisplayFor(modelItem => item.Content)</p>
 
-                            @*class="location" class="description*@
 
-                        </div>
                         <div class="btn-special2">
-                            @{
-                                var msgLink = new Dictionary<string,string>()
-                                {
-                                    {"userId", item.PetSitter.UserId}
-                                };
-                            }
-                            <a class="authentication-btn register-btn " asp-all-route-data="@msgLink"  asp-controller="Messages" asp-action="Index">Connect</a>
 
-                            <a class="authentication-btn register-btn" asp-route-id="@item.PetSitterOfferId" asp-action="Details" >Details</a>
+
+                            @*<a class="authentication-btn register-btn" asp-route-id="@item.PetSitterOfferId" asp-action="Details" >Details</a>*@
+
                         </div>
-                    </div>
+                    </a>
                 </div>
-            }
-        </div>
 
-    </div>
 
-</div>
+            </div>
+        }
 
 
 
