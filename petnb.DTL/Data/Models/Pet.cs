@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
+using petnb.DTL.Data.Models;
 using petnb.DTL.Data.Models.Enums;
 
 namespace petnb.DTL.Models

@@ -37,6 +37,20 @@ namespace petnb.Controllers
             var applicationDbContext = _context.PetSitterOffers.Include(p => p.PetSitter);
             return View(await applicationDbContext.ToListAsync());
         }
+        public async Task<IActionResult> Index(int zipcode)
+        {
+            var allOffers = _context.Users.Include(o => o.PetSitter).ThenInclude(o => o.PetSitterOffers).Where(o => o.Zipcode == zipcode).ToList();
+            if (allOffers.Count == 0)
+            {
+                var searchZip = new decimal(zipcode);
+                searchZip =  Math.Round((searchZip / 1000) * 1000);
+                allOffers = _context.Users.Include(o => o.PetSitter).ThenInclude(o => o.PetSitterOffers).Where(o=> o.Zipcode >= searchZip && zipcode <= searchZip+1000).ToList();
+             
+            }
+
+            return View(allOffers);
+
+        }
 
         // GET: PetSitterOffers/Details/5
         public async Task<IActionResult> Details(int? id)

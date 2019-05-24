@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using petnb.DTL.Data;
+using petnb.DTL.Data.Models;
 using petnb.DTL.Models;
 using petnb.Services;
 

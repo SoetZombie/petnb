@@ -13,6 +13,7 @@ using Newtonsoft.Json;/**//**/
 using petnb.Models;
 
 using Microsoft.AspNetCore.Identity;
+using petnb.DTL.Data.Models;
 using petnb.DTL.Models;
 
 namespace petnb.Controllers
