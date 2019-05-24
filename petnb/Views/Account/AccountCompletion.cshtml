@@ -21,7 +21,9 @@
         </div>
     </div>
     <div class="progress-bar-right"></div>
-    <form asp-action="AccountCompletion" method="post" style="grid-area: fill-ad" enctype="multipart/form-data">
+    <form asp-action="AccountCompletion" method="post" id="account-completion-form" style="grid-area: fill-ad" enctype="multipart/form-data">
+        <div asp-validation-summary="None" class="text-danger"></div>
+
         @{
             var user = await UserManager.GetUserAsync(User);
             if (!user.FilledProfile)
@@ -44,12 +46,15 @@
                 <div class="personal-details-subheaders">
                     <label>Your full name:</label>
                     <input asp-for="FullName" class="form-control-account" name="FullName">
+                    <span asp-validation-for="FullName" class="text-danger"></span>
                 </div>
 
                 <!--Date of birth-->
                 <div class="personal-details-subheaders">
                     <label>Your date of birth:</label>
                     <input asp-for="Birthdate" type="date" class="date-of-birth-box" name="Birthdate">
+                    <span asp-validation-for="Birthdate" class="text-danger"></span>
+
                 </div>
 
                 <!--Address-->
@@ -58,9 +63,13 @@
                         <div class="form-row">
                             <label class="col-sm-2 col-form-label">Street</label>
                             <input asp-for="Street" type="text" class="form-control-account col-sm-4" />
+                            <span asp-validation-for="Street" class="text-danger"></span>
+
 
                             <label class="remove-padding-left col-sm-2 col-form-label">Zip code</label>
                             <input asp-for="Zipcode" type="text" class="form-control-account col-sm-4" />
+                            <span asp-validation-for="Zipcode" class="text-danger"></span>
+
                         </div>
                     </div>
                 </div>
@@ -70,6 +79,7 @@
 
                     <label class="header">Upload profile picture:</label>
                     <input asp-for="ProfileImage" id="ProfileImage" name="ProfileImage" class="form-control-account" accept="image/*">
+                    <span asp-validation-for="ProfileImage" class="text-danger"></span>
 
 
                 </div>
@@ -79,50 +89,50 @@
 
 
         @*<!--SECOND SCREEN: Select the pet you would like to sit -->
-        <div class="fill-ad" id="completion-1" style="display: none">
-            <div class="header-petad">Select the pets that you would like to sit 😻</div>
-            <div class="account-completion-wrapper form-group col-12 remove-padding-left">
+            <div class="fill-ad" id="completion-1" style="display: none">
+                <div class="header-petad">Select the pets that you would like to sit 😻</div>
+                <div class="account-completion-wrapper form-group col-12 remove-padding-left">
 
-                <!--Animal checkboxes-->
-                <div class="user-type-select-container">
+                    <!--Animal checkboxes-->
+                    <div class="user-type-select-container">
 
-                    <div class=" d-flex flex-column">
-                        <input type="checkbox" value="dog" name="dog" id="dog" class="dog" />
-                        <label class="dog-label" for="dog"></label>
-                        <label class="pet-label">Dog</label>
+                        <div class=" d-flex flex-column">
+                            <input type="checkbox" value="dog" name="dog" id="dog" class="dog" />
+                            <label class="dog-label" for="dog"></label>
+                            <label class="pet-label">Dog</label>
+                        </div>
+                        <div class=" d-flex flex-column">
+                            <input type="checkbox" value="reptile" name="cat" id="cat" class="cat" />
+                            <label class="cat-label" for="cat"></label>
+                            <label class="pet-label">Cat</label>
+                        </div>
+                        <div class=" d-flex flex-column">
+                            <input type="checkbox" value="reptile" name="fish" id="fish" class="fish" />
+                            <label class="fish-label" for="fish"></label>
+                            <label class="pet-label">Fish</label>
+                        </div>
+                        <div class=" d-flex flex-column">
+                            <input type="checkbox" value="reptile" name="bird" id="bird" class="bird" />
+                            <label class="bird-label" for="bird"></label>
+                            <label class="pet-label">Bird</label>
+                        </div>
+                        <div class=" d-flex flex-column">
+                            <input type="checkbox" value="reptile" name="hamster" id="hamster" class="hamster" />
+                            <label class="hamster-label" for="hamster"></label>
+                            <label class="pet-label">Rodents</label>
+                        </div>
+                        <div class=" d-flex flex-column">
+                            <input type="checkbox" value="reptile" name="reptile" id="reptile" class="reptile" />
+                            <label class="reptile-label" for="reptile"></label>
+                            <label class="pet-label">Reptiles</label>
+                        </div>
                     </div>
-                    <div class=" d-flex flex-column">
-                        <input type="checkbox" value="reptile" name="cat" id="cat" class="cat" />
-                        <label class="cat-label" for="cat"></label>
-                        <label class="pet-label">Cat</label>
-                    </div>
-                    <div class=" d-flex flex-column">
-                        <input type="checkbox" value="reptile" name="fish" id="fish" class="fish" />
-                        <label class="fish-label" for="fish"></label>
-                        <label class="pet-label">Fish</label>
-                    </div>
-                    <div class=" d-flex flex-column">
-                        <input type="checkbox" value="reptile" name="bird" id="bird" class="bird" />
-                        <label class="bird-label" for="bird"></label>
-                        <label class="pet-label">Bird</label>
-                    </div>
-                    <div class=" d-flex flex-column">
-                        <input type="checkbox" value="reptile" name="hamster" id="hamster" class="hamster" />
-                        <label class="hamster-label" for="hamster"></label>
-                        <label class="pet-label">Rodents</label>
-                    </div>
-                    <div class=" d-flex flex-column">
-                        <input type="checkbox" value="reptile" name="reptile" id="reptile" class="reptile" />
-                        <label class="reptile-label" for="reptile"></label>
-                        <label class="pet-label">Reptiles</label>
-                    </div>
+
+                    <!--JavaScript Screen change-->
+                    <button class="btn-screen-change-previous" onclick="ChangeView(1, 0)">Previous</button>
+                    <button class="btn-screen-change-next" onclick="ChangeView(1, 2)">Next</button>
                 </div>
-
-                <!--JavaScript Screen change-->
-                <button class="btn-screen-change-previous" onclick="ChangeView(1, 0)">Previous</button>
-                <button class="btn-screen-change-next" onclick="ChangeView(1, 2)">Next</button>
             </div>
-        </div>
         *@
         <!--Third screen : Experience-->
         <div class="fill-ad" id="completion-1" style="display: none">
@@ -144,7 +154,7 @@
                     <label class="rate-3" for="star3" title="text">➌ </label>
                     <input asp-for="PetSitterExperienceEnum" type="radio" id="star2" name="PetSitterExperienceEnum" value="2" />
                     <label class="rate-2" for="star2" title="text">➋ </label>
-                    <input asp-for="PetSitterExperienceEnum" type="radio" id="star1" name="PetSitterExperienceEnum" value="1" />
+                    <input asp-for="PetSitterExperienceEnum" type="radio" id="star1" name="PetSitterExperienceEnum" value="1" checked />
                     <label class="rate-1" for="star1" title="text">➊ </label>
                 </div>
 
@@ -158,6 +168,8 @@
             <div class="account-completion-wrapper form-group col-12 remove-padding-left">
 
                 <textarea asp-for="Bio" class="text-area-yourself" placeholder="Type here.." type="text-area" value=""></textarea>
+                <span asp-validation-for="Bio" class="text-danger"></span>
+
 
             </div>
         </div>
@@ -169,7 +181,7 @@
             </div>
         </div>
         <div class="col-12 remove-padding-left" style="grid-area: fill-ad">
-            <a id="btn-previous" style="display:none" class="btn-screen-change-previous">Previous</a>
+            <a id="btn-previous" style="display: none" class="btn-screen-change-previous">Previous</a>
             <a id="btn-next" class="btn-screen-change-next">Next</a>
             <input type="submit" value="Create" class="btn-screen-change-next" style="display: none" id="btn-create">
         </div>
@@ -199,19 +211,24 @@
 
 
     function nextView() {
-        allViews[currentStage].style.display = 'none';
-        currentStage++;
-        allViews[currentStage].style.display = 'block';
-        hideBtns();
-        animateProgressBar()
+        if ($('#account-completion-form').valid()) {
+            allViews[currentStage].style.display = 'none';
+            currentStage++;
+            allViews[currentStage].style.display = 'block';
+            hideBtns();
+            animateProgressBar();
+        }
+
     }
 
     function previousView() {
-        allViews[currentStage].style.display = 'none';
-        currentStage--;
-        animateProgressBar(true);
-        allViews[currentStage].style.display = 'block';
-        hideBtns();    
+        if ($('#account-completion-form').valid()) {
+            allViews[currentStage].style.display = 'none';
+            currentStage++;
+            allViews[currentStage].style.display = 'block';
+            hideBtns();
+            animateProgressBar();
+        }
     }
 
     function hideBtns() {
@@ -259,3 +276,4 @@
         return new Promise(resolve => setTimeout(resolve, ms));
     }
 </script>
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

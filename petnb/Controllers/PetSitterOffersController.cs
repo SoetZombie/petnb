@@ -40,19 +40,24 @@ namespace petnb.Controllers
         //}.
         public async Task<IActionResult> Index(int? zipcode)
         {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            if (user.ProfilePicture == null)
+            {
+                return RedirectToAction("AccountCompletion", "Account");
+            }
             if (zipcode == null)
             {
-                var applicationDbContext = _context.Users.Include(o => o.PetSitter).ThenInclude(o => o.PetSitterOffers).ToList();
+                var applicationDbContext = _context.Users.Include(o => o.PetSitter).ThenInclude(o => o.PetSitterOffers).Where(o => o.PetSitter.PetSitterOffers.Count != 0).ToList();
 
                 return View(applicationDbContext);
             }
 
-            var allOffers = _context.Users.Include(o => o.PetSitter).ThenInclude(o => o.PetSitterOffers).Where(o => o.Zipcode == zipcode).ToList();
+            var allOffers = _context.Users.Include(o => o.PetSitter).ThenInclude(o => o.PetSitterOffers).Where(o => o.Zipcode == zipcode).Where(k => k.PetSitter.PetSitterOffers.Count != 0).ToList();
             if (allOffers.Count == 0)
             {
                 var searchZip = new decimal((int) zipcode);
                 searchZip =  Math.Round((searchZip / 1000) * 1000);
-                allOffers = _context.Users.Include(o => o.PetSitter).ThenInclude(o => o.PetSitterOffers).Where(o=> o.Zipcode >= searchZip && zipcode <= searchZip+1000).ToList();
+                allOffers = _context.Users.Include(o => o.PetSitter).ThenInclude(o => o.PetSitterOffers).Where(o=> o.Zipcode >= searchZip && zipcode <= searchZip+1000).Where(k => k.PetSitter.PetSitterOffers.Count != 0).ToList();
              
             }
 
