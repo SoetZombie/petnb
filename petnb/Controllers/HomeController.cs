@@ -39,7 +39,7 @@ namespace petnb.Controllers
         [HttpPost]
         public IActionResult Index(IndexViewModel model)
         {
-            return RedirectToAction("Index", "PetSitterOffers", new {id = model.ZipCode});
+            return RedirectToAction("Index", "PetSitterOffers", new {zipcode = model.ZipCode});
         }
 
         public IActionResult About()

@@ -53,12 +53,21 @@ namespace petnb.Controllers
             }
 
             var allOffers = _context.Users.Include(o => o.PetSitter).ThenInclude(o => o.PetSitterOffers).Where(o => o.Zipcode == zipcode).Where(k => k.PetSitter.PetSitterOffers.Count != 0).ToList();
-            if (allOffers.Count == 0)
+            if (allOffers.Count != 0)
             {
                 var searchZip = new decimal((int) zipcode);
                 searchZip =  Math.Round((searchZip / 1000) * 1000);
-                allOffers = _context.Users.Include(o => o.PetSitter).ThenInclude(o => o.PetSitterOffers).Where(o=> o.Zipcode >= searchZip && zipcode <= searchZip+1000).Where(k => k.PetSitter.PetSitterOffers.Count != 0).ToList();
-             
+                allOffers = _context.Users.Include(o => o.PetSitter).ThenInclude(o => o.PetSitterOffers).Where(k => k.PetSitter.PetSitterOffers.Count != 0).ToList();
+                foreach (var item in allOffers)
+                {
+                    var offers = item.PetSitter.PetSitterOffers;
+                    var listToSend =  offers.Where(o => o.ZipCode >= searchZip && o.ZipCode <= (searchZip+1000)).ToList();
+                    item.PetSitter.PetSitterOffers = listToSend;
+
+
+
+                }
+
             }
 
             return View(allOffers);
