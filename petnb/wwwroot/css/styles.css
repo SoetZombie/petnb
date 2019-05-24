@@ -1400,3 +1400,14 @@ Profile Completion :D
   font-family: "Quicksand", sans-serif;
   border: solid;
   border-color: #65C2AD; }
+
+.commit-button-home {
+  margin-top: 15rem;
+  margin-left: 9rem;
+  border-style: solid;
+  border-radius: 5px;
+  text-align: center;
+  border-color: #65C2AD;
+  font-family: "Quicksand", sans-serif;
+  font-weight: bold;
+  letter-spacing: 1px; }
