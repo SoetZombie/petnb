@@ -421,6 +421,8 @@ h4.main-heading {
   clip-path: ellipse(100px 100px at center);
   float: left;
   margin: 1rem 0;
+  height: 100px;
+  width: 100px;
   background-position: center;
   background-size: contain; }
 
