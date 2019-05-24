@@ -86,9 +86,9 @@
                                     {"userId", item.PetSitter.UserId}
                                 };
                             }
-                            <a class="authentication-btn register-btn " asp-all-route-data="@msgLink"  asp-controller="Messages" asp-action="Index">Connect</a>
+                            <a class="authentication-btn register-btn" style="display:block; margin-bottom:0.5rem" asp-all-route-data="@msgLink"  asp-controller="Messages" asp-action="Index">Connect</a>
 
-                            <a class="authentication-btn register-btn" asp-route-id="@item.PetSitterOfferId" asp-action="Details" >Details</a>
+                            <a class="authentication-btn register-btn" style="display:block" asp-route-id="@item.PetSitterOfferId" asp-action="Details" >Details</a>
                         </div>
                     </div>
                 </div>
