@@ -424,7 +424,6 @@ div.login-modal {
     right: 0;
     margin-bottom: 2rem;
     margin-right: 2rem;    
-    
 }
 
 .create-btn-positioning {
@@ -516,12 +515,16 @@ div.login-modal {
         //padding: 12px 20px;
     }
 
-    .clip-circle {
-        clip-path: ellipse(100px 100px at center);
-        float: left;
-        margin: 1rem 0;
-        //margin-left:1rem;
-    }
+.clip-circle {
+    clip-path: ellipse(100px 100px at center);
+    float: left;
+    margin: 1rem 0;
+    height: 100px;
+    width: 100px;
+    background-position: center;
+    background-size: contain;
+    //margin-left:1rem;
+}
 
     .usr-description {
         flex-direction: row;

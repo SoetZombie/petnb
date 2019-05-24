@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Dynamic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
-using petnb.DTL.Data.Models;
+using petnb.DTL.Models;
 
-namespace petnb.DTL.Models
+namespace petnb.DTL.Data.Models
 {
     // Add profile data for application users by adding properties to the ApplicationUser class
     public class ApplicationUser : IdentityUser
