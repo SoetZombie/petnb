@@ -164,14 +164,14 @@
 
         firebase.database().ref(`Users/${userId}`).once('value').then(function(snapshot) {
 
-            receiverRef.child(`${returnThread(userId, recipientId)}`).set({
+            receiverRef(`${returnThread(userId, recipientId)}`).set({
                 RecipientFullName: snapshot.val().FullName,
                 // RecipientProfilePicture: snapshot.val().ProfilePicture
             });
         });
         firebase.database().ref(`Users/${recipientId}`).once('value').then(function (snapshot) {
 
-            senderRef.child(`${returnThread(userId, recipientId)}`).set({
+            senderRef(`${returnThread(userId, recipientId)}`).set({
                 RecipientFullName: snapshot.val().FullName,
                 // RecipientProfilePicture: snapshot.val().ProfilePicture
             }).then(function() {
