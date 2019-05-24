@@ -1,6 +1,6 @@
 ﻿@using System.Globalization
 @using petnb.DTL.Data.Models.Enums
-@model petnb.DTL.Data.Models.PetSitterOffer
+@model petnb.Models.PetSitterOfferViewModels.PetSitterOfferViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -16,18 +16,62 @@
             <img class="progress-logo" src="~/images/P.svg">
             <div class="percent" id="process-bar-text">0%</div>
             <div class="progress-bar-bar">
-                <div class="bar" id="process-bar" style="width: 0%"></div>
+                <div class="bar" id="process-bar" style="width: 0.000000000000001%;"></div>
             </div>
         </div>
     </div>
     <div class="progress-bar-right"></div>
 
+    
+    <form asp-action="Create" style="grid-area: fill-ad" id="petSitterOfferForm">
+        <div asp-validation-summary="None" class="text-danger"></div>
 
-    <form asp-action="Create" style="grid-area:fill-ad">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="fill-ad" id="completion-0">
+            <div class="header-petad">Select the pets that you would like to sit 😻</div>
+
+            <!--Animal checkboxes-->
+            <div class="user-type-select-container">
+
+                <div class=" d-flex flex-column">
+                    <input type="checkbox" asp-for="Dog" value="true" checked="" name="Dog" id="dog" class="dog" style="display:none" />
+                    <label class="dog-label" for="dog"></label>
+                    <label class="pet-label">Dog</label>
+                </div>
+                <div class=" d-flex flex-column">
+                    <input type="checkbox" asp-for="Cat" value="true" name="Cat" id="cat" class="cat" style="display:none" />
+                    <label class="cat-label" for="cat"></label>
+                    <label class="pet-label">Cat</label>
+                </div>
+                <div class=" d-flex flex-column">
+                    <input type="checkbox" asp-for="Bird" value="3" name="Bird" id="bird" class="bird" style="display:none" />
+                    <label class="bird-label" for="bird"></label>
+                    <label class="pet-label">Bird</label>
+                </div>
+                <div class=" d-flex flex-column">
+                    <input type="checkbox" asp-for="Fish" value="4" name="Fish" id="fish" class="fish" style="display:none" />
+                    <label class="fish-label" for="fish"></label>
+                    <label class="pet-label">Fish</label>
+                </div>
+                <div class=" d-flex flex-column">
+                    <input type="checkbox" asp-for="Reptile" value="5" name="Reptile" id="reptile"class="reptile" style="display:none" />
+                    <label class="reptile-label" for="reptile"></label>
+                    <label class="pet-label">Reptiles</label>
+                </div>
+                <div class=" d-flex flex-column">
+                    <input type="checkbox" asp-for="Hamster" value="6" name="Hamster" id="hamster" class="hamster" style="display:none" />
+                    <label class="hamster-label" for="hamster"></label>
+                    <label class="pet-label">Rodents</label>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
 
         <!--First screen - Header-->
-        <div class="fill-ad" id="completion-0">
+        <div class="fill-ad" id="completion-1" style="display:none">
 
 
             <div class="header-petad">
@@ -37,9 +81,10 @@
 
             <div class="petad-form">
                 <div class="form-group">
-                    <textarea asp-for="Heading" maxlength="250" data-maxlength="250" class="form-control" name="heading"
+                    <textarea asp-for="Heading" maxlength="250" data-maxlength="250" class="form-control" name="Heading" id="adHeading"
                               placeholder="eg: Full-time pet sitter/dog walker. Offering loving care in their own comfortable and familiar environment"
                               spellcheck="false"></textarea>
+                    <span asp-validation-for="Heading" class="text text-danger"></span>
                 </div>
 
                 <div class="info-petad">
@@ -60,20 +105,23 @@
                 </div>
             </div>
 
-            <div class="btn-special2">
-                <input type="submit" value="next" class="authentication-btn register-btn" onclick="ChangeView(0, 1)">
-            </div>
+            <!--
+        <a id="btn-previous" class="btn-screen-change-previous">Previous</a>
+        <a id="btn-next" class="btn-screen-change-next">Next</a>
+        <a class="btn-screen-change-next btn-next" onclick="ChangeView(1, 2)">Next</a>-->
+
 
         </div>
 
         <!--Second screen - Content-->
-        <div class="fill-ad" id="completion-1" style="display:none">
+        <div class="fill-ad" id="completion-2" style="display:none">
             <div class="header-petad">
                 Tell us what is your experience in pet sitting ✍️
             </div>
+
             <div class="form-group">
-                <textarea asp-for="Content" maxlength="600" data-maxlength="600" class="form-control" name="content"
-                          placeholder="Type here"
+                <textarea asp-for="Content" maxlength="600" data-maxlength="600" class="form-control" name="Content"
+                          placeholder="Type here" id="adDescription"
                           spellcheck="false"></textarea>
                 <span asp-validation-for="Content" class="text-danger"></span>
             </div>
@@ -86,209 +134,333 @@
                     Do not forget that your last names, contact information, logo or URLs should not appear in your texts ; )
                 </div>
             </div>
-            <div class="btn-special2">
-                <input type="submit" value="back" class="authentication-btn login-btn" onclick="ChangeView(1, 0)">
-                <input type="submit" value="next" class="authentication-btn register-btn" onclick="ChangeView(1, 2)">
-            </div>
+
+            <!-- <input type="submit" value="back" class="authentication-btn login-btn" onclick="ChangeView(1, 0)">
+        <input type="submit" value="next" class="authentication-btn register-btn" onclick="ChangeView(1, 2)">
+            <a class="btn-screen-change-previous" onclick="ChangeView(2, 1)">Previous</a>
+            <a class="btn-screen-change-next" onclick="ChangeView(2, 3)">Next</a>-->
+
         </div>
 
         <!--Third screen - Location-->
-        <div class="fill-ad" id="completion-2" style="display:none">
+        <div class="fill-ad" id="completion-3" style="display:none">
             <div class="header-petad">
                 Your postal address 🏠
             </div>
+
             <div class="form-group">
-                <input asp-for="Location" class="form-control" value="Location" />
-                <span asp-validation-for="Location" class="text-danger"></span>
+                <input asp-for="ZipCode" id="adZipCode"class="form-control"  />
+                <span asp-validation-for="ZipCode" class="text-danger"></span>
             </div>
-            <div class="info-petad">
-                <img src="~/images/i.svg" class="info-image" />
-                <div class="info-petad-text">
+            <div class="info-petad2">
+                <img src="~/images/i.svg" class="info-image2" />
+                <div class="info-petad-text2">
                     This address will never appear on the web page. It will be shared only with those users that you have selected.
                 </div>
             </div>
             <div class="button-wrapper">
                 <div class="button-move1">
-                    <input type="radio" name="move" value="yes" class="button-move-special">
+                    <input type="radio" asp-for="AvailableToDrive" checked="" value="1" class="button-move-special" id="AvailableToDrive1">
                     <span class="text-button">Yes, I can make the trip</span>
                 </div>
                 <div class="button-move2">
-                    <input type="radio" name="move" value="no" class="button-move-special">
+                    <input type="radio" asp-for="AvailableToDrive" value="0" class="button-move-special" id="AvailableToDrive0">
                     <span class="text-button">No, the owner has to bring him</span>
                 </div>
             </div>
             <div class="button-move3">
-                <input type="radio" name="move" value="depends" class="button-move-special">
+                <input type="radio" asp-for="AvailableToDrive" value="2" class="button-move-special id="AvailableToDrive"2">
                 <span class="text-button">Maybe, I need to discuss it with the owner</span>
             </div>
-            <div class="btn-special2">
-                <input type="submit" value="back" class="authentication-btn login-btn" onclick="ChangeView(2, 1)">
-                <input type="submit" value="next" class="authentication-btn register-btn" onclick="ChangeView(2, 3)">
-            </div>
+
+            <!-- <a class="btn-screen-change-previous" onclick="ChangeView(3, 2)">Previous</a>
+        <a class="btn-screen-change-next" onclick="ChangeView(3, 4)">Next</a>-->
 
         </div>
-            
-            <!-- Fourth screen - Availability-->
-            <div class="fill-ad" id="completion-3" style="display: none">
-                <div class="header-petad">
-                    Select your availability 📅
+
+        <!-- Fourth screen - Availability-->
+        <div class="fill-ad" id="completion-4" style="display: none">
+            <div class="header-petad">
+                Select your availability 📅
+            </div>
+
+            <div class="form-group">
+                <span class="text-button">Start of sit</span>
+                <input asp-for="StartOfSit" id="adStart" class="form-control" type="date"  />
+                <span asp-validation-for="StartOfSit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span class="text-button">End of sit</span>
+                <input asp-for="EndOfSit" id="adEnd"class="form-control"  type="date" />
+                <span asp-validation-for="EndOfSit" class="text-danger"></span>
+            </div>
+
+            <!-- <a class="btn-screen-change-previous" onclick="ChangeView(4, 3)">Previous</a>
+        <a class="btn-screen-change-next" onclick="ChangeView(4, 5)">Next</a>-->
+
+        </div>
+
+
+        <!-- Fifth section - Price per h-->
+        <div class="fill-ad" id="completion-5" style="display:none">
+            <div class="header-petad">
+                The price per hour 🤑
+            </div>
+
+            <div class="amount-perh">
+                <input asp-for="ExpectedSalary" id="adSalary" class="form-control2" />
+                <span class="text-button2">DKK/h</span>
+            </div>
+                <span asp-validation-for="ExpectedSalary" class="text text-danger"></span>
+
+            <div class="header-petad">
+                Indications about your rates (optional)
+            </div>
+            <div class="form-group">
+                <textarea asp-for="SalaryExplanation" maxlength="600" data-maxlength="600" class="form-control" name="SalaryExplanation"
+                          placeholder="Specify if your rates vary depending on the type of pet, the displacement or if you have a policy of cancellation."
+                          spellcheck="false"></textarea>
+                <span asp-validation-for="SalaryExplanation" class="text text-danger"></span>
+
+            </div>
+
+            <!-- <a class="btn-screen-change-previous" onclick="ChangeView(5, 4)">Previous</a>
+         <a class="btn-screen-change-next" onclick="ChangeView(5, 6)">Next</a>-->
+
+
+        </div>
+
+
+
+        <!-- Last section - Display AD-->
+        <div class="fill-ad" id="completion-6" style="display:none">
+            <div class="header-petad">
+                Bravo! Your ad is complete 🎉
+            </div>
+
+            <div class="form-group">
+                <span class="text-button">Last thing: improve your ad with recommendations from friends, colleagues, new users ... The more you have, the more attractive it will be and the better positioned it will be ✌️</span>
+            </div>
+
+            <div class="grid">
+                <img src="~/images/image_1.jpg" alt="Title" style="width: 250px" class="clip-circle" />
+                <div class="grid2">
+                    <div class="usr-description">
+                        <div class="description-wrapper">
+                            <div class="name-heading" id="sumHeading"></div>
+                            Location:
+                            <span class="location">
+                                <i class="fa fa-map-marker-alt" style="color: #ea9078;"></i>
+                                <span class="location" id="sumZipCode"></span>
+                            </span><br />
+                            Period of sit: <span class="location" id="sumPeriod"></span>
+
+
+                            <div class="content" id="sumContent"></div>
+                        </div>
+
+
+
+
+                    </div>
+                    <div class="salary-container">
+                        <div class="expected-salary-details">
+                            <div class="stay-details2" id="sumSalary"></div>
+                        </div>
+                        <div class="dkk-h">DKK/h</div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <!--<button class="authentication-btn register-btn" onclick="ChangeView(3, 4)">Finish</button>-->
+
+        </div>
+        <div class="col-12 remove-padding-left" style="grid-area: fill-ad">
+            <a id="btn-previous" style="display:none" class="btn-screen-change-previous">Previous</a>
+            <a id="btn-next" class="btn-screen-change-next">Next</a>
+            <input type="submit" value="Create" class="btn-screen-change-next" style="display: none" id="btn-create">
+        </div>
+    </form>
+    
+</div>
+
+
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+@section Scripts{
+
+
+
+}
+    <script>
+
+
+        //variables
+        const allViews = document.getElementsByClassName('fill-ad');
+        let currentStage = 0;
+        const btnNext = document.getElementById('btn-next');
+        const btnPrev = document.getElementById('btn-previous');
+        const btnCreate = document.getElementById('btn-create');
+        const progressBar = $('#process-bar');
+        const progressText = $('#process-bar-text');
+
+        //jQueryVariables
+        const adHeading = $('#adHeading');
+        const adContent = $('#adDescription');
+        const adZipCode = $('#adZipCode');
+        const adStart = $('#adStart');
+        const adEnd = $('#adEnd');
+        const adSalary = $('#adSalary');
+
+        const sumHeading = $('#sumHeading');
+        const sumPeriod = $('#sumPeriod');
+        const sumContent = $('#sumContent');
+        const sumSalary = $('#sumSalary');
+        const sumZipCode = $('#sumZipCode');
+
+
+        // const progressBar = document.getElementById("process-bar");
+
+        const progressPercent = document.getElementById("process-bar-text");
+
+        //events
+        btnNext.addEventListener('click', nextView);
+        btnPrev.addEventListener('click', previousView);
+        //calls
+
+        function populateSummary() {
+            sumHeading.text(adHeading.val());
+            sumPeriod.text(`${adStart.val()} - ${adEnd.val()}`);
+            sumContent.text(adContent.val());
+            sumSalary.text(adSalary.val());
+            sumZipCode.text(adZipCode.val());
+        }
+
+        function nextView() {
+            if ($('#petSitterOfferForm').valid()) {
+                allViews[currentStage].style.display = 'none';
+                currentStage++;
+                allViews[currentStage].style.display = 'block';
+                hideBtns();
+                animateProgressBar();
+            }
+
+
+            //progressBar.style.width = currentStage * (100 / 6) + "%";
+            // progressPercent.innerText = Math.round(currentStage * Math.round(100 / 6 * 100) / 100) + "%";
+
+            //checkHiding();
+
+        }
+
+        function previousView() {
+            allViews[currentStage].style.display = 'none';
+            currentStage--;
+            animateProgressBar(true);
+            allViews[currentStage].style.display = 'block';
+            hideBtns();
+
+            // progressBar.style.width = currentStage * (100 / 6) + "%";
+            //progressPercent.innerText = Math.round(currentStage * Math.round(100 / 6 * 100) / 100) + "%";
+        }
+
+        function hideBtns() {
+            if (currentStage === 0) {
+                btnPrev.style.display = 'none';
+            } else {
+                btnPrev.style.display = '';
+            }
+            if (currentStage === 6) {
+                btnNext.style.display = 'none';
+                btnCreate.style.display = 'block';
+                populateSummary();
+
+
+            } else {
+                btnNext.style.display = '';
+                btnCreate.style.display = 'none';
+
+
+            }
+        }
+
+
+        function animateProgressBar(back) {
+            progressBar.animate({
+                width: `${currentStage * 16.66666666666667}%`,
+                duration: 500
+            });
+
+            var percent = Math.ceil((currentStage - 1) * 16.66666666666667);
+            if (back === true) {
+                var percent = Math.ceil((currentStage) * 16.66666666666667)
+            }
+            progressText.text((Math.ceil(currentStage * 16.66666666666667)) + '%');
+            progressText.prop('Counter', percent).animate({
+                Counter: progressText.text()
+            }, {
+                    duration: 500,
+                    easing: 'swing',
+                    step: function () {
+                        progressText.text(Math.ceil(this.Counter) + '%');
+                    }
+                });
+
+        }
+
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+    </script>
+@*<div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Heading" class="control-label"></label>
+                    <input asp-for="Heading" class="form-control" value="test" />
+                    <span asp-validation-for="Heading" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <span class="text-button">Start of sit</span>
+                    <label asp-for="Content" class="control-label"></label>
+                    <input asp-for="Content" class="form-control" value="test" />
+                    <span asp-validation-for="Content" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Location" class="control-label"></label>
+                    <input asp-for="Location" class="form-control" value="test" />
+                    <span asp-validation-for="Location" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="StartOfSit" class="control-label"></label>
                     <input asp-for="StartOfSit" class="form-control" type="date" value=@DateTime.Now.Date.ToString("yyyy/MM/dd") />
                     <span asp-validation-for="StartOfSit" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <span class="text-button">End of sit</span>
+                    <label asp-for="EndOfSit" class="control-label"></label>
                     <input asp-for="EndOfSit" class="form-control" value=@DateTime.Now.Date.ToString("yyyy/MM/dd") type="date" />
                     <span asp-validation-for="EndOfSit" class="text-danger"></span>
                 </div>
-
-                <div class="btn-special2">
-                    <input type="submit" value="back" class="authentication-btn login-btn" onclick="ChangeView(3, 2)">
-                    <input type="submit" value="next" class="authentication-btn register-btn" onclick="ChangeView(3, 4)">
-                </div>
-
-            </div>
-
-
-            <!-- Fifth section - Price per h-->
-            <div class="fill-ad" id="completion-4" style="display:none">
-                <div class="header-petad">
-                    The price per hour 🤑
-                </div>
-                <div class="amount-perh">
-                    <input asp-for="ExpectedSalary" class="form-control2" value="Amount" />
-                    <span class="text-button2">DKK/h</span>
-                </div>
-
-                <div class="header-petad">
-                    Indications about your rates (optional)
-                </div>
                 <div class="form-group">
-                    <textarea maxlength="600" data-maxlength="600" class="form-control" name="indications"
-                              placeholder="Specify if your rates vary depending on the type of pet, the displacement or if you have a policy of cancellation."
-                              spellcheck="false"></textarea>
-                </div>
-
-                <div class="btn-special2">
-                    <input type="submit" value="back" class="authentication-btn login-btn" onclick="ChangeView(4, 3)">
-                    <input type="submit" value="Create" class="authentication-btn register-btn" onclick="ChangeView(4, 5)">
-                </div>
-
-
-            </div>
-
-
-
-            <!-- Last section - Display AD-->
-            <div class="fill-ad" id="completion-5" style="display:none">
-                <div class="header-petad">
-                    Bravo! Your ad is complete 🎉
+                    <label asp-for="ExpectedSalary" class="control-label"></label>
+                    <input asp-for="ExpectedSalary" class="form-control" value="test" />
+                    <span asp-validation-for="ExpectedSalary" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <span class="text-button">Last thing: improve your ad with recommendations from friends, colleagues, new users ... The more you have, the more attractive it will be and the better positioned it will be ✌️</span>
+                    <input type="submit" value="Create" class="btn btn-default" />
                 </div>
-
-                <div class="grid">
-                    <img src="~/images/image_1.jpg" alt="Title" style="width: 250px" class="clip-circle" />
-                    <div class="grid2">
-                        <div class="usr-description">
-                            <div class="name-heading">model.Heading</div>
-                            @Html.DisplayNameFor(model => model.Heading)
-                            @Html.DisplayNameFor(model => model.Content)
-                            @Html.DisplayNameFor(model => model.Location)
-                            @Html.DisplayNameFor(model => model.StartOfSit)
-                            @Html.DisplayNameFor(model => model.EndOfSit)
-                            @Html.DisplayNameFor(model => model.ExpectedSalary)
-                            <div class="location">model.Location</div>
-                            <div class="start-of-sit">model.StartOfSit</div>
-                            <div class="end-of-sit">model.EndOfSit</div>
-                            <div class="expected-salary">model.ExpectedSalary</div>
-
-                        </div>
-
-                    </div>
-                </div>
-
-
-                <div class="btn-special2">
-                    <button class="authentication-btn login-btn" onclick="ChangeView(3, 2)">back</button>
-                    <button class="authentication-btn register-btn" onclick="ChangeView(3, 4)">Finish</button>
-                </div>
-
-            </div>
-    </form>
-</div>
-
-
-
-    <script>
-        function ChangeView(completionLevelToHide, completionLevelToDisplay) {
-            var completionIdToHide = "completion-" + completionLevelToHide;
-            var completionIdToDisplay = "completion-" + completionLevelToDisplay;
-            document.getElementById(completionIdToHide).style.display = "none";
-            document.getElementById(completionIdToDisplay).style.display = "";
-            document.getElementById("process-bar").style.width = completionLevelToDisplay * 20 + "%";
-            document.getElementById("process-bar-text").innerText = completionLevelToDisplay * 20 + "%";
-        }
-        function PopulateOverview() {
-
-        }
-    </script>
-
-
-
-    <!--
-        <div class="row">
-            <div class="col-md-4">
-                <form asp-action="Create">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="form-group">
-                        <label asp-for="Heading" class="control-label"></label>
-                        <input asp-for="Heading" class="form-control" value="test" />
-                        <span asp-validation-for="Heading" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Content" class="control-label"></label>
-                        <input asp-for="Content" class="form-control" value="test" />
-                        <span asp-validation-for="Content" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Location" class="control-label"></label>
-                        <input asp-for="Location" class="form-control" value="test" />
-                        <span asp-validation-for="Location" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="StartOfSit" class="control-label"></label>
-                        <input asp-for="StartOfSit" class="form-control" type="date" value=@DateTime.Now.Date.ToString("yyyy/MM/dd") />
-                        <span asp-validation-for="StartOfSit" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="EndOfSit" class="control-label"></label>
-                        <input asp-for="EndOfSit" class="form-control" value=@DateTime.Now.Date.ToString("yyyy/MM/dd") type="date" />
-                        <span asp-validation-for="EndOfSit" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="ExpectedSalary" class="control-label"></label>
-                        <input asp-for="ExpectedSalary" class="form-control" value="test" />
-                        <span asp-validation-for="ExpectedSalary" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="submit" value="Create" class="btn btn-default" />
-                    </div>
-                </form>
-            </div>
+            </form>
         </div>
+    </div>
 
-        <div>
-            <a asp-action="Index">Back to List</a>
-        </div>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
 
-        @section Scripts {
-            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-        }
 
-        -->
+
+

@@ -47,6 +47,9 @@ namespace petnb
             services.AddSingleton<IFirebaseService>(s => new FirebaseService(Configuration["FirebaseAuth"]));
             services.AddTransient<IPetService, PetService>();
             services.AddTransient<IAccountService, AccountService>();
+            services.AddTransient<IPetSitterOffersService, PetSitterOffersService>();
+
+
 
 
             // Add application services.

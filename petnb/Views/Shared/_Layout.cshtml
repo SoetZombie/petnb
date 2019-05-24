@@ -1,8 +1,10 @@
-﻿@using Microsoft.AspNetCore.Http
+﻿@using System.Collections.Specialized
+@using Microsoft.AspNetCore.Http
 @using petnb.DTL.Models
 
 @using System.Linq
 @using Microsoft.AspNetCore.Http.Authentication
+@using Newtonsoft.Json
 
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 
@@ -61,12 +63,18 @@ else{
             </div>
             <ul class="navbar-nav">
                 <li class="nav-item ">
-                    <a class="menu-underline nav-item-underline" href="#">Find petsitter</a>
+                    <a class="menu-underline nav-item-underline" asp-controller="PetSitterOffers" asp-action="Index">Find petsitter</a>
                 </li>
                 <li class="nav-item">
-                    <a class="menu-underline nav-item-underline" href="#">Become petsitter</a>
+                    <a class="menu-underline nav-item-underline" asp-controller="Home" asp-action="BecomePetSitter"> Create offer</a>
                 </li>
+
+                @*//Button to petsitter offer, should apear when personal details is filled out
+                    <li class="nav-item">
+            <a class="menu-underline nav-item-underline" asp-controller="PetSitterOffers" asp-action="Create">Create offer</a>
+        </li>*@
                 <li class="nav-item">
+                    @* TODO: Create About view *@
                     <a class="menu-underline nav-item-underline" href="#">About</a>
                 </li>
             </ul>
@@ -120,7 +128,9 @@ else{
                     <p>
                         @foreach (var provider in loginProviders)
                         {
-                            <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.Name</button>
+                        <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
+                            <img alt="Google" height="23" src="https://www.google.nl/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" width="70">
+                        </button>
                         }
                     </p>
                 </div>
@@ -144,243 +154,244 @@ else{
     </div>
 
 
-    @RenderBody()
 
-    <script src="~/vendor.min.js"></script>
+<script src="~/vendor.min.js"></script>
 <script src="~/js/site.js"></script>
 <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
-    @RenderSection("Scripts", required: false)
-
-    <script>
-    let allChats = [];
-    let recipientFullName = [];
+       
+        <script>
+        let allChats = [];
+        let recipientFullName = [];
         let messages;
         let firebaseCurrentUserFullName;
         let firebaseCurrentUserPicture;
         let firstTime = true;
 
-    var config = {
-        apiKey: "AIzaSyB0TsAqzapyK4WS4NpyrLW_fVjHElyt_nA",
-        authDomain: "petnb-16f28.firebaseapp.com",
-        databaseURL: "https://petnb-16f28.firebaseio.com",
-        projectId: "petnb-16f28",
-        storageBucket: "petnb-16f28.appspot.com",
-        messagingSenderId: "772154609232",
-        appId: "1:772154609232:web:7248207eeb71bd80"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(config);
-      
-
-    var isSignedIn = @jsSigned;
-       
-    const userId = "@Html.Raw(userId)";
-    const fullName = "@Html.Raw(fullName)";
-    //include image
+        var config = {
+            apiKey: "AIzaSyB0TsAqzapyK4WS4NpyrLW_fVjHElyt_nA",
+            authDomain: "petnb-16f28.firebaseapp.com",
+            databaseURL: "https://petnb-16f28.firebaseio.com",
+            projectId: "petnb-16f28",
+            storageBucket: "petnb-16f28.appspot.com",
+            messagingSenderId: "772154609232",
+            appId: "1:772154609232:web:7248207eeb71bd80"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(config);
 
 
-    const token = "@Html.Raw(token)";
+        var isSignedIn = @jsSigned;
 
-    if (isSignedIn) {
+        const userId = "@Html.Raw(userId)";
+        const fullName = "@Html.Raw(fullName)";
+        //include image
 
-        var user = firebase.auth().currentUser;
-        if (user == null) {
-            signIn();
+
+        const token = "@Html.Raw(token)";
+
+        if (isSignedIn) {
+
+            var user = firebase.auth().currentUser;
+            if (user == null) {
+                signIn();
+
+            }
+
+            initializeUser(userId, fullName); //include image
 
         }
-    
-        initializeUser(userId, fullName);//include image
 
-    }
 
-    
         //execute after login
-    function initializeUser(userId, fullName) {
-        const usersRef = firebase.database().ref('Users/');
+        function initializeUser(userId, fullName) {
+            const usersRef = firebase.database().ref('Users/');
 
-        usersRef.child(userId).once('value',
-            function (snapshot) {
-                if (snapshot.exists()) {
-                    //alert('exists');
-                } else {
-                    usersRef.child(userId).set(userId);
-                    usersRef.child(userId).set({
-                        FullName: fullName
-                        //include image
-                    });
+            usersRef.child(userId).once('value',
+                function(snapshot) {
+                    if (snapshot.exists()) {
+                        //alert('exists');
+                    } else {
+                        usersRef.child(userId).set(userId);
+                        usersRef.child(userId).set({
+                            FullName: fullName
+                            //include image
+                        });
 
+                    }
+                });
+        }
+
+        function signIn() {
+            firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+                .then(function() {
+                    // Existing and future Auth states are now persisted in the current
+                    // session only. Closing the window would clear any existing state even
+                    // if a user forgets to sign out.
+                    // ...
+                    // New sign-in will be persisted with session persistence.
+
+                    return firebase.auth().signInWithCustomToken(token);
+
+                }).then(function() {
+                    user = firebase.auth().currentUser;
+
+                })
+                .catch(function(error) {
+                    // Handle Errors here.
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                });
+        }
+
+        </script>
+
+
+        <script>
+
+        const login = document.getElementById("login-btn-ajax");
+        const close = document.getElementById("close-btn");
+        const loginModal = document.getElementById("login-overlay");
+        const ajaxSubmitBtn = document.getElementById("login-btn-ajax-submit");
+        const loginFrom = document.getElementById("ajax-login-form");
+
+        attachOnClickListeners();
+
+        function attachOnClickListeners() {
+            login.addEventListener("click",
+                function() {
+                    loginModal.classList.toggle("hidden");
+                    document.getElementsByTagName('body')[0].style.overflowY = 'hidden';
+                    slideIn();
+                });
+
+            close.addEventListener("click", slideOut);
+
+            ajaxSubmitBtn.addEventListener("click",
+                function() {
+                    loginAjax();
+                });
+        }
+
+
+        async function slideOut() {
+            document.getElementsByTagName('body')[0].style.overflowY = 'visible';
+            loginModal.classList.toggle("custom-slide-out");
+            loginModal.style.cssText = "top:-999px; bottom:999px";
+            await sleep(200);
+            loginModal.classList.toggle("custom-slide-out");
+            loginModal.classList.toggle("hidden");
+        }
+
+        //function createErrorMsg() {
+        //    var errorMsg = document.createElement('div');
+        //    errorMsg.setAttribute("id", "error-msg");
+        //    loginFrom.prepend(errorMsg);
+        //}
+
+        function loginAjax() {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const rememberMe = document.getElementById("rememberMe").checked;
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("AjaxLogin", "Account")",
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("XSRF-TOKEN",
+                        $('input:hidden[name="__RequestVerificationToken"]').val());
+                },
+                contentType: "application/json; /*cha*/rset=utf-8",
+                dataType: "json",
+                data: JSON.stringify({
+                    email: email,
+                    password: password,
+                    rememberMe: rememberMe
+                }),
+                success: function(response) {
+                    location.reload();
+                },
+                error: function(response) {
+                    //createErrorMsg();
+                    // document.getElementById("error-msg").innerHTML = response.responseText;
+                    send();
                 }
             });
-    }
+        }
 
-    function signIn() {
-        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
-            .then(function () {
-                // Existing and future Auth states are now persisted in the current
-                // session only. Closing the window would clear any existing state even
-                // if a user forgets to sign out.
-                // ...
-                // New sign-in will be persisted with session persistence.
+        const xMax = 16;
+        const shake = anime({
+            targets: '#input-container',
+            easing: 'easeInOutSine',
+            duration: 550,
+            translateX: [
+                {
+                    value: xMax * -1,
+                },
+                {
+                    value: xMax,
+                },
+                {
+                    value: xMax / -2,
+                },
+                {
+                    value: xMax / 2,
+                },
+                {
+                    value: 0,
+                }
+            ],
+            autoplay: false,
+        });
 
-                return firebase.auth().signInWithCustomToken(token);
+        const colorAnims = [
+            anime({
+                targets: '#js-login-form',
+                borderTopColor: '#FF4848',
+                easing: 'linear',
+                duration: 500,
+                autoplay: false,
+            }),
+            anime({
+                targets: '.form-group input',
+                borderColor: '#FF4848',
+                easing: 'linear',
+                duration: 200,
+                autoplay: false,
 
-            }).then(function () {
-                user = firebase.auth().currentUser;
+            }),
+        ];
+
+        const send = () => {
+            shake.restart();
+            colorAnims.forEach(a => a.restart());
+        };
+        const slideIn = () => {
+            modalSlideIn.forEach(a => a.restart());
+        }
+        const modalSlideIn = [
+            anime({
+                targets: '#login-overlay',
+                top: '0px',
+                bottom: '0px',
+                autoplay: false,
+
+            }),
+            anime({
+                targets: 'body',
+                overflowY: 'hidden'
 
             })
-            .catch(function (error) {
-                // Handle Errors here.
-                var errorCode = error.code;
-                var errorMessage = error.message;
-            });
-    }
-
-    </script>
+        ];
 
 
-    <script>
-
-    const login = document.getElementById("login-btn-ajax");
-    const close = document.getElementById("close-btn");
-    const loginModal = document.getElementById("login-overlay");
-    const ajaxSubmitBtn = document.getElementById("login-btn-ajax-submit");
-    const loginFrom = document.getElementById("ajax-login-form");
-
-    attachOnClickListeners();
-
-    function attachOnClickListeners() {
-        login.addEventListener("click",
-            function() {
-                loginModal.classList.toggle("hidden");
-                document.getElementsByTagName('body')[0].style.overflowY = 'hidden';
-                slideIn();
-            });
-
-        close.addEventListener("click", slideOut);
-
-        ajaxSubmitBtn.addEventListener("click",
-            function () {
-                loginAjax();
-            });
-    }
-
-
-    async function slideOut() {
-       document.getElementsByTagName('body')[0].style.overflowY = 'visible';
-       loginModal.classList.toggle("custom-slide-out");
-       loginModal.style.cssText = "top:-999px; bottom:999px";
-       await sleep(200);
-       loginModal.classList.toggle("custom-slide-out");
-       loginModal.classList.toggle("hidden");
-   }
-
-    //function createErrorMsg() {
-    //    var errorMsg = document.createElement('div');
-    //    errorMsg.setAttribute("id", "error-msg");
-    //    loginFrom.prepend(errorMsg);
-    //}
-
-    function loginAjax() {
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
-        const rememberMe = document.getElementById("rememberMe").checked;
-        $.ajax({
-            type: "POST",
-            url: "@Url.Action("AjaxLogin","Account")",
-            beforeSend: function(xhr) {
-                xhr.setRequestHeader("XSRF-TOKEN",
-                    $('input:hidden[name="__RequestVerificationToken"]').val());
-            },
-            contentType: "application/json; /*cha*/rset=utf-8",
-            dataType: "json",
-            data: JSON.stringify({
-                email: email,
-                password: password,
-                rememberMe: rememberMe
-            }),
-            success: function (response) {
-                location.reload();
-            },
-            error: function (response) {
-                //createErrorMsg();
-               // document.getElementById("error-msg").innerHTML = response.responseText;
-                send();
-            }
-        });
-    }
-
-    const xMax = 16;
-    const shake = anime({
-        targets: '#input-container',
-        easing: 'easeInOutSine',
-        duration: 550,
-        translateX: [
-            {
-                value: xMax * -1,
-            },
-            {
-                value: xMax,
-            },
-            {
-                value: xMax/-2,
-            },
-            {
-                value: xMax/2,
-            },
-            {
-                value: 0,
-            }
-        ],
-        autoplay: false,
-    });
-
-    const colorAnims = [
-        anime({
-            targets: '#js-login-form',
-            borderTopColor: '#FF4848',
-            easing: 'linear',
-            duration: 500,
-            autoplay: false,
-        }),
-        anime({
-            targets: '.form-group input',
-            borderColor: '#FF4848',
-            easing: 'linear',
-            duration: 200,
-            autoplay: false,
-
-        }),
-    ];
-
-    const send = () => {
-        shake.restart();
-        colorAnims.forEach(a => a.restart());
-    };
-    const slideIn = () => {
-        modalSlideIn.forEach(a => a.restart());
-    }
-    const modalSlideIn = [
-        anime({
-        targets: '#login-overlay',
-        top: '0px',
-        bottom: '0px',
-        autoplay: false,
-
-        }),
-        anime({
-            targets: 'body',
-            overflowY:'hidden'
-
-        })
-    ];
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+        </script>
+@RenderBody()
 
 
 
 
-    function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
-    </script>
 
 </body>
 </html>

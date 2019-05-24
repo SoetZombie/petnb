@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using petnb.DTL.Data;
 
 namespace petnb.DTL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190521082658_ExperienceMigration")]
+    partial class ExperienceMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -176,8 +178,6 @@ namespace petnb.DTL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AvailableToDrive");
-
                     b.Property<string>("Content");
 
                     b.Property<DateTime>("EndOfSit");
@@ -186,13 +186,11 @@ namespace petnb.DTL.Migrations
 
                     b.Property<string>("Heading");
 
+                    b.Property<string>("Location");
+
                     b.Property<int>("PetSitterId");
 
-                    b.Property<string>("SalaryExplanation");
-
                     b.Property<DateTime>("StartOfSit");
-
-                    b.Property<int>("ZipCode");
 
                     b.HasKey("PetSitterOfferId");
 
@@ -224,39 +222,7 @@ namespace petnb.DTL.Migrations
 
                     b.HasKey("PetTypeId");
 
-                    b.ToTable("PetTypes");
-
-                    b.HasData(
-                        new
-                        {
-                            PetTypeId = 1,
-                            PetTypeEnum = 1
-                        },
-                        new
-                        {
-                            PetTypeId = 2,
-                            PetTypeEnum = 2
-                        },
-                        new
-                        {
-                            PetTypeId = 3,
-                            PetTypeEnum = 3
-                        },
-                        new
-                        {
-                            PetTypeId = 4,
-                            PetTypeEnum = 4
-                        },
-                        new
-                        {
-                            PetTypeId = 5,
-                            PetTypeEnum = 5
-                        },
-                        new
-                        {
-                            PetTypeId = 6,
-                            PetTypeEnum = 6
-                        });
+                    b.ToTable("PetType");
                 });
 
             modelBuilder.Entity("petnb.DTL.Data.Models.Review", b =>
@@ -308,8 +274,6 @@ namespace petnb.DTL.Migrations
                         .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed");
-
-                    b.Property<bool>("FilledProfile");
 
                     b.Property<string>("FullName");
 

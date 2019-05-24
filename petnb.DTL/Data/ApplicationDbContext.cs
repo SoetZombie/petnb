@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using petnb.DTL.Data.Models;
+using petnb.DTL.Data.Models.Enums;
 using petnb.DTL.Models;
 
 namespace petnb.DTL.Data
@@ -20,6 +21,8 @@ namespace petnb.DTL.Data
         public DbSet<Pet> Pets { get; set; }
         public DbSet<PetSitterOffer> PetSitterOffers { get; set; }
         public DbSet<PetSitter> PetSitters { get; set; }
+        public DbSet<Experience> Experiences { get; set; }
+        public DbSet<PetType> PetTypes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -56,6 +59,20 @@ namespace petnb.DTL.Data
                 .HasOne(k => k.PetSitterOffer)
                 .WithMany(u => u.PetSitterOfferPetTypeModels)
                 .HasForeignKey(k => k.PetSitterOfferId);
+
+            builder.Entity<Experience>()
+                .HasOne(p => p.PetSitter)
+                .WithOne(o => o.Experience)
+                .HasForeignKey<Experience>(u => u.PetSitterId);
+
+            builder.Entity<PetType>().HasData(
+                new PetType {PetTypeEnum = PetTypeEnum.Dog, PetTypeId = 1},
+                new PetType { PetTypeEnum = PetTypeEnum.Cat, PetTypeId = 2 },
+                new PetType { PetTypeEnum = PetTypeEnum.Bird, PetTypeId = 3 },
+                new PetType { PetTypeEnum = PetTypeEnum.Fish, PetTypeId = 4 },
+                new PetType { PetTypeEnum = PetTypeEnum.Reptile, PetTypeId = 5 },
+                new PetType { PetTypeEnum = PetTypeEnum.Hamster, PetTypeId = 6 }
+            );
 
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.

@@ -394,8 +394,12 @@ namespace petnb.Controllers
             var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
             if (result.Succeeded)
             {
+                
+                var debug = _userManager.GetUserId(User);
+                var checkToken = HttpContext.Session.GetString("FirebaseToken");
 
-                var customToken = await _firebaseService.GenerateCustomToken(_userManager.GetUserId(HttpContext.User));
+                var user = await _userManager.FindByEmailAsync(info.Principal.FindFirstValue(ClaimTypes.Email));
+                var customToken = await _firebaseService.GenerateCustomToken(user.Id);
                 HttpContext.Session.SetString("FirebaseToken", customToken);
 
                 _logger.LogInformation("User created a new account with password.");
@@ -412,15 +416,16 @@ namespace petnb.Controllers
                 ViewData["ReturnUrl"] = returnUrl;
                 ViewData["LoginProvider"] = info.LoginProvider;
                 var email = info.Principal.FindFirstValue(ClaimTypes.Email);
-                var fullName = info.Principal.FindFirstValue(ClaimTypes.GivenName) + " " + info.Principal.FindFirstValue(
+                var fullName = info.Principal.FindFirstValue(ClaimTypes.GivenName) + " " +info.Principal.FindFirstValue(
                     ClaimTypes.Surname);
-                               info.Principal.FindFirstValue(ClaimTypes.GivenName);
+
                 var user = new ApplicationUser { UserName = email, Email = email, FullName = fullName};
                 var outcome = await _userManager.CreateAsync(user);
                 if (outcome.Succeeded)
                 {
                     outcome = await _userManager.AddLoginAsync(user, info);
                     await _signInManager.SignInAsync(user, isPersistent: false);
+                    _accountService.CreatePetSitter(user.Id);
                     _logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);      
                 }
                 AddErrors(outcome);
@@ -568,6 +573,12 @@ namespace petnb.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult ProfileDetails()
+        {
+            return View();
+        }
+
         #region AccountCompletion
 
         [HttpGet]
@@ -575,6 +586,27 @@ namespace petnb.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public async Task<IActionResult> AccountCompletion(AccountCompletionViewModel model)
+            {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+
+            _accountService.FillProfile(
+                user.Id, model.FullName,
+                model.Birthdate, model.Street,
+                model.Zipcode,
+                model.ProfileImage,
+                model.WasPetSitter,
+                model.PetSitterExperienceEnum,
+                model.PetSitterExperience,
+                model.Bio
+                );
+
+            return View();
+        }
+
+
+
             
 
         #endregion
