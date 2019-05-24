@@ -38,7 +38,6 @@ namespace petnb.Controllers
         //    var applicationDbContext = _context.PetSitterOffers.Include(p => p.PetSitter);
         //    return View(await applicationDbContext.ToListAsync());
         //}.
-        [AllowAnonymous]
         public async Task<IActionResult> Index(int? zipcode)
         {
             if (zipcode == null)
