@@ -436,12 +436,13 @@ h4.main-heading {
 
 .name-heading {
   font-family: "Quicksand", sans-serif;
-  font-size: 30px;
+  font-size: 24px;
   font-weight: bold;
   margin-top: 1rem;
   margin-bottom: 0;
   padding: 0px 0px 0px 0px;
-  color: black; }
+  color: black;
+  padding-right: 8rem; }
 
 .location {
   font-family: "Quicksand", sans-serif;
@@ -1236,7 +1237,7 @@ Profile Completion :D
 .grid-container-details {
   display: grid;
   grid-template-columns: 0.2fr 1.2fr 0.2fr;
-  grid-template-rows: 0.2fr 1fr;
+  grid-template-rows: 6em 0.2fr 1fr;
   grid-template-areas: ". . ." ". details-wrapper .";
   height: 100vh;
   background-size: 100%;
