@@ -1403,8 +1403,8 @@ Profile Completion :D
   border-color: #65C2AD; }
 
 .commit-button-home {
-  margin-top: 15rem;
-  margin-left: 9rem;
+  margin-top: 3rem;
+  margin-left: 6rem;
   border-style: solid;
   border-radius: 5px;
   text-align: center;
@@ -1412,3 +1412,24 @@ Profile Completion :D
   font-family: "Quicksand", sans-serif;
   font-weight: bold;
   letter-spacing: 1px; }
+
+.find-petsitter-header {
+  font-size: 2rem;
+  padding: 2rem;
+  font-family: quicksand;
+  font-weight: bold;
+  margin-top: 0rem;
+  color: #4F4F4F; }
+
+.search-field-homepage {
+  text-align: center; }
+
+.search-field-homepage:hover {
+  text-decoration: none; }
+
+.input-search-home {
+  border-radius: 0.2rem;
+  border: solid 1px;
+  text-decoration: none;
+  border-color: #E5E5E5;
+  height: 2.3rem; }

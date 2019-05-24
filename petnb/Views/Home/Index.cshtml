@@ -5,8 +5,9 @@
 
 <div class="landing-page-grid-container">
     <div class="SearchPet">
-        <form asp-action="Index">
-            <input asp-for="ZipCode" />
+        <h2 class="find-petsitter-header">Find a pet sitter close to you</h2>
+        <form asp-action="Index" class="search-field-homepage">
+            <input class="input-search-home" placeholder=" Zip code" asp-for="ZipCode" />
             <button type="submit" class="register-btn commit-button-home">Search</button>
         </form>
     </div>
