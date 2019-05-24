@@ -75,6 +75,13 @@
     startChatWithGivenUser();
     $(document).ready(function() {
         spinnerLoader();
+        document.getElementById('message-input-field-text').onkeydown = function(e) {
+            if(e.keyCode === 13) {
+                sendMsg(e);
+                console.log("msg")
+        
+            }
+        };
     });
     async function spinnerLoader() {
        await sleep(1000);
@@ -157,14 +164,14 @@
 
         firebase.database().ref(`Users/${userId}`).once('value').then(function(snapshot) {
 
-            receiverRef.child(`${returnThread(userId, recipientId)}`).set({
+            receiverRef(`${returnThread(userId, recipientId)}`).set({
                 RecipientFullName: snapshot.val().FullName,
                 // RecipientProfilePicture: snapshot.val().ProfilePicture
             });
         });
         firebase.database().ref(`Users/${recipientId}`).once('value').then(function (snapshot) {
 
-            senderRef.child(`${returnThread(userId, recipientId)}`).set({
+            senderRef(`${returnThread(userId, recipientId)}`).set({
                 RecipientFullName: snapshot.val().FullName,
                 // RecipientProfilePicture: snapshot.val().ProfilePicture
             }).then(function() {
@@ -400,13 +407,14 @@
             function (snapshot) {
                 if (!firstTime) {
                     var data = snapshot.val();
-                    console.log(transpiled);
                     var transpiled = Object.values(data);
+                    console.log(transpiled);
+                    console.log(data);
                     if (transpiled.length != 1) {
 
                         
-                        var messageToAdd = transpiled[transpiled.length - 2];
-
+                        var messageToAdd = transpiled[transpiled.length - 3];
+                        console.log(messageToAdd)
 
                         const messageWrap = createNode('div');
                         const messageSender = createNode('div');
@@ -447,6 +455,7 @@
             });
         
     }
+
     
     function sendMsg() {
         var inputNode = document.getElementById('message-input-field-text');

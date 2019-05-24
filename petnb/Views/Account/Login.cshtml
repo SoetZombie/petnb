@@ -10,8 +10,10 @@
    
     <div class="col-md-6 col-md-offset-2">
         <section>
+            <h1>PLEASE LOGIN USING BUTTON ON TOP LEFT CORNER TO CONTINUE</h1>
+
             <h4>Use another service to log in.</h4>
-            <hr />
+            <hr/>
             @{
                 var loginProviders = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToList();
                 if (loginProviders.Count == 0)
