@@ -543,7 +543,7 @@ div.login-modal {
     margin-bottom: 0;
     padding: 0px 0px 0px 0px;
     color: black;
-    padding-right: 8rem;
+    //padding-right: 8rem;
 }
 
 .location {
@@ -1531,7 +1531,7 @@ div.login-modal {
 
 .details-foto-wrapper {
     grid-area: details-foto-wrapper;
-    margin: 2rem 0 0 2rem;
+    //margin: 2rem 0 0 2rem;
     display: flex;
 }
 .img-details {
@@ -1615,6 +1615,28 @@ div.login-modal {
 .details-similar-profile {
     grid-area: details-similar-profile;
 }
+
+.connect-btn-details {
+    margin: 3rem;
+    background: white;
+    color: $greenColor;
+    padding: 0.5rem 1.4rem 0.5rem 1.4rem;
+    cursor: pointer;
+    letter-spacing: 2px;
+    display: flex;
+    font-family: $quicksand;
+    font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+    justify-content: center;
+}
+
+.connect-btn-details:hover {
+    background: lightgrey !important;
+    color: white;
+}
+
+
 
 #btn-next {
     color: white;

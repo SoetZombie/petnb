@@ -441,8 +441,7 @@ h4.main-heading {
   margin-top: 1rem;
   margin-bottom: 0;
   padding: 0px 0px 0px 0px;
-  color: black;
-  padding-right: 8rem; }
+  color: black; }
 
 .location {
   font-family: "Quicksand", sans-serif;
@@ -1254,7 +1253,6 @@ Profile Completion :D
 
 .details-foto-wrapper {
   grid-area: details-foto-wrapper;
-  margin: 2rem 0 0 2rem;
   display: flex; }
 
 .stay-details {
@@ -1326,6 +1324,24 @@ Profile Completion :D
 
 .details-similar-profile {
   grid-area: details-similar-profile; }
+
+.connect-btn-details {
+  margin: 3rem;
+  background: white;
+  color: #65C2AD;
+  padding: 0.5rem 1.4rem 0.5rem 1.4rem;
+  cursor: pointer;
+  letter-spacing: 2px;
+  display: flex;
+  font-family: "Quicksand", sans-serif;
+  font-weight: bold;
+  border-radius: 5px;
+  text-align: center;
+  justify-content: center; }
+
+.connect-btn-details:hover {
+  background: lightgrey !important;
+  color: white; }
 
 #btn-next {
   color: white; }
