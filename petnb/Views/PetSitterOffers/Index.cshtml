@@ -102,7 +102,7 @@
     @foreach (var user in Model)
     {
         var image = "";
-        if (user.ProfilePicture != null || user.ProfilePicture.Length != 0 )
+        if (user.FilledProfile)
         {
 
             image = Convert.ToBase64String(user.ProfilePicture);

@@ -38,13 +38,10 @@ namespace petnb.Controllers
         //    var applicationDbContext = _context.PetSitterOffers.Include(p => p.PetSitter);
         //    return View(await applicationDbContext.ToListAsync());
         //}.
+        [AllowAnonymous]
         public async Task<IActionResult> Index(int? zipcode)
         {
-            var user = await _userManager.GetUserAsync(HttpContext.User);
-            if (user.ProfilePicture == null)
-            {
-                return RedirectToAction("AccountCompletion", "Account");
-            }
+  
             if (zipcode == null)
             {
                 var applicationDbContext = _context.Users.Include(o => o.PetSitter).ThenInclude(o => o.PetSitterOffers).Where(o => o.PetSitter.PetSitterOffers.Count != 0).ToList();
@@ -52,18 +49,27 @@ namespace petnb.Controllers
                 return View(applicationDbContext);
             }
 
-            var allOffers = _context.Users.Include(o => o.PetSitter).ThenInclude(o => o.PetSitterOffers).Where(o => o.Zipcode == zipcode).Where(k => k.PetSitter.PetSitterOffers.Count != 0).ToList();
-            if (allOffers.Count != 0)
+            var allOffers = _context.Users.Include(o => o.PetSitter).ThenInclude(o => o.PetSitterOffers).Where(k => k.PetSitter.PetSitterOffers.Count != 0).ToList();
+            var listToSend= new List<PetSitterOffer>();
+            if (listToSend.Count != 0)
             {
-                var searchZip = new decimal((int) zipcode);
-                searchZip =  Math.Round((searchZip / 1000) * 1000);
-                allOffers = _context.Users.Include(o => o.PetSitter).ThenInclude(o => o.PetSitterOffers).Where(k => k.PetSitter.PetSitterOffers.Count != 0).ToList();
                 foreach (var item in allOffers)
                 {
                     var offers = item.PetSitter.PetSitterOffers;
-                    var listToSend =  offers.Where(o => o.ZipCode >= searchZip && o.ZipCode <= (searchZip+1000)).ToList();
+                    listToSend = offers.Where(o => o.ZipCode == zipcode).ToList();
                     item.PetSitter.PetSitterOffers = listToSend;
-
+                }        
+            }
+            else 
+            {
+                var searchZip = new decimal((int) zipcode);
+                searchZip =  Math.Round((searchZip / 1000) * 1000);
+                foreach (var item in allOffers)
+                {
+                    var offers = item.PetSitter.PetSitterOffers;
+                    listToSend = offers.Where(o => o.ZipCode >= (searchZip-1000) && o.ZipCode <= (searchZip+1000)).ToList();
+                    item.PetSitter.PetSitterOffers = listToSend;
+                    
 
 
                 }
