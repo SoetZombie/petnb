@@ -50,18 +50,24 @@ namespace petnb.Controllers
             }
 
             var allOffers = _context.Users.Include(o => o.PetSitter).ThenInclude(o => o.PetSitterOffers).Where(k => k.PetSitter.PetSitterOffers.Count != 0).ToList();
+            var usersToSend = new List<ApplicationUser>();
             var listToSend= new List<PetSitterOffer>();
-            if (listToSend.Count != 0)
-            {
-                foreach (var item in allOffers)
+
+            foreach (var item in allOffers)
                 {
                     var offers = item.PetSitter.PetSitterOffers;
                     listToSend = offers.Where(o => o.ZipCode == zipcode).ToList();
-                    item.PetSitter.PetSitterOffers = listToSend;
+                    if (listToSend.Count != 0)
+                    {
+                        item.PetSitter.PetSitterOffers = listToSend;
+                        usersToSend.Add(item);
+
+                    }
                 }        
-            }
-            else 
+
+            if(usersToSend.Count == 0) 
             {
+  
                 var searchZip = new decimal((int) zipcode);
                 searchZip =  Math.Round((searchZip / 1000) * 1000);
                 foreach (var item in allOffers)
@@ -69,6 +75,11 @@ namespace petnb.Controllers
                     var offers = item.PetSitter.PetSitterOffers;
                     listToSend = offers.Where(o => o.ZipCode >= (searchZip-1000) && o.ZipCode <= (searchZip+1000)).ToList();
                     item.PetSitter.PetSitterOffers = listToSend;
+                    if (listToSend.Count != 0)
+                    {
+
+                    usersToSend.Add(item);
+                    }
                     
 
 
@@ -76,7 +87,7 @@ namespace petnb.Controllers
 
             }
 
-            return View(allOffers);
+            return View(usersToSend);
 
         }
 
